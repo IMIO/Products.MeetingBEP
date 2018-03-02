@@ -1,0 +1,36 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone">
+
+    <!-- IPrettyLink for MeetingItem -->
+    <adapter for="Products.PloneMeeting.interfaces.IMeetingItem"
+             factory=".adapters.MCHItemPrettyLinkAdapter"
+             provides="imio.prettylink.interfaces.IPrettyLink" />
+
+    <!-- collective.documentgenerator helper view for MeetingItem -->
+    <browser:page
+        for="Products.PloneMeeting.interfaces.IMeetingItem"
+        class=".browser.overrides.MCHItemDocumentGenerationHelperView"
+        permission="zope2.View"
+        name="document_generation_helper_view"
+     />
+
+    <!-- collective.documentgenerator helper view for Meeting -->
+    <browser:page
+        for="Products.PloneMeeting.interfaces.IMeeting"
+        class=".browser.overrides.MCHMeetingDocumentGenerationHelperView"
+        permission="zope2.View"
+        name="document_generation_helper_view"
+     />
+
+    <!-- before faceted infos on the meeting_view -->
+    <browser:page
+      for="Products.PloneMeeting.interfaces.IMeeting"
+      name="meeting-before-faceted-infos"
+      template="browser/templates/meeting_before_faceted_infos.pt"
+      class=".browser.overrides.MCHMeetingBeforeFacetedInfosView"
+      permission="zope2.View"
+      />
+
+</configure>
