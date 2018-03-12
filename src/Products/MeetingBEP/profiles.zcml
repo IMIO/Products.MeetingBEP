@@ -1,0 +1,24 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="MeetingBEP">
+
+  <include package="Products.GenericSetup" file="meta.zcml" />
+
+  <genericsetup:registerProfile
+      name="default"
+      title="MeetingBEP"
+      directory="profiles/default"
+      description="Extension profile for MeetingBEP."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+  
+  <genericsetup:registerProfile
+   name="zbep"
+   title="PloneMeeting / Demo profile for BEP with french examples"
+   directory="profiles/zbep"
+   description="PloneMeeting for BEP (Belgium)"
+   provides="Products.GenericSetup.interfaces.EXTENSION"
+   for="Products.CMFPlone.interfaces.IPloneSiteRoot"/>
+
+</configure>

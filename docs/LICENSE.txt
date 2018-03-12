@@ -1,4 +1,4 @@
-Products.MeetingCharleroi Copyright 2012, <YOUR NAME HERE>
+Products.MeetingBEP Copyright 2018, Imio.be
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
