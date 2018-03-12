@@ -43,7 +43,7 @@ def logStep(method, context):
 
 
 def isMeetingBEPConfigureProfile(context):
-    return context.readDataFile("MeetingBEP_examples_fr_marker.txt") or \
+    return context.readDataFile("MeetingBEP_zbep_marker.txt") or \
         context.readDataFile("MeetingBEP_testing_marker.txt")
 
 

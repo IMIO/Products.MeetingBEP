@@ -135,21 +135,23 @@ ce_grp.reviewers += [lgo]
 cecs_grp.advisers += [dma]
 
 # Meeting configurations -------------------------------------------------------
-# BEP
-# CA
+# BEP - CA
 bepca = MeetingConfigDescriptor(
     'bep-ca', "Conseil d'Administration", "Conseil d'Administration", isDefault=True)
 bepca = deepcopy(simple_import_data.simpleMeeting)
 bepca.id = 'bep-ca'
 bepca.title = "Conseil d'Administration"
 bepca.folderTitle = "Conseil d'Administration"
+bepca.configGroup = 'bep'
 bepca.podTemplates = templates
 
+# BEP - CODIR
 bepcodir = MeetingConfigDescriptor(
     'bep-codir', "Comité de Direction", "Comité de Direction", isDefault=True)
 bepcodir = deepcopy(simple_import_data.simpleMeeting)
 bepcodir.id = 'bep-codir'
 bepcodir.title = "Comité de Direction"
+bepcodir.configGroup = 'bep'
 bepcodir.folderTitle = "Comité de Direction"
 
 for cfg in (bepca, bepcodir):
@@ -167,4 +169,11 @@ data = PloneMeetingConfiguration(
         info_grp, de_grp, ce_grp, cecs_grp, ai_grp, ae_grp, is_grp, env_grp, fact_grp,
         coll_grp, parsc_grp, be_grp, dt_grp, ne_grp, crema_grp, idefin_grp])
 data.enableUserPreferences = False
+data.configGroups = (
+    {'row_id': 'bep', 'label': 'BEP'},
+    {'row_id': 'expa', 'label': 'EXPA'},
+    {'row_id': 'enviro', 'label': 'ENVIRO'},
+    {'row_id': 'crema', 'label': 'CREMA'},
+    {'row_id': 'idefin', 'label': 'IDEFIN'},
+)
 # ------------------------------------------------------------------------------

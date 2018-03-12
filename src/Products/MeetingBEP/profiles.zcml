@@ -15,7 +15,7 @@
   
   <genericsetup:registerProfile
    name="zbep"
-   title="PloneMeeting / Demo profile for BEP with french examples"
+   title="PloneMeeting / BEP"
    directory="profiles/zbep"
    description="PloneMeeting for BEP (Belgium)"
    provides="Products.GenericSetup.interfaces.EXTENSION"
