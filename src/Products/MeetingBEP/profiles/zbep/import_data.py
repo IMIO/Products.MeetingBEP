@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from DateTime import DateTime
 from copy import deepcopy
 
 from Products.PloneMeeting.profiles import AnnexTypeDescriptor
@@ -11,6 +12,8 @@ from Products.PloneMeeting.profiles import PloneMeetingConfiguration
 from Products.PloneMeeting.profiles import PodTemplateDescriptor
 from Products.PloneMeeting.profiles import UserDescriptor
 from Products.MeetingCommunes.profiles.simple import import_data as simple_import_data
+
+today = DateTime().strftime('%Y/%m/%d')
 
 # File types -------------------------------------------------------------------
 annexe = ItemAnnexTypeDescriptor('annexe', 'Annexe', u'attach.png')
@@ -158,10 +161,23 @@ bepcodir.podTemplates = []
 
 for cfg in (bepca, bepcodir):
     cfg.categories = categories
+    cfg.useGroupsAsCategories = False
     cfg.itemConditionsInterface = 'Products.MeetingBEP.interfaces.IMeetingItemBEPWorkflowConditions'
     cfg.itemActionsInterface = 'Products.MeetingBEP.interfaces.IMeetingItemBEPWorkflowActions'
     cfg.meetingConditionsInterface = 'Products.MeetingBEP.interfaces.IMeetingBEPWorkflowConditions'
     cfg.meetingActionsInterface = 'Products.MeetingBEP.interfaces.IMeetingBEPWorkflowActions'
+    cfg.customAdvisers = (
+        {'delay_label': '',
+         'for_item_created_until': '',
+         'group': 'coaching-entreprises-chef-de-service',
+         'available_on': '',
+         'delay': '',
+         'gives_auto_advice_on_help_message': '',
+         'gives_auto_advice_on': "python: item.getProposingGroup() == 'coaching-entreprises'",
+         'delay_left_alert': '',
+         'is_linked_to_previous_row': '0',
+         'for_item_created_from': today,
+         'row_id': 'row_id_1'},)
 
 data = PloneMeetingConfiguration(
     meetingFolderTitle='Mes séances',
