@@ -10,7 +10,6 @@ from Products.PloneMeeting.profiles import MeetingConfigDescriptor
 from Products.PloneMeeting.profiles import PloneMeetingConfiguration
 from Products.PloneMeeting.profiles import PodTemplateDescriptor
 from Products.PloneMeeting.profiles import UserDescriptor
-
 from Products.MeetingCommunes.profiles.simple import import_data as simple_import_data
 
 # File types -------------------------------------------------------------------
@@ -142,6 +141,7 @@ bepca = deepcopy(simple_import_data.simpleMeeting)
 bepca.id = 'bep-ca'
 bepca.title = "Conseil d'Administration"
 bepca.folderTitle = "Conseil d'Administration"
+bepca.shortName = 'CA'
 bepca.configGroup = 'bep'
 bepca.podTemplates = templates
 
@@ -151,8 +151,10 @@ bepcodir = MeetingConfigDescriptor(
 bepcodir = deepcopy(simple_import_data.simpleMeeting)
 bepcodir.id = 'bep-codir'
 bepcodir.title = "Comité de Direction"
+bepcodir.shortName = 'CoDir'
 bepcodir.configGroup = 'bep'
 bepcodir.folderTitle = "Comité de Direction"
+bepcodir.podTemplates = []
 
 for cfg in (bepca, bepcodir):
     cfg.categories = categories
