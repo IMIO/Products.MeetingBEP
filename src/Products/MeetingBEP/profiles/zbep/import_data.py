@@ -166,6 +166,9 @@ for cfg in (bepca, bepcodir):
     cfg.itemActionsInterface = 'Products.MeetingBEP.interfaces.IMeetingItemBEPWorkflowActions'
     cfg.meetingConditionsInterface = 'Products.MeetingBEP.interfaces.IMeetingBEPWorkflowConditions'
     cfg.meetingActionsInterface = 'Products.MeetingBEP.interfaces.IMeetingBEPWorkflowActions'
+    cfg.enableAdviceConfidentiality = True
+    cfg.adviceConfidentialityDefault = True
+    cfg.adviceConfidentialFor = ('restricted_power_observers', )
     cfg.customAdvisers = (
         {'delay_label': '',
          'for_item_created_until': '',
