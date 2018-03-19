@@ -169,6 +169,7 @@ for cfg in (bepca, bepcodir):
     cfg.enableAdviceConfidentiality = True
     cfg.adviceConfidentialityDefault = True
     cfg.adviceConfidentialFor = ('restricted_power_observers', )
+    cfg.hideHistoryTo = ('restricted_power_observers', )
     cfg.customAdvisers = (
         {'delay_label': '',
          'for_item_created_until': '',
