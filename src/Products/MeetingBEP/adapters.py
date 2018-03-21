@@ -24,6 +24,7 @@
 from AccessControl import ClassSecurityInfo
 from Globals import InitializeClass
 from zope.interface import implements
+from plone import api
 
 from Products.PloneMeeting.interfaces import IMeetingCustom
 from Products.PloneMeeting.interfaces import IMeetingItemCustom
@@ -56,6 +57,17 @@ class CustomBEPMeetingItem(CustomMeetingItem):
 
     def __init__(self, item):
         self.context = item
+
+    def showObservations(self):
+        """ """
+        res = True
+        item = self.getSelf()
+        tool = api.portal.get_tool('portal_plonemeeting')
+        cfg = tool.getMeetingConfig(item)
+        # hide observations to restricted power observers
+        if tool.isPowerObserverForCfg(cfg, isRestricted=True):
+            res = False
+        return res
 
 
 class MeetingBEPWorkflowActions(MeetingCommunesWorkflowActions):

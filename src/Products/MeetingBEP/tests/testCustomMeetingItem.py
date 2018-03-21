@@ -24,10 +24,40 @@
 
 from Products.MeetingBEP.tests.MeetingBEPTestCase import MeetingBEPTestCase
 from Products.MeetingCommunes.tests.testCustomMeetingItem import testCustomMeetingItem as mctcmi
+from imio.helpers.cache import cleanRamCacheFor
 
 
 class testCustomMeetingItem(MeetingBEPTestCase, mctcmi):
     """ """
+
+    def test_ShowObservations(self):
+        """MeetingItem.observations is hidden to restricted power observers."""
+        self.changeUser('pmCreator1')
+        cfg = self.meetingConfig
+        usedItemAttrs = cfg.getUsedItemAttributes()
+        usedItemAttrs = usedItemAttrs + ('observations', )
+        cfg.setUsedItemAttributes(usedItemAttrs)
+        cfg.setItemPowerObserversStates(('itemcreated', ))
+        cfg.setItemRestrictedPowerObserversStates(('itemcreated', ))
+
+        item = self.create('MeetingItem')
+        widget = item.getField('observations').widget
+        self.assertTrue(widget.testCondition(item.aq_inner.aq_parent, self.portal, item))
+        self.assertTrue(item.adapted().showObservations())
+
+        # power observer may view
+        # MeetingItem.attributeIsUsed is RAMCached
+        self.changeUser('powerobserver1')
+        cleanRamCacheFor('Products.PloneMeeting.MeetingItem.attributeIsUsed')
+        self.assertTrue(widget.testCondition(item.aq_inner.aq_parent, self.portal, item))
+        self.assertTrue(item.adapted().showObservations())
+
+        # resctricted power observer may view
+        # MeetingItem.attributeIsUsed is RAMCached
+        self.changeUser('restrictedpowerobserver1')
+        cleanRamCacheFor('Products.PloneMeeting.MeetingItem.attributeIsUsed')
+        self.assertFalse(widget.testCondition(item.aq_inner.aq_parent, self.portal, item))
+        self.assertFalse(item.adapted().showObservations())
 
 
 def test_suite():

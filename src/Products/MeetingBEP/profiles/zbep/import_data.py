@@ -8,6 +8,7 @@ from Products.PloneMeeting.profiles import CategoryDescriptor
 from Products.PloneMeeting.profiles import GroupDescriptor
 from Products.PloneMeeting.profiles import ItemAnnexTypeDescriptor
 from Products.PloneMeeting.profiles import MeetingConfigDescriptor
+from Products.PloneMeeting.profiles import PloneGroupDescriptor
 from Products.PloneMeeting.profiles import PloneMeetingConfiguration
 from Products.PloneMeeting.profiles import PodTemplateDescriptor
 from Products.PloneMeeting.profiles import UserDescriptor
@@ -80,6 +81,7 @@ sbr = UserDescriptor('sbr', [], email="sbr@bep.be", fullname="Sébastien BOURGEO
 str_user = UserDescriptor('str', [], email="str@bep.be", fullname="Sébastien TRIFFOY")
 sma = UserDescriptor('sma', [], email="sma@bep.be", fullname="Sophie MARLET")
 the = UserDescriptor('the', [], email="the@bep.be", fullname="Tom HEURION")
+assembly_member = UserDescriptor('assembly_member', [], email="test@test.be", fullname="Assembly Member")
 
 # Groups -----------------------------------------------------------------------
 dg_grp = GroupDescriptor('direction-generale', 'Direction Générale', 'DG')
@@ -106,6 +108,10 @@ dt_grp = GroupDescriptor('developpement-territorial', 'Développement Territoria
 ne_grp = GroupDescriptor('namur-expo', 'Namur Expo', 'EXPO')
 crema_grp = GroupDescriptor('bep-crematorium', 'BEP Crématorium', 'CREMA')
 idefin_grp = GroupDescriptor('idefin', 'Idefin', 'IDEFIN')
+ca_powerobservers = PloneGroupDescriptor('meeting-config-ca_powerobservers',
+                                         'meeting-config-ca_powerobservers',
+                                         [])
+assembly_member.ploneGroups = [ca_powerobservers]
 
 dg_grp.advisers.append(rde)
 dg_grp.creators.append(rde)

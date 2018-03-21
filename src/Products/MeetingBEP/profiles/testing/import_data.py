@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from Products.PloneMeeting.config import MEETINGREVIEWERS
 from Products.PloneMeeting.profiles import AnnexTypeDescriptor
 from Products.PloneMeeting.profiles import CategoryDescriptor
 from Products.PloneMeeting.profiles import GroupDescriptor
@@ -20,14 +19,14 @@ overheadAnalysisSubtype = ItemAnnexSubTypeDescriptor(
     'overhead-analysis-sub-annex',
     'Overhead analysis sub annex',
     other_mc_correspondences=(
-        'meeting-config-council_-_annexes_types_-_item_annexes_-_budget-analysis', ))
+        'codir_-_annexes_types_-_item_annexes_-_budget-analysis', ))
 
 overheadAnalysis = ItemAnnexTypeDescriptor(
     'overhead-analysis', 'Administrative overhead analysis',
     u'overheadAnalysis.png',
     subTypes=[overheadAnalysisSubtype],
     other_mc_correspondences=(
-        'meeting-config-council_-_annexes_types_-_item_annexes_-_budget-analysis_-_budget-analysis-sub-annex', ))
+        'codir_-_annexes_types_-_item_annexes_-_budget-analysis_-_budget-analysis-sub-annex', ))
 
 financialAnalysisSubAnnex = ItemAnnexSubTypeDescriptor(
     'financial-analysis-sub-annex',
@@ -52,12 +51,12 @@ budgetAnalysisCfg1Subtype = ItemAnnexSubTypeDescriptor(
     'budget-analysis-sub-annex',
     'Budget analysis sub annex',
     other_mc_correspondences=(
-        'meeting-config-council_-_annexes_types_-_item_annexes_-_budget-analysis_-_budget-analysis-sub-annex', ))
+        'codir_-_annexes_types_-_item_annexes_-_budget-analysis_-_budget-analysis-sub-annex', ))
 
 budgetAnalysisCfg1 = ItemAnnexTypeDescriptor(
     'budget-analysis', 'Budget analysis', u'budgetAnalysis.png',
     subTypes=[budgetAnalysisCfg1Subtype],
-    other_mc_correspondences=('meeting-config-council_-_annexes_types_-_item_annexes_-_budget-analysis', ))
+    other_mc_correspondences=('codir_-_annexes_types_-_item_annexes_-_budget-analysis', ))
 
 itemAnnex = ItemAnnexTypeDescriptor(
     'item-annex', 'Other annex(es)', u'itemAnnex.png')
@@ -84,18 +83,18 @@ meetingAnnex = AnnexTypeDescriptor(
 # Pod templates ----------------------------------------------------------------
 agendaTemplate = PodTemplateDescriptor('agendaTemplate', 'Meeting agenda')
 agendaTemplate.odt_file = 'Agenda.odt'
-agendaTemplate.pod_portal_types = ['MeetingCollege']
+agendaTemplate.pod_portal_types = ['MeetingCA']
 agendaTemplate.tal_condition = ''
 
 decisionsTemplate = PodTemplateDescriptor('decisionsTemplate',
                                           'Meeting decisions')
 decisionsTemplate.odt_file = 'Decisions.odt'
-decisionsTemplate.pod_portal_types = ['MeetingCollege']
+decisionsTemplate.pod_portal_types = ['MeetingCA']
 decisionsTemplate.tal_condition = 'python:here.adapted().isDecided()'
 
 itemTemplate = PodTemplateDescriptor('itemTemplate', 'Meeting item')
 itemTemplate.odt_file = 'Item.odt'
-itemTemplate.pod_portal_types = ['MeetingItemCollege']
+itemTemplate.pod_portal_types = ['MeetingItemCA']
 itemTemplate.tal_condition = ''
 
 # item templates
@@ -143,8 +142,6 @@ pmManager = UserDescriptor('pmManager', [], email="pmmanager@plonemeeting.org", 
 pmCreator1 = UserDescriptor('pmCreator1', [], email="pmcreator1@plonemeeting.org", fullname='M. PMCreator One')
 pmCreator1b = UserDescriptor('pmCreator1b', [], email="pmcreator1b@plonemeeting.org", fullname='M. PMCreator One bee')
 pmObserver1 = UserDescriptor('pmObserver1', [], email="pmobserver1@plonemeeting.org", fullname='M. PMObserver One')
-pmServiceHead1 = UserDescriptor('pmServiceHead1', [])
-pmRefAdmin1 = UserDescriptor('pmRefAdmin1', [])
 pmReviewer1 = UserDescriptor('pmReviewer1', [])
 pmReviewerLevel1 = UserDescriptor('pmReviewerLevel1', [],
                                   email="pmreviewerlevel1@plonemeeting.org", fullname='M. PMReviewer Level One')
@@ -159,11 +156,11 @@ powerobserver1 = UserDescriptor('powerobserver1',
                                 [],
                                 email="powerobserver1@plonemeeting.org",
                                 fullname='M. Power Observer1')
-# powerobserver1 is 'power observer' because in the meeting-config-college '_powerobservers' group
-college_powerobservers = PloneGroupDescriptor('meeting-config-college_powerobservers',
-                                              'meeting-config-college_powerobservers',
-                                              [])
-powerobserver1.ploneGroups = [college_powerobservers, ]
+# powerobserver1 is 'power observer' because in the ca '_powerobservers' group
+ca_powerobservers = PloneGroupDescriptor('ca_powerobservers',
+                                         'ca_powerobservers',
+                                         [])
+powerobserver1.ploneGroups = [ca_powerobservers, ]
 powerobserver2 = UserDescriptor('powerobserver2',
                                 [],
                                 email="powerobserver2@plonemeeting.org",
@@ -172,18 +169,18 @@ restrictedpowerobserver1 = UserDescriptor('restrictedpowerobserver1',
                                           [],
                                           email="restrictedpowerobserver1@plonemeeting.org",
                                           fullname='M. Restricted Power Observer 1')
-college_restrictedpowerobservers = PloneGroupDescriptor('meeting-config-college_restrictedpowerobservers',
-                                                        'meeting-config-college_restrictedpowerobservers',
-                                                        [])
-restrictedpowerobserver1.ploneGroups = [college_restrictedpowerobservers, ]
+ca_restrictedpowerobservers = PloneGroupDescriptor('ca_restrictedpowerobservers',
+                                                   'ca_restrictedpowerobservers',
+                                                   [])
+restrictedpowerobserver1.ploneGroups = [ca_restrictedpowerobservers, ]
 restrictedpowerobserver2 = UserDescriptor('restrictedpowerobserver2',
                                           [],
                                           email="restrictedpowerobserver2@plonemeeting.org",
                                           fullname='M. Restricted Power Observer 2')
-council_restrictedpowerobservers = PloneGroupDescriptor('meeting-config-council_restrictedpowerobservers',
-                                                        'meeting-config-council_restrictedpowerobservers',
-                                                        [])
-restrictedpowerobserver2.ploneGroups = [council_restrictedpowerobservers, ]
+codir_restrictedpowerobservers = PloneGroupDescriptor('codir_restrictedpowerobservers',
+                                                      'codir_restrictedpowerobservers',
+                                                      [])
+restrictedpowerobserver2.ploneGroups = [codir_restrictedpowerobservers, ]
 
 developers = GroupDescriptor('developers', 'Developers', 'Devel')
 developers.observers.append(pmObserver1)
@@ -194,21 +191,12 @@ developers.advisers.append(pmManager)
 developers.creators.append(pmCreator1)
 developers.creators.append(pmCreator1b)
 developers.creators.append(pmManager)
-developers.serviceheads.append(pmServiceHead1)
-developers.serviceheads.append(pmRefAdmin1)
-developers.serviceheads.append(pmReviewer1)
-developers.serviceheads.append(pmManager)
-developers.prereviewers.append(pmRefAdmin1)
 developers.prereviewers.append(pmReviewer1)
 developers.prereviewers.append(pmManager)
 developers.reviewers.append(pmReviewer1)
 developers.reviewers.append(pmManager)
 setattr(developers, 'signatures', 'developers signatures')
 setattr(developers, 'echevinServices', 'developers')
-# put pmReviewerLevel1 in first level of reviewers from what is in MEETINGREVIEWERS
-getattr(developers, MEETINGREVIEWERS.keys()[-1]).append(pmReviewerLevel1)
-# put pmReviewerLevel2 in second level of reviewers from what is in MEETINGREVIEWERS
-getattr(developers, MEETINGREVIEWERS.keys()[0]).append(pmReviewerLevel2)
 
 # give an advice on recurring items
 vendors = GroupDescriptor('vendors', 'Vendors', 'Devil')
@@ -217,7 +205,6 @@ vendors.reviewers.append(pmReviewer2)
 vendors.observers.append(pmReviewer2)
 vendors.advisers.append(pmReviewer2)
 vendors.advisers.append(pmManager)
-vendors.serviceheads.append(pmReviewer2)
 vendors.prereviewers.append(pmReviewer2)
 setattr(vendors, 'signatures', '')
 
@@ -247,11 +234,11 @@ budgetimpacteditor = UserDescriptor('budgetimpacteditor',
                                     [],
                                     email="budgetimpacteditor@plonemeeting.org",
                                     fullname='M. Budget Impact Editor')
-college_budgetimpacteditors = PloneGroupDescriptor('meeting-config-college_budgetimpacteditors',
-                                                   'meeting-config-college_budgetimpacteditors',
-                                                   [])
-budgetimpacteditor.ploneGroups = [college_budgetimpacteditors,
-                                  college_powerobservers]
+ca_budgetimpacteditors = PloneGroupDescriptor('ca_budgetimpacteditors',
+                                              'ca_budgetimpacteditors',
+                                              [])
+budgetimpacteditor.ploneGroups = [ca_budgetimpacteditors,
+                                  ca_powerobservers]
 
 # Meeting configurations -------------------------------------------------------
 # CA
@@ -277,9 +264,9 @@ ca.meetingWorkflow = 'meetingcommunes_workflow'
 ca.itemConditionsInterface = 'Products.MeetingBEP.interfaces.IMeetingItemBEPWorkflowConditions'
 ca.itemActionsInterface = 'Products.MeetingBEP.interfaces.IMeetingItemBEPWorkflowActions'
 ca.meetingConditionsInterface = 'Products.MeetingBEP.interfaces.IMeetingBEPWorkflowConditions'
-ca.meetingActionsInterface = 'Products.MeetingBEP.interfaces.IMeetingBEPCollegeWorkflowActions'
+ca.meetingActionsInterface = 'Products.MeetingBEP.interfaces.IMeetingBEPWorkflowActions'
 ca.transitionsToConfirm = []
-ca.transitionsForPresentingAnItem = ['propose', 'proposeToRefAdmin', 'prevalidate', 'validate', 'present', ]
+ca.transitionsForPresentingAnItem = ['propose', 'validate', 'present', ]
 ca.onMeetingTransitionItemTransitionToTrigger = ({'meeting_transition': 'freeze',
                                                   'item_transition': 'itemfreeze'},
                                                  {'meeting_transition': 'decide',
@@ -299,14 +286,14 @@ ca.meetingTopicStates = ('created', 'frozen')
 ca.decisionTopicStates = ('decided', 'closed')
 ca.useAdvices = True
 ca.selectableAdvisers = ['developers', 'vendors']
-ca.itemAdviceStates = ['prevalidated', ]
-ca.itemAdviceEditStates = ['prevalidated', 'validated']
+ca.itemAdviceStates = ['proposed', ]
+ca.itemAdviceEditStates = ['proposed', 'validated']
 ca.itemAdviceViewStates = ['presented', ]
 ca.transitionsReinitializingDelays = ('backToItemCreated', )
 ca.enforceAdviceMandatoriness = False
-ca.itemPowerObserversStates = ('itemcreated', 'presented', 'accepted', 'delayed', 'refused')
-ca.itemDecidedStates = ['accepted', 'refused', 'delayed', 'accepted_but_modified', 'pre_accepted']
-ca.workflowAdaptations = ['no_publication', 'no_global_observation', 'pre_validation', 'waiting_advices']
+ca.itemPowerObserversStates = ('itemcreated', 'presented', 'accepted', 'delayed')
+ca.itemDecidedStates = ['accepted', 'delayed', 'accepted_but_modified', 'pre_accepted']
+ca.workflowAdaptations = ['no_publication', 'no_global_observation', 'waiting_advices']
 ca.insertingMethodsOnAddItem = ({'insertingMethod': 'on_proposing_groups',
                                  'reverse': '0'}, )
 ca.useGroupsAsCategories = True
@@ -353,7 +340,7 @@ codir.meetingWorkflow = 'meetingcommunes_workflow'
 codir.itemConditionsInterface = 'Products.MeetingBEP.interfaces.IMeetingItemBEPWorkflowConditions'
 codir.itemActionsInterface = 'Products.MeetingBEP.interfaces.IMeetingItemBEPWorkflowActions'
 codir.meetingConditionsInterface = 'Products.MeetingBEP.interfaces.IMeetingBEPWorkflowConditions'
-codir.meetingActionsInterface = 'Products.MeetingBEP.interfaces.IMeetingBEPCollegeWorkflowActions'
+codir.meetingActionsInterface = 'Products.MeetingBEP.interfaces.IMeetingBEPWorkflowActions'
 codir.transitionsToConfirm = []
 codir.transitionsForPresentingAnItem = ['propose', 'validate', 'present', ]
 codir.onMeetingTransitionItemTransitionToTrigger = ({'meeting_transition': 'freeze',
@@ -395,7 +382,7 @@ codir.itemAdviceEditStates = ['proposed', 'validated']
 codir.itemAdviceViewStates = ['presented', ]
 codir.transitionsReinitializingDelays = 'backToItemCreated'
 codir.enforceAdviceMandatoriness = False
-codir.itemDecidedStates = ['accepted', 'refused', 'delayed', 'accepted_but_modified', 'pre_accepted']
+codir.itemDecidedStates = ['accepted', 'delayed', 'accepted_but_modified', 'pre_accepted']
 codir.itemPowerObserversStates = ca.itemPowerObserversStates
 codir.meetingPowerObserversStates = ca.meetingPowerObserversStates
 codir.useCopies = True
