@@ -18,3 +18,6 @@ PROJECTNAME = "MeetingBEP"
 DEFAULT_ADD_CONTENT_PERMISSION = "Add portal content"
 setDefaultRoles(DEFAULT_ADD_CONTENT_PERMISSION, ('Manager', 'Owner', 'Contributor'))
 product_globals = globals()
+
+# "Human ressources (Confidential)" group id
+HR_CONFIDENTIAL_GROUP_ID = 'ressources-humaines-confidentiel'

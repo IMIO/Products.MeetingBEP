@@ -34,6 +34,7 @@ from Products.MeetingCommunes.adapters import MeetingCommunesWorkflowActions
 from Products.MeetingCommunes.adapters import MeetingCommunesWorkflowConditions
 from Products.MeetingCommunes.adapters import MeetingItemCommunesWorkflowActions
 from Products.MeetingCommunes.adapters import MeetingItemCommunesWorkflowConditions
+from Products.MeetingBEP.config import HR_CONFIDENTIAL_GROUP_ID
 from Products.MeetingBEP.interfaces import IMeetingBEPWorkflowActions
 from Products.MeetingBEP.interfaces import IMeetingBEPWorkflowConditions
 from Products.MeetingBEP.interfaces import IMeetingItemBEPWorkflowActions
@@ -59,7 +60,7 @@ class CustomBEPMeetingItem(CustomMeetingItem):
         self.context = item
 
     def showObservations(self):
-        """ """
+        """Restricted power observers may not view observations."""
         res = True
         item = self.getSelf()
         tool = api.portal.get_tool('portal_plonemeeting')
@@ -67,6 +68,23 @@ class CustomBEPMeetingItem(CustomMeetingItem):
         # hide observations to restricted power observers
         if tool.isPowerObserverForCfg(cfg, isRestricted=True):
             res = False
+        return res
+
+    def isPrivacyViewable(self):
+        """Not for restricted power observers if :
+           - item is returned_to_proposing_group;
+           - item.proposingGroup is HR_CONFIDENTIAL_GROUP_ID."""
+        item = self.getSelf()
+        tool = api.portal.get_tool('portal_plonemeeting')
+        cfg = tool.getMeetingConfig(item)
+        is_restricted_power_observer = tool.isPowerObserverForCfg(cfg, isRestricted=True)
+        res = True
+        if is_restricted_power_observer and \
+           (item.getProposingGroup() == HR_CONFIDENTIAL_GROUP_ID or
+                item.queryState() == 'returned_to_proposing_group'):
+            res = False
+        if res:
+            res = item.isPrivacyViewable()
         return res
 
 

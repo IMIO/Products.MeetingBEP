@@ -132,12 +132,6 @@ classifier2 = CategoryDescriptor('classifier2', 'Classifier 2')
 classifier3 = CategoryDescriptor('classifier3', 'Classifier 3')
 
 # Users and groups -------------------------------------------------------------
-pmFinController = UserDescriptor('pmFinController', [])
-pmFinEditor = UserDescriptor('pmFinEditor', [])
-pmFinReviewer = UserDescriptor('pmFinReviewer', [])
-pmFinManager = UserDescriptor('pmFinManager', [])
-dfin = UserDescriptor('dfin', [])
-
 pmManager = UserDescriptor('pmManager', [], email="pmmanager@plonemeeting.org", fullname='M. PMManager')
 pmCreator1 = UserDescriptor('pmCreator1', [], email="pmcreator1@plonemeeting.org", fullname='M. PMCreator One')
 pmCreator1b = UserDescriptor('pmCreator1b', [], email="pmcreator1b@plonemeeting.org", fullname='M. PMCreator One bee')
@@ -183,18 +177,18 @@ codir_restrictedpowerobservers = PloneGroupDescriptor('codir_restrictedpowerobse
 restrictedpowerobserver2.ploneGroups = [codir_restrictedpowerobservers, ]
 
 developers = GroupDescriptor('developers', 'Developers', 'Devel')
+developers.creators.append(pmCreator1)
+developers.creators.append(pmCreator1b)
+developers.creators.append(pmManager)
+developers.prereviewers.append(pmReviewerLevel1)
+developers.reviewers.append(pmReviewer1)
+developers.reviewers.append(pmManager)
+developers.reviewers.append(pmReviewerLevel2)
 developers.observers.append(pmObserver1)
 developers.observers.append(pmReviewer1)
 developers.observers.append(pmManager)
 developers.advisers.append(pmAdviser1)
 developers.advisers.append(pmManager)
-developers.creators.append(pmCreator1)
-developers.creators.append(pmCreator1b)
-developers.creators.append(pmManager)
-developers.prereviewers.append(pmReviewer1)
-developers.prereviewers.append(pmManager)
-developers.reviewers.append(pmReviewer1)
-developers.reviewers.append(pmManager)
 setattr(developers, 'signatures', 'developers signatures')
 setattr(developers, 'echevinServices', 'developers')
 
@@ -205,7 +199,6 @@ vendors.reviewers.append(pmReviewer2)
 vendors.observers.append(pmReviewer2)
 vendors.advisers.append(pmReviewer2)
 vendors.advisers.append(pmManager)
-vendors.prereviewers.append(pmReviewer2)
 setattr(vendors, 'signatures', '')
 
 # Do voters able to see items to vote for
@@ -213,6 +206,7 @@ developers.observers.append(voter1)
 developers.observers.append(voter2)
 vendors.observers.append(voter1)
 vendors.observers.append(voter2)
+
 # Add a vintage group
 endUsers = GroupDescriptor('endUsers', 'End users', 'EndUsers', active=False)
 
@@ -293,7 +287,7 @@ ca.transitionsReinitializingDelays = ('backToItemCreated', )
 ca.enforceAdviceMandatoriness = False
 ca.itemPowerObserversStates = ('itemcreated', 'presented', 'accepted', 'delayed')
 ca.itemDecidedStates = ['accepted', 'delayed', 'accepted_but_modified', 'pre_accepted']
-ca.workflowAdaptations = ['no_publication', 'no_global_observation', 'waiting_advices']
+ca.workflowAdaptations = ['no_publication', 'no_global_observation']
 ca.insertingMethodsOnAddItem = ({'insertingMethod': 'on_proposing_groups',
                                  'reverse': '0'}, )
 ca.useGroupsAsCategories = True
@@ -404,6 +398,5 @@ data = PloneMeetingConfiguration(
 data.restrictUsers = False
 data.usersOutsideGroups = [voter1, voter2, powerobserver1, powerobserver2,
                            restrictedpowerobserver1, restrictedpowerobserver2,
-                           budgetimpacteditor, pmFinController, pmFinEditor,
-                           pmFinReviewer, pmFinManager, dfin]
+                           budgetimpacteditor]
 # ------------------------------------------------------------------------------
