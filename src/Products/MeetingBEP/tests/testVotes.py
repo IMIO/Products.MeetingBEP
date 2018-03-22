@@ -29,6 +29,10 @@ from Products.MeetingCommunes.tests.testVotes import testVotes as mctv
 class testVotes(MeetingBEPTestCase, mctv):
     ''' '''
 
+    def setUp(self):
+        """ """
+        mctv.setUp(self)
+
 
 def test_suite():
     from unittest import TestSuite, makeSuite

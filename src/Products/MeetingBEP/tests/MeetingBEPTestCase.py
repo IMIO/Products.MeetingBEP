@@ -33,12 +33,14 @@ class MeetingBEPTestCase(MeetingCommunesTestCase, MeetingBEPTestingHelpers):
     """Base class for defining MeetingBEP test cases."""
 
     layer = MBEP_TESTING_PROFILE_FUNCTIONAL
+    cfg1_id = 'ca'
+    cfg2_id = 'codir'
 
     def setUp(self):
         super(MeetingCommunesTestCase, self).setUp()
         self.subproductIgnoredTestFiles += ['test_robot.py']
-        self.meetingConfig = getattr(self.tool, 'ca')
-        self.meetingConfig2 = getattr(self.tool, 'codir')
+        self.meetingConfig = getattr(self.tool, self.cfg1_id)
+        self.meetingConfig2 = getattr(self.tool, self.cfg2_id)
 
     def setUpRestrictedPowerObservers(self):
         """"""

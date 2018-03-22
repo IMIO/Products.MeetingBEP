@@ -23,10 +23,10 @@
 #
 
 from Products.MeetingBEP.tests.MeetingBEPTestCase import MeetingBEPTestCase
-from Products.PloneMeeting.tests.testWorkflows import testWorkflows as pmtw
+from Products.MeetingCommunes.tests.testWorkflows import testWorkflows as mctw
 
 
-class testWorkflows(MeetingBEPTestCase, pmtw):
+class testWorkflows(MeetingBEPTestCase, mctw):
     """ """
 
 
