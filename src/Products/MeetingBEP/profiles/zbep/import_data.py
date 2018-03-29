@@ -32,6 +32,8 @@ categories = [
                        "Décision"),
     CategoryDescriptor('information-strategie',
                        "Information et Stratégie"),
+    CategoryDescriptor('communication',
+                       "Communication"),
 ]
 
 # Pod templates ----------------------------------------------------------------
@@ -81,6 +83,7 @@ sbr = UserDescriptor('sbr', [], email="sbr@bep.be", fullname="Sébastien BOURGEO
 str_user = UserDescriptor('str', [], email="str@bep.be", fullname="Sébastien TRIFFOY")
 sma = UserDescriptor('sma', [], email="sma@bep.be", fullname="Sophie MARLET")
 the = UserDescriptor('the', [], email="the@bep.be", fullname="Tom HEURION")
+isa = UserDescriptor('isa', [], email="isa@bep.be", fullname="Isabelle SADIN")
 assembly_member = UserDescriptor('assembly_member', [], email="test@test.be", fullname="Assembly Member")
 
 # Groups -----------------------------------------------------------------------
@@ -141,6 +144,13 @@ ce_grp.advisers += [cbo, dlo, dma, dde, ebe, jpo, lgo, mdh, nvg, qox]
 ce_grp.creators += [cbo, dlo, dma, dde, ebe, jpo, lgo, mdh, nvg, qox]
 ce_grp.reviewers += [lgo]
 cecs_grp.advisers += [dma]
+
+rh_grp.advisers = [isa]
+rh_grp.creators = [isa]
+rh_grp.reviewers = [isa]
+rhc_grp.advisers = [isa]
+rhc_grp.creators = [isa]
+rhc_grp.reviewers = [isa]
 
 # Meeting configurations -------------------------------------------------------
 # BEP - CA
