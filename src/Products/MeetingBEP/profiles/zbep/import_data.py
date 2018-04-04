@@ -198,6 +198,10 @@ for cfg in (bepca, bepcodir):
          'is_linked_to_previous_row': '0',
          'for_item_created_from': today,
          'row_id': 'row_id_1'},)
+    cfg.onTransitionFieldTransforms = (
+        {'transition': 'validate',
+         'field_name': 'MeetingItem.decision',
+         'tal_expression': 'python: here.adapted().adaptMotivationClonedItem()'},)
 
 data = PloneMeetingConfiguration(
     meetingFolderTitle='Mes séances',

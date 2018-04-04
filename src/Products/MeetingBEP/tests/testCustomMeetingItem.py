@@ -24,6 +24,8 @@
 
 from DateTime import DateTime
 from imio.helpers.cache import cleanRamCacheFor
+from Products.MeetingBEP.config import DU_ORIGINAL_VALUE
+from Products.MeetingBEP.config import DU_RATIFICATION_VALUE
 from Products.MeetingBEP.config import HR_CONFIDENTIAL_GROUP_ID
 from Products.MeetingBEP.tests.MeetingBEPTestCase import MeetingBEPTestCase
 from Products.MeetingCommunes.tests.testCustomMeetingItem import testCustomMeetingItem as mctcmi
@@ -96,6 +98,36 @@ class testCustomMeetingItem(MeetingBEPTestCase, mctcmi):
         self.assertTrue(item.adapted().isPrivacyViewable())
         self.changeUser('restrictedpowerobserver1')
         self.assertFalse(item.adapted().isPrivacyViewable())
+
+    def test_AdaptDecisionClonedItem(self):
+        """DU for "Décision urgente" is an emergency decision.
+           It uses the accepted_out_of_meeting_emergency_and_duplicated WFAdaptation
+           but when item duplicated, the content of the duplicated item is adapted
+           automatically if some specific sentences are found."""
+        cfg = self.meetingConfig
+        cfg.setWorkflowAdaptations(('accepted_out_of_meeting_emergency_and_duplicated', ))
+        cfg.onTransitionFieldTransforms = (
+            {'transition': 'validate',
+             'field_name': 'MeetingItem.decision',
+             'tal_expression': 'python: here.adapted().adaptDecisionClonedItem()'},)
+        cfg.at_post_edit_script()
+        self.changeUser('pmCreator1')
+        item = self.create('MeetingItem')
+        EXTRA_VALUE = "<p>&nbsp;</p><p>Extra sentence</p>"
+        item.setDecision(DU_ORIGINAL_VALUE + EXTRA_VALUE)
+        self.validateItem(item)
+        self.changeUser('pmManager')
+        item.setEmergency('emergency_accepted')
+        self.do(item, 'accept_out_of_meeting_emergency')
+        # original item not changed
+        self.assertEqual(item.getDecision(), DU_ORIGINAL_VALUE + EXTRA_VALUE)
+        # cloned item was adapted
+        cloned_item = item.getBRefs('ItemPredecessor')[0]
+        self.assertTrue(cfg.Title() in cloned_item.getDecision())
+        data = {'mc_title': cfg.Title(),
+                'emergency_decision_date': DateTime().strftime('%d/%m/%Y')}
+        ratification_sentence = DU_RATIFICATION_VALUE.format(**data)
+        self.assertEqual(cloned_item.getDecision(), ratification_sentence + EXTRA_VALUE)
 
 
 def test_suite():

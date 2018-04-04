@@ -21,3 +21,8 @@ product_globals = globals()
 
 # "Human ressources (Confidential)" group id
 HR_CONFIDENTIAL_GROUP_ID = 'ressources-humaines-confidentiel'
+
+# "DU" auto replaced content values
+DU_ORIGINAL_VALUE = "<p><strong><u>Proposition de décision&nbsp;:</u></strong></p>"
+DU_RATIFICATION_VALUE = "<p><u><strong>Le {mc_title} décide à l'unanimité de ratifier la décision " \
+    "prise en urgence en date du {emergency_decision_date}, à savoir de :</strong></u></p>"

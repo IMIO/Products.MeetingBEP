@@ -23,9 +23,12 @@
 
 from AccessControl import ClassSecurityInfo
 from Globals import InitializeClass
+from zope.component import getAdapter
 from zope.interface import implements
 from plone import api
 
+from imio.history.interfaces import IImioHistory
+from imio.history.utils import getLastAction
 from Products.PloneMeeting.interfaces import IMeetingCustom
 from Products.PloneMeeting.interfaces import IMeetingItemCustom
 from Products.MeetingCommunes.adapters import CustomMeeting
@@ -86,6 +89,30 @@ class CustomBEPMeetingItem(CustomMeetingItem):
         if res:
             res = item.isPrivacyViewable()
         return res
+
+    def adaptDecisionClonedItem(self):
+        """If item is cloned from an accepted_out_of_meeting_emergency item,
+           we adapt MeetingItem.decision field content."""
+        item = self.getSelf()
+        raw_value = item.getRawDecision()
+        if 'duplicating_and_validating_item' in item.REQUEST:
+            tool = api.portal.get_tool('portal_plonemeeting')
+            cfg = tool.getMeetingConfig(item)
+            # get last time predecessor was 'accepted_out_of_meeting_emergency'
+            predecessor = item.getPredecessor()
+            wf_history_adapter = getAdapter(predecessor, IImioHistory, 'workflow')
+            accept_out_of_meeting_action = getLastAction(
+                wf_history_adapter,
+                action='accept_out_of_meeting_emergency',
+                checkMayViewEvent=False, checkMayViewComment=False)
+            data = {'mc_title': cfg.Title(),
+                    'emergency_decision_date': accept_out_of_meeting_action['time'].strftime('%d/%m/%Y')}
+            raw_value = raw_value.replace(
+                "<p><strong><u>Proposition de décision&nbsp;:</u></strong></p>",
+                "<p><u><strong>Le {mc_title} décide à l'unanimité de ratifier la décision "
+                "prise en urgence en date du {emergency_decision_date}, à savoir de :"
+                "</strong></u></p>".format(**data))
+        return raw_value
 
 
 class MeetingBEPWorkflowActions(MeetingCommunesWorkflowActions):
