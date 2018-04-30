@@ -245,7 +245,7 @@ ca.assembly = 'Pierre Dupont - Bourgmestre,\n' \
                'Jacqueline Exemple, Responsable du CPAS'
 ca.signatures = 'Pierre Dupont, Bourgmestre - Charles Exemple, Secrétaire communal'
 ca.certifiedSignatures = []
-ca.categories = [development, research]
+ca.categories = [development, research, events]
 ca.classifiers = [classifier1, classifier2, classifier3]
 ca.shortName = 'CA'
 ca.annexTypes = [financialAnalysis, budgetAnalysisCfg1, overheadAnalysis,
