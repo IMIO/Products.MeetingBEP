@@ -272,8 +272,11 @@ bepcodir.shortName = 'CoDir'
 bepcodir.configGroup = 'bep'
 bepcodir.folderTitle = "Comité de Direction"
 bepcodir.podTemplates = []
+bepcodir.addContacts = True
 
 for cfg in (bepca, bepcodir):
+    cfg.usedMeetingAttributes = ['startDate', 'endDate', 'attendees', 'excused', 'absents',
+                                 'signatories', 'replacements', 'place', 'observations', ]
     cfg.categories = categories
     cfg.useGroupsAsCategories = False
     cfg.workflowAdaptations = (
