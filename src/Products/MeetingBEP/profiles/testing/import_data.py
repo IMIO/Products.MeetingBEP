@@ -251,7 +251,7 @@ ca.shortName = 'CA'
 ca.annexTypes = [financialAnalysis, budgetAnalysisCfg1, overheadAnalysis,
                  itemAnnex, decisionAnnex, marketingAnalysis,
                  adviceAnnex, adviceLegalAnalysis, meetingAnnex]
-ca.usedItemAttributes = ('toDiscuss', 'associatedGroups', 'itemIsSigned',)
+ca.usedItemAttributes = ('description', 'toDiscuss', 'associatedGroups', 'itemIsSigned',)
 ca.maxShownListings = '100'
 ca.itemWorkflow = 'meetingitemcommunes_workflow'
 ca.meetingWorkflow = 'meetingcommunes_workflow'
@@ -365,7 +365,7 @@ codir.onMeetingTransitionItemTransitionToTrigger = ({'meeting_transition': 'free
 codir.meetingTopicStates = ('created', 'frozen', 'published')
 codir.decisionTopicStates = ('decided', 'closed')
 codir.itemAdviceStates = ('validated',)
-codir.usedItemAttributes = ('toDiscuss', 'associatedGroups', 'itemIsSigned',)
+codir.usedItemAttributes = ('description', 'toDiscuss', 'associatedGroups', 'itemIsSigned',)
 codir.insertingMethodsOnAddItem = ({'insertingMethod': 'on_categories',
                                     'reverse': '0'}, )
 codir.useGroupsAsCategories = False
