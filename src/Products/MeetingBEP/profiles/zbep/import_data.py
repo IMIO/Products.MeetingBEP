@@ -262,19 +262,31 @@ bepca.shortName = 'CA'
 bepca.configGroup = 'bep'
 bepca.podTemplates = templates
 
-# BEP - CODIR
-bepcodir = MeetingConfigDescriptor(
-    'bep-codir', "Comité de Direction", "Comité de Direction", isDefault=True)
-bepcodir = deepcopy(simple_import_data.simpleMeeting)
-bepcodir.id = 'bep-codir'
-bepcodir.title = "Comité de Direction"
-bepcodir.shortName = 'CoDir'
-bepcodir.configGroup = 'bep'
-bepcodir.folderTitle = "Comité de Direction"
-bepcodir.podTemplates = []
-bepcodir.addContacts = True
+# BEP - Audit
+bepaudit = MeetingConfigDescriptor(
+    'bep-audit', "Comité d'Audit", "Comité d'Audit", isDefault=False)
+bepaudit = deepcopy(simple_import_data.simpleMeeting)
+bepaudit.id = 'bep-audit'
+bepaudit.title = "Comité d'Audit"
+bepaudit.shortName = 'Audit'
+bepaudit.configGroup = 'bep'
+bepaudit.folderTitle = "Comité d'Audit"
+bepaudit.podTemplates = []
+bepaudit.addContacts = True
 
-for cfg in (bepca, bepcodir):
+# BEP - Rémunération
+bepremun = MeetingConfigDescriptor(
+    'bep-remun', "Comité de Rémunération", "Comité de Rémunération", isDefault=False)
+bepremun = deepcopy(simple_import_data.simpleMeeting)
+bepremun.id = 'bep-remun'
+bepremun.title = "Comité de Rémunération"
+bepremun.shortName = 'Remun'
+bepremun.configGroup = 'bep'
+bepremun.folderTitle = "Comité de Rémunération"
+bepremun.podTemplates = []
+bepremun.addContacts = True
+
+for cfg in (bepca, bepaudit, bepremun):
     cfg.usedMeetingAttributes = ['startDate', 'endDate', 'attendees', 'excused', 'absents',
                                  'signatories', 'replacements', 'place', 'observations', ]
     cfg.categories = categories
@@ -344,7 +356,7 @@ for cfg in (bepca, bepcodir):
 
 data = PloneMeetingConfiguration(
     meetingFolderTitle='Mes séances',
-    meetingConfigs=(bepcodir, bepca),
+    meetingConfigs=(bepaudit, bepca, bepremun),
     groups=[
         dg_grp, sg_grp, com_grp, jur_grp, fin_grp, rh_grp, rhc_grp, sr_grp,
         info_grp, de_grp, ce_grp, cecs_grp, ai_grp, ae_grp, is_grp, env_grp, fact_grp,
