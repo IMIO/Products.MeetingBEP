@@ -40,22 +40,26 @@ categories = [
 agendaTemplate = PodTemplateDescriptor('oj', 'Ordre du jour')
 agendaTemplate.odt_file = 'oj.odt'
 agendaTemplate.pod_formats = ['odt', 'pdf', ]
-agendaTemplate.pod_portal_types = ['MeetingCA']
+agendaTemplate.pod_portal_types = ['MeetingBepCA']
 agendaTemplate.tal_condition = 'python:tool.isManager(here)'
 
 decisionsTemplate = PodTemplateDescriptor('pv', 'Procès-verbal')
 decisionsTemplate.odt_file = 'pv.odt'
 decisionsTemplate.pod_formats = ['odt', 'pdf', ]
-decisionsTemplate.pod_portal_types = ['MeetingCA']
+decisionsTemplate.pod_portal_types = ['MeetingBepCA']
 decisionsTemplate.tal_condition = 'python:tool.isManager(here)'
 
-itemTemplate = PodTemplateDescriptor('deliberation', 'Délibération')
-itemTemplate.odt_file = 'deliberation.odt'
-itemTemplate.pod_formats = ['odt', 'pdf', ]
-itemTemplate.pod_portal_types = ['MeetingItemCA']
-itemTemplate.tal_condition = 'python:here.hasMeeting()'
+noteTravailTemplate = PodTemplateDescriptor('note-travail', 'Note de travail')
+noteTravailTemplate.odt_file = 'notedetravail.odt'
+noteTravailTemplate.pod_formats = ['odt', 'pdf', ]
+noteTravailTemplate.pod_portal_types = ['MeetingItemBepCA']
 
-templates = [agendaTemplate, decisionsTemplate, itemTemplate]
+extraitPVTemplate = PodTemplateDescriptor('extrait-pv', 'Extrait PV')
+extraitPVTemplate.odt_file = 'extraitpv.odt'
+extraitPVTemplate.pod_formats = ['odt', 'pdf', ]
+extraitPVTemplate.pod_portal_types = ['MeetingItemBepCA']
+
+templates = [agendaTemplate, decisionsTemplate, noteTravailTemplate, extraitPVTemplate]
 
 # Users ------------------------------------------------------------------------
 ajo = UserDescriptor('ajo', [], email="ajo@bep.be", fullname="Amélie JOLY")
@@ -258,7 +262,7 @@ bepca = deepcopy(simple_import_data.simpleMeeting)
 bepca.id = 'bep-ca'
 bepca.title = "Conseil d'Administration"
 bepca.folderTitle = "Conseil d'Administration"
-bepca.shortName = 'CA'
+bepca.shortName = 'BepCA'
 bepca.configGroup = 'bep'
 bepca.podTemplates = templates
 
@@ -268,7 +272,7 @@ bepaudit = MeetingConfigDescriptor(
 bepaudit = deepcopy(simple_import_data.simpleMeeting)
 bepaudit.id = 'bep-audit'
 bepaudit.title = "Comité d'Audit"
-bepaudit.shortName = 'Audit'
+bepaudit.shortName = 'BepAudit'
 bepaudit.configGroup = 'bep'
 bepaudit.folderTitle = "Comité d'Audit"
 bepaudit.podTemplates = []
@@ -280,13 +284,59 @@ bepremun = MeetingConfigDescriptor(
 bepremun = deepcopy(simple_import_data.simpleMeeting)
 bepremun.id = 'bep-remun'
 bepremun.title = "Comité de Rémunération"
-bepremun.shortName = 'Remun'
+bepremun.shortName = 'BepRemun'
 bepremun.configGroup = 'bep'
 bepremun.folderTitle = "Comité de Rémunération"
 bepremun.podTemplates = []
 bepremun.addContacts = True
 
-for cfg in (bepca, bepaudit, bepremun):
+# EXPA - CA
+expaca = MeetingConfigDescriptor(
+    'expa-ca', "Conseil d'Administration", "Conseil d'Administration", isDefault=False)
+expaca = deepcopy(simple_import_data.simpleMeeting)
+expaca.id = 'expa-ca'
+expaca.title = "Conseil d'Administration"
+expaca.folderTitle = "Conseil d'Administration"
+expaca.shortName = 'ExpaCA'
+expaca.configGroup = 'expa'
+expaca.podTemplates = []
+
+# ENVIRO - CA
+enviroca = MeetingConfigDescriptor(
+    'enviro-ca', "Conseil d'Administration", "Conseil d'Administration", isDefault=False)
+enviroca = deepcopy(simple_import_data.simpleMeeting)
+enviroca.id = 'enviro-ca'
+enviroca.title = "Conseil d'Administration"
+enviroca.folderTitle = "Conseil d'Administration"
+enviroca.shortName = 'EnviroCA'
+enviroca.configGroup = 'enviro'
+enviroca.podTemplates = []
+
+# CREMA - CA
+cremaca = MeetingConfigDescriptor(
+    'crema-ca', "Conseil d'Administration", "Conseil d'Administration", isDefault=False)
+cremaca = deepcopy(simple_import_data.simpleMeeting)
+cremaca.id = 'crema-ca'
+cremaca.title = "Conseil d'Administration"
+cremaca.folderTitle = "Conseil d'Administration"
+cremaca.shortName = 'CremaCA'
+cremaca.configGroup = 'crema'
+cremaca.podTemplates = []
+
+# IDEFIN - CA
+idefinca = MeetingConfigDescriptor(
+    'idefin-ca', "Conseil d'Administration", "Conseil d'Administration", isDefault=False)
+idefinca = deepcopy(simple_import_data.simpleMeeting)
+idefinca.id = 'idefin-ca'
+idefinca.title = "Conseil d'Administration"
+idefinca.folderTitle = "Conseil d'Administration"
+idefinca.shortName = 'IdefinCA'
+idefinca.configGroup = 'idefin'
+idefinca.podTemplates = []
+
+cfgs = (bepca, bepaudit, bepremun, expaca, enviroca, cremaca, idefinca)
+
+for cfg in cfgs:
     cfg.usedMeetingAttributes = ['startDate', 'endDate', 'attendees', 'excused', 'absents',
                                  'signatories', 'replacements', 'place', 'observations', ]
     cfg.categories = categories
@@ -356,7 +406,7 @@ for cfg in (bepca, bepaudit, bepremun):
 
 data = PloneMeetingConfiguration(
     meetingFolderTitle='Mes séances',
-    meetingConfigs=(bepaudit, bepca, bepremun),
+    meetingConfigs=cfgs,
     groups=[
         dg_grp, sg_grp, com_grp, jur_grp, fin_grp, rh_grp, rhc_grp, sr_grp,
         info_grp, de_grp, ce_grp, cecs_grp, ai_grp, ae_grp, is_grp, env_grp, fact_grp,
