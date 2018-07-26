@@ -340,6 +340,27 @@ for cfg in cfgs:
     cfg.usedMeetingAttributes = ['startDate', 'endDate', 'attendees', 'excused', 'absents',
                                  'signatories', 'replacements', 'place', 'observations', ]
     cfg.categories = categories
+    cfg.certifiedSignatures = (
+        {'function': 'Directeur, Secr\xc3\xa9tariat G\xc3\xa9n\xc3\xa9ral',
+         'signatureNumber': '1',
+         'date_from': '',
+         'name': 'O. GRANVILLE',
+         'date_to': ''},
+        {'function': 'Le Signataire 2 FF',
+         'signatureNumber': '2',
+         'date_from': '',
+         'name': 'Vraiment Exemple',
+         'date_to': ''},
+        {'function': 'Charg\xc3\xa9 de Mission',
+         'signatureNumber': '3',
+         'date_from': '',
+         'name': 'S. TRIFFOY',
+         'date_to': ''},
+        {'function': 'Directeur, Secr\xc3\xa9tariat G\xc3\xa9n\xc3\xa9ral',
+         'signatureNumber': '4',
+         'date_from': '',
+         'name': 'O. GRANVILLE',
+         'date_to': ''})
     cfg.useGroupsAsCategories = False
     cfg.workflowAdaptations = (
         u'no_global_observation', u'no_publication',
