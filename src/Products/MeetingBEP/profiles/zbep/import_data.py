@@ -41,13 +41,13 @@ agendaTemplate = PodTemplateDescriptor('oj', 'Ordre du jour')
 agendaTemplate.odt_file = 'oj.odt'
 agendaTemplate.pod_formats = ['odt', 'pdf', ]
 agendaTemplate.pod_portal_types = ['MeetingBepCA']
-agendaTemplate.tal_condition = 'python:tool.isManager(here)'
+agendaTemplate.tal_condition = u'python:tool.isManager(here)'
 
 decisionsTemplate = PodTemplateDescriptor('pv', 'Procès-verbal')
 decisionsTemplate.odt_file = 'pv.odt'
 decisionsTemplate.pod_formats = ['odt', 'pdf', ]
 decisionsTemplate.pod_portal_types = ['MeetingBepCA']
-decisionsTemplate.tal_condition = 'python:tool.isManager(here)'
+decisionsTemplate.tal_condition = u'python:tool.isManager(here)'
 
 noteTravailTemplate = PodTemplateDescriptor('note-travail', 'Note de travail')
 noteTravailTemplate.odt_file = 'notedetravail.odt'
