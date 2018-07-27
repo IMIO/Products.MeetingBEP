@@ -2,6 +2,11 @@
 /* <dtml-with imioapps_properties> */
 /* <dtml-call "REQUEST.set('portal_url', portal_url())"> */
 
+/* hide field observations on advice */
+#row-form-widgets-advice_observations,
+#formfield-form-widgets-advice_observations {
+    display: none;
+}
 
 
 /* </dtml-with> */
