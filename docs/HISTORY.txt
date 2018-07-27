@@ -14,3 +14,4 @@ Products.MeetingBEP Changelog
 - When an item is accepted_out_of_meeting_emergency, the decision of duplicated
   item is automatically adapted to manage "ratification".
 - Hide field 'Observations' on advice using CSS.
+- Override message 'No access' with something smoother.
