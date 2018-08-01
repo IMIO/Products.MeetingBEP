@@ -337,7 +337,7 @@ idefinca.podTemplates = []
 cfgs = (bepca, bepaudit, bepremun, expaca, enviroca, cremaca, idefinca)
 
 for cfg in cfgs:
-    cfg.usedMeetingAttributes = ['startDate', 'endDate', 'attendees', 'excused', 'absents',
+    cfg.usedMeetingAttributes = ['startDate', 'endDate', 'attendees', 'excused',
                                  'signatories', 'replacements', 'place', 'observations', ]
     cfg.categories = categories
     cfg.certifiedSignatures = (
