@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from DateTime import DateTime
 from copy import deepcopy
 
 from Products.PloneMeeting.profiles import AnnexTypeDescriptor
@@ -13,8 +12,6 @@ from Products.PloneMeeting.profiles import PloneMeetingConfiguration
 from Products.PloneMeeting.profiles import PodTemplateDescriptor
 from Products.PloneMeeting.profiles import UserDescriptor
 from Products.MeetingCommunes.profiles.simple import import_data as simple_import_data
-
-today = DateTime().strftime('%Y/%m/%d')
 
 # File types -------------------------------------------------------------------
 annexe = ItemAnnexTypeDescriptor('annexe', 'Annexe', u'attach.png')
@@ -265,6 +262,7 @@ bepca.folderTitle = "Conseil d'Administration"
 bepca.shortName = 'BepCA'
 bepca.configGroup = 'bep'
 bepca.podTemplates = templates
+bepca.addContacts = True
 
 # BEP - Audit
 bepaudit = MeetingConfigDescriptor(
@@ -276,7 +274,6 @@ bepaudit.shortName = 'BepAudit'
 bepaudit.configGroup = 'bep'
 bepaudit.folderTitle = "Comité d'Audit"
 bepaudit.podTemplates = []
-bepaudit.addContacts = True
 
 # BEP - Rémunération
 bepremun = MeetingConfigDescriptor(
@@ -288,7 +285,6 @@ bepremun.shortName = 'BepRemun'
 bepremun.configGroup = 'bep'
 bepremun.folderTitle = "Comité de Rémunération"
 bepremun.podTemplates = []
-bepremun.addContacts = True
 
 # EXPA - CA
 expaca = MeetingConfigDescriptor(
@@ -388,7 +384,7 @@ for cfg in cfgs:
     cfg.hideHistoryTo = ('restricted_power_observers', )
     cfg.customAdvisers = ((
         {'delay_label': '',
-         'for_item_created_until': '2018/01/01',
+         'for_item_created_until': '',
          'group': 'coaching-entreprises-chef-de-service',
          'available_on': '',
          'delay': '',
@@ -396,7 +392,7 @@ for cfg in cfgs:
          'gives_auto_advice_on': "python: item.getProposingGroup() == 'coaching-entreprises'",
          'delay_left_alert': '',
          'is_linked_to_previous_row': '0',
-         'for_item_created_from': today,
+         'for_item_created_from': '2018/01/01',
          'row_id': 'row_id_1'},
         {'delay_label': '',
          'for_item_created_until': '',
