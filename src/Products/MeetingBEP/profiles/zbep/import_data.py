@@ -89,8 +89,79 @@ isa = UserDescriptor('isa', [], email="isa@bep.be", fullname="Isabelle SADIN")
 assembly_member = UserDescriptor('assembly_member', [], email="test@test.be", fullname="Assembly Member")
 
 # Groups -----------------------------------------------------------------------
-dg_grp = GroupDescriptor('direction-generale', 'Direction Générale', 'DG')
-sg_grp = GroupDescriptor('secretarit-general', 'Secrétariat Général', 'SG')
+dg_grp = GroupDescriptor('dirgen', 'Direction Générale', 'DG')
+dg_grp.itemAdviceStates = (
+    u'bep-audit__state__presented',
+    u'bep-remun__state__presented',
+    u'bep-ca__state__presented',
+    u'crema-ca__state__presented',
+    u'enviro-ca__state__presented',
+    u'expa-ca__state__presented',
+    u'idefin-ca__state__presented')
+dg_grp.itemAdviceEditStates = (
+    u'bep-audit__state__presented',
+    u'bep-remun__state__presented',
+    u'bep-ca__state__presented',
+    u'crema-ca__state__presented',
+    u'enviro-ca__state__presented',
+    u'expa-ca__state__presented',
+    u'idefin-ca__state__presented')
+dg_grp.itemAdviceViewStates = (
+    u'bep-audit__state__accepted',
+    u'bep-audit__state__accepted_but_modified',
+    u'bep-audit__state__pre_accepted',
+    u'bep-audit__state__itemfrozen',
+    u'bep-audit__state__presented',
+    u'bep-audit__state__refused',
+    u'bep-audit__state__returned_to_proposing_group',
+    u'bep-audit__state__delayed',
+    u'bep-remun__state__accepted',
+    u'bep-remun__state__accepted_but_modified',
+    u'bep-remun__state__pre_accepted',
+    u'bep-remun__state__itemfrozen',
+    u'bep-remun__state__presented',
+    u'bep-remun__state__refused',
+    u'bep-remun__state__returned_to_proposing_group',
+    u'bep-remun__state__delayed',
+    u'bep-ca__state__accepted',
+    u'bep-ca__state__accepted_but_modified',
+    u'bep-ca__state__pre_accepted',
+    u'bep-ca__state__itemfrozen',
+    u'bep-ca__state__presented',
+    u'bep-ca__state__refused',
+    u'bep-ca__state__returned_to_proposing_group',
+    u'bep-ca__state__delayed',
+    u'crema-ca__state__accepted',
+    u'crema-ca__state__accepted_but_modified',
+    u'crema-ca__state__pre_accepted',
+    u'crema-ca__state__itemfrozen',
+    u'crema-ca__state__presented',
+    u'crema-ca__state__refused',
+    u'crema-ca__state__returned_to_proposing_group',
+    u'crema-ca__state__delayed',
+    u'enviro-ca__state__accepted',
+    u'enviro-ca__state__accepted_but_modified',
+    u'enviro-ca__state__pre_accepted',
+    u'enviro-ca__state__itemfrozen',
+    u'enviro-ca__state__presented',
+    u'enviro-ca__state__delayed',
+    u'expa-ca__state__accepted',
+    u'expa-ca__state__accepted_but_modified',
+    u'expa-ca__state__pre_accepted',
+    u'expa-ca__state__itemfrozen',
+    u'expa-ca__state__presented',
+    u'expa-ca__state__refused',
+    u'expa-ca__state__returned_to_proposing_group',
+    u'expa-ca__state__delayed',
+    u'idefin-ca__state__accepted',
+    u'idefin-ca__state__accepted_but_modified',
+    u'idefin-ca__state__pre_accepted',
+    u'idefin-ca__state__itemfrozen',
+    u'idefin-ca__state__presented',
+    u'idefin-ca__state__refused',
+    u'idefin-ca__state__returned_to_proposing_group',
+    u'idefin-ca__state__delayed')
+sg_grp = GroupDescriptor('secretariat', 'Secrétariat Général', 'SG')
 com_grp = GroupDescriptor('communication', 'Communication', 'COM')
 jur_grp = GroupDescriptor('service-juridique', 'Service Juridique', 'JUR')
 jur_grp.itemAdviceStates = (
@@ -205,11 +276,15 @@ env_grp = GroupDescriptor('environnement', 'Environnement', 'ENV')
 fact_grp = GroupDescriptor('facturation', 'Facturation', 'FACT')
 coll_grp = GroupDescriptor('collectes', 'Collectes', 'COLL')
 parsc_grp = GroupDescriptor('parcs', 'Parcs', 'PARCS')
-be_grp = GroupDescriptor('bureau-d-etudes', 'Bureau d\'Études', 'BE')
+be_grp = GroupDescriptor('bureau-detudes', 'Bureau d\'Études', 'BE')
 dt_grp = GroupDescriptor('developpement-territorial', 'Développement Territorial', 'DT')
+mo_grp = GroupDescriptor('maitrise-douvrages', 'Maitrise d\'ouvrages', 'MO')
+infra_grp = GroupDescriptor('infrastructure', 'Infrastructure', 'INFRA')
+amt_grp = GroupDescriptor('amenagement-du-territoire', 'Aménagement du territoire', 'AMT')
 ne_grp = GroupDescriptor('namur-expo', 'Namur Expo', 'EXPO')
 crema_grp = GroupDescriptor('bep-crematorium', 'BEP Crématorium', 'CREMA')
 idefin_grp = GroupDescriptor('idefin', 'Idefin', 'IDEFIN')
+tlm_grp = GroupDescriptor('tout-le-monde', 'Tout le monde', 'TLM')
 ca_powerobservers = PloneGroupDescriptor('meeting-config-ca_powerobservers',
                                          'meeting-config-ca_powerobservers',
                                          [])
@@ -333,9 +408,7 @@ idefinca.podTemplates = []
 cfgs = (bepca, bepaudit, bepremun, expaca, enviroca, cremaca, idefinca)
 
 for cfg in cfgs:
-    cfg.usedMeetingAttributes = ['startDate', 'endDate', 'attendees', 'excused',
-                                 'signatories', 'replacements', 'place', 'observations', ]
-    cfg.categories = categories
+    # assembly and signatures
     cfg.certifiedSignatures = (
         {'function': 'Directeur, Secr\xc3\xa9tariat G\xc3\xa9n\xc3\xa9ral',
          'signatureNumber': '1',
@@ -357,7 +430,27 @@ for cfg in cfgs:
          'date_from': '',
          'name': 'O. GRANVILLE',
          'date_to': ''})
+    # data
     cfg.useGroupsAsCategories = False
+    cfg.usedMeetingAttributes = ['startDate', 'endDate', 'attendees', 'excused',
+                                 'signatories', 'replacements', 'place', 'observations', ]
+    cfg.categories = categories
+
+    # gui
+    cfg.itemColumns = ('Creator', 'ModificationDate', 'review_state', 'getProposingGroup',
+                       'advices', 'linkedMeetingDate', 'actions')
+    cfg.meetingColumns = ('Creator', 'CreationDate', 'review_state', 'actions')
+    cfg.meetingColumns = ('Creator', 'CreationDate', 'review_state', 'actions')
+    cfg.itemsListVisibleColumns = ('Creator', 'ModificationDate', 'review_state',
+                                   'getProposingGroup', 'advices', 'actions')
+    cfg.availableItemsListVisibleColumns = ('Creator', 'ModificationDate',
+                                            'getProposingGroup', 'advices', 'actions')
+    cfg.dashboardItemsListingsFilters = (u'c4', u'c5', u'c6', u'c7', u'c8', u'c9', u'c10',
+                                         u'c11', u'c12', u'c13', u'c14', u'c15', u'c16')
+    cfg.dashboardMeetingAvailableItemsFilters = (u'c4', u'c7', u'c8', u'c11', u'c16')
+    cfg.dashboardMeetingLinkedItemsFilters = (u'c4', u'c5', u'c6', u'c7',
+                                              u'c11', u'c12', u'c16', u'c19')
+    # workflow
     cfg.workflowAdaptations = (
         u'no_global_observation', u'no_publication',
         u'presented_item_back_to_proposed', u'return_to_proposing_group',
@@ -373,6 +466,12 @@ for cfg in cfgs:
     cfg.itemPositiveDecidedStates = (
         u'accepted', u'accepted_but_modified', u'accepted_out_of_meeting',
         u'accepted_out_of_meeting_emergency', u'pre_accepted')
+    cfg.onTransitionFieldTransforms = (
+        {'transition': 'validate',
+         'field_name': 'MeetingItem.decision',
+         'tal_expression': 'python: here.adapted().adaptDecisionClonedItem()'},)
+    # advices and access
+    cfg.usedAdviceTypes = (u'asked_again', u'positive', u'positive_with_remarks', u'negative', u'nil')
     cfg.enableAdviceConfidentiality = True
     cfg.adviceConfidentialityDefault = True
     cfg.itemRestrictedPowerObserversStates = (
@@ -416,10 +515,42 @@ for cfg in cfgs:
          'is_linked_to_previous_row': '0',
          'for_item_created_from': '2018/01/01',
          'row_id': 'row_id_2'}, ))
-    cfg.onTransitionFieldTransforms = (
-        {'transition': 'validate',
-         'field_name': 'MeetingItem.decision',
-         'tal_expression': 'python: here.adapted().adaptDecisionClonedItem()'},)
+    cfg.useCopies = True
+    cfg.selectableCopyGroups = (
+        u'dirgen_observers', u'dirgen_reviewers',
+        u'secretariat_observers', u'secretariat_reviewers',
+        u'communication_observers', u'communication_reviewers',
+        u'service-juridique_observers', u'service-juridique_reviewers',
+        u'finances-et-comptabilite_observers', u'finances-et-comptabilite_reviewers',
+        u'ressources-humaines_observers', u'ressources-humaines_reviewers',
+        u'ressources-humaines-confidentiel_observers', u'ressources-humaines-confidentiel_reviewers',
+        u'services-generaux_observers', u'services-generaux_reviewers',
+        u'informatique_observers', u'informatique_reviewers',
+        u'developpement-economique_observers', u'developpement-economique_reviewers',
+        u'coaching-entreprises_observers', u'coaching-entreprises_reviewers',
+        u'attraction-investisseurs_observers', u'attraction-investisseurs_reviewers',
+        u'animation-economique_observers', u'animation-economique_reviewers',
+        u'intelligence-strategique_observers', u'intelligence-strategique_reviewers',
+        u'environnement_observers', u'environnement_reviewers',
+        u'facturation_observers', u'facturation_reviewers',
+        u'collectes_observers', u'collectes_reviewers',
+        u'parcs_observers', u'parcs_reviewers',
+        u'bureau-detudes_observers', u'bureau-detudes_reviewers',
+        u'developpement-territorial_observers', u'developpement-territorial_reviewers',
+        u'maitrise-douvrages_observers', u'maitrise-douvrages_reviewers',
+        u'infrastructure_observers', u'infrastructure_reviewers',
+        u'amenagement-du-territoire_observers', u'amenagement-du-territoire_reviewers',
+        u'namur-expo_observers', u'namur-expo_reviewers',
+        u'bep-crematorium_observers', u'bep-crematorium_reviewers',
+        u'idefin_observers', u'idefin_reviewers',
+        u'coaching-entreprises-chef-de-service_observers',
+        u'coaching-entreprises-chef-de-service_reviewers',
+        u'tout-le-monde_observers', u'tout-le-monde_reviewers')
+    cfg.itemCopyGroupsStates = (
+        u'accepted', u'accepted_but_modified', u'accepted_out_of_meeting',
+        u'accepted_out_of_meeting_emergency', u'pre_accepted',
+        u'itemfrozen', u'refused', u'delayed')
+
 
 data = PloneMeetingConfiguration(
     meetingFolderTitle='Mes séances',
@@ -427,7 +558,8 @@ data = PloneMeetingConfiguration(
     groups=[
         dg_grp, sg_grp, com_grp, jur_grp, fin_grp, rh_grp, rhc_grp, sr_grp,
         info_grp, de_grp, ce_grp, cecs_grp, ai_grp, ae_grp, is_grp, env_grp, fact_grp,
-        coll_grp, parsc_grp, be_grp, dt_grp, ne_grp, crema_grp, idefin_grp])
+        coll_grp, parsc_grp, be_grp, dt_grp, mo_grp, infra_grp, amt_grp, ne_grp,
+        crema_grp, idefin_grp, tlm_grp])
 data.enableUserPreferences = False
 data.configGroups = (
     {'row_id': 'bep', 'label': 'BEP'},
