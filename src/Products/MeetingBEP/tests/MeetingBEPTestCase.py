@@ -21,10 +21,11 @@
 #
 
 
+from Products.PloneMeeting.exportimport.content import ToolInitializer
 from Products.PloneMeeting.model.adaptations import performWorkflowAdaptations
 from Products.PloneMeeting.tests.PloneMeetingTestCase import pm_logger
 from Products.MeetingCommunes.tests.MeetingCommunesTestCase import MeetingCommunesTestCase
-from Products.MeetingBEP.profiles.zbep.import_data import rhc_grp
+from Products.MeetingBEP.profiles.zbep.import_data import rhc_org
 from Products.MeetingBEP.testing import MBEP_TESTING_PROFILE_FUNCTIONAL
 from Products.MeetingBEP.tests.helpers import MeetingBEPTestingHelpers
 
@@ -45,7 +46,7 @@ class MeetingBEPTestCase(MeetingCommunesTestCase, MeetingBEPTestingHelpers):
     def setUpRestrictedPowerObservers(self):
         """"""
         self.changeUser('siteadmin')
-        self.tool.addUsersAndGroups(groups=[rhc_grp])
+        self.tool.addUsersAndGroups(groups=[rhc_org])
         cfg = self.meetingConfig
         cfg.setItemPowerObserversStates(('itemcreated', 'presented', 'returned_to_proposing_group',))
         cfg.setItemRestrictedPowerObserversStates(('itemcreated', 'presented', 'returned_to_proposing_group',))

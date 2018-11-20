@@ -4,7 +4,7 @@ from copy import deepcopy
 
 from Products.PloneMeeting.profiles import AnnexTypeDescriptor
 from Products.PloneMeeting.profiles import CategoryDescriptor
-from Products.PloneMeeting.profiles import GroupDescriptor
+from Products.PloneMeeting.profiles import OrgDescriptor
 from Products.PloneMeeting.profiles import ItemAnnexTypeDescriptor
 from Products.PloneMeeting.profiles import MeetingConfigDescriptor
 from Products.PloneMeeting.profiles import PloneGroupDescriptor
@@ -37,24 +37,24 @@ categories = [
 agendaTemplate = PodTemplateDescriptor('oj', 'Ordre du jour')
 agendaTemplate.odt_file = 'oj.odt'
 agendaTemplate.pod_formats = ['odt', 'pdf', ]
-agendaTemplate.pod_portal_types = ['MeetingBepCA']
+agendaTemplate.pod_portal_types = ['Meeting']
 agendaTemplate.tal_condition = u'python:tool.isManager(here)'
 
 decisionsTemplate = PodTemplateDescriptor('pv', 'Procès-verbal')
 decisionsTemplate.odt_file = 'pv.odt'
 decisionsTemplate.pod_formats = ['odt', 'pdf', ]
-decisionsTemplate.pod_portal_types = ['MeetingBepCA']
+decisionsTemplate.pod_portal_types = ['Meeting']
 decisionsTemplate.tal_condition = u'python:tool.isManager(here)'
 
 noteTravailTemplate = PodTemplateDescriptor('note-travail', 'Note de travail')
 noteTravailTemplate.odt_file = 'notedetravail.odt'
 noteTravailTemplate.pod_formats = ['odt', 'pdf', ]
-noteTravailTemplate.pod_portal_types = ['MeetingItemBepCA']
+noteTravailTemplate.pod_portal_types = ['MeetingItem']
 
 extraitPVTemplate = PodTemplateDescriptor('extrait-pv', 'Extrait PV')
 extraitPVTemplate.odt_file = 'extraitpv.odt'
 extraitPVTemplate.pod_formats = ['odt', 'pdf', ]
-extraitPVTemplate.pod_portal_types = ['MeetingItemBepCA']
+extraitPVTemplate.pod_portal_types = ['MeetingItem']
 
 templates = [agendaTemplate, decisionsTemplate, noteTravailTemplate, extraitPVTemplate]
 
@@ -89,24 +89,24 @@ isa = UserDescriptor('isa', [], email="isa@bep.be", fullname="Isabelle SADIN")
 assembly_member = UserDescriptor('assembly_member', [], email="test@test.be", fullname="Assembly Member")
 
 # Groups -----------------------------------------------------------------------
-dg_grp = GroupDescriptor('dirgen', 'Direction Générale', 'DG')
-dg_grp.itemAdviceStates = (
+dg_org = OrgDescriptor('dirgen', u'Direction Générale', u'DG')
+dg_org.item_advice_states = [
     u'bep-audit__state__presented',
     u'bep-remun__state__presented',
     u'bep-ca__state__presented',
     u'crema-ca__state__presented',
     u'enviro-ca__state__presented',
     u'expa-ca__state__presented',
-    u'idefin-ca__state__presented')
-dg_grp.itemAdviceEditStates = (
+    u'idefin-ca__state__presented']
+dg_org.item_advice_edit_states = [
     u'bep-audit__state__presented',
     u'bep-remun__state__presented',
     u'bep-ca__state__presented',
     u'crema-ca__state__presented',
     u'enviro-ca__state__presented',
     u'expa-ca__state__presented',
-    u'idefin-ca__state__presented')
-dg_grp.itemAdviceViewStates = (
+    u'idefin-ca__state__presented']
+dg_org.item_advice_view_states = [
     u'bep-audit__state__accepted',
     u'bep-audit__state__accepted_but_modified',
     u'bep-audit__state__pre_accepted',
@@ -160,25 +160,25 @@ dg_grp.itemAdviceViewStates = (
     u'idefin-ca__state__presented',
     u'idefin-ca__state__refused',
     u'idefin-ca__state__returned_to_proposing_group',
-    u'idefin-ca__state__delayed')
-sg_grp = GroupDescriptor('secretariat', 'Secrétariat Général', 'SG')
-com_grp = GroupDescriptor('communication', 'Communication', 'COM')
-jur_grp = GroupDescriptor('service-juridique', 'Service Juridique', 'JUR')
-jur_grp.itemAdviceStates = (
+    u'idefin-ca__state__delayed']
+sg_org = OrgDescriptor('secretariat', u'Secrétariat Général', u'SG')
+com_org = OrgDescriptor('communication', u'Communication', u'COM')
+jur_org = OrgDescriptor('service-juridique', u'Service Juridique', u'JUR')
+jur_org.item_advice_states = [
         'bep-codir__state__presented',
         'bep-codir__state__returned_to_proposing_group',
         'bep-codir__state__validated',
         'bep-ca__state__presented',
         'bep-ca__state__returned_to_proposing_group',
-        'bep-ca__state__validated')
-jur_grp.itemAdviceEditStates = (
+        'bep-ca__state__validated']
+jur_org.item_advice_edit_states = [
         'bep-codir__state__presented',
         'bep-codir__state__returned_to_proposing_group',
         'bep-codir__state__validated',
         'bep-ca__state__presented',
         'bep-ca__state__returned_to_proposing_group',
-        'bep-ca__state__validated')
-jur_grp.itemAdviceViewStates = (
+        'bep-ca__state__validated']
+jur_org.item_advice_view_states = [
         'bep-codir__state__accepted',
         'bep-codir__state__accepted_but_modified',
         'bep-codir__state__pre_accepted',
@@ -198,23 +198,23 @@ jur_grp.itemAdviceViewStates = (
         'bep-ca__state__refused',
         'bep-ca__state__returned_to_proposing_group',
         'bep-ca__state__delayed',
-        'bep-ca__state__validated')
-fin_grp = GroupDescriptor('finances-et-comptabilite', 'Finances et Comptabilité', 'FIN')
-fin_grp.itemAdviceStates = (
+        'bep-ca__state__validated']
+fin_org = OrgDescriptor('finances-et-comptabilite', u'Finances et Comptabilité', u'FIN')
+fin_org.item_advice_states = [
         'bep-codir__state__presented',
         'bep-codir__state__returned_to_proposing_group',
         'bep-codir__state__validated',
         'bep-ca__state__presented',
         'bep-ca__state__returned_to_proposing_group',
-        'bep-ca__state__validated')
-fin_grp.itemAdviceEditStates = (
+        'bep-ca__state__validated']
+fin_org.item_advice_edit_states = [
         'bep-codir__state__presented',
         'bep-codir__state__returned_to_proposing_group',
         'bep-codir__state__validated',
         'bep-ca__state__presented',
         'bep-ca__state__returned_to_proposing_group',
-        'bep-ca__state__validated')
-fin_grp.itemAdviceViewStates = (
+        'bep-ca__state__validated']
+fin_org.item_advice_view_states = [
         'bep-codir__state__accepted',
         'bep-codir__state__accepted_but_modified',
         'bep-codir__state__pre_accepted',
@@ -234,21 +234,21 @@ fin_grp.itemAdviceViewStates = (
         'bep-ca__state__refused',
         'bep-ca__state__returned_to_proposing_group',
         'bep-ca__state__delayed',
-        'bep-ca__state__validated')
-rh_grp = GroupDescriptor('ressources-humaines', 'Ressources Humaines', 'RH')
-rhc_grp = GroupDescriptor('ressources-humaines-confidentiel', 'Ressources Humaines (Confidentiel)', 'RHC')
-sr_grp = GroupDescriptor('services-generaux', 'Services Généraux', 'SG')
-info_grp = GroupDescriptor('informatique', 'Informatique', 'INFO')
-de_grp = GroupDescriptor('developpement-economique', 'Développement Économiqe', 'DE')
-ce_grp = GroupDescriptor('coaching-entreprises', 'Coaching Entreprises', 'CE')
-cecs_grp = GroupDescriptor('coaching-entreprises-chef-de-service', 'Coaching Entreprises (Chef de service)', 'CECS')
-cecs_grp.itemAdviceStates = (
+        'bep-ca__state__validated']
+rh_org = OrgDescriptor('ressources-humaines', u'Ressources Humaines', u'RH')
+rhc_org = OrgDescriptor('ressources-humaines-confidentiel', u'Ressources Humaines (Confidentiel)', u'RHC')
+sr_org = OrgDescriptor('services-generaux', u'Services Généraux', u'SG')
+info_org = OrgDescriptor('informatique', u'Informatique', u'INFO')
+de_org = OrgDescriptor('developpement-economique', u'Développement Économiqe', u'DE')
+ce_org = OrgDescriptor('coaching-entreprises', u'Coaching Entreprises', u'CE')
+cecs_org = OrgDescriptor('coaching-entreprises-chef-de-service', u'Coaching Entreprises (Chef de service)', u'CECS')
+cecs_org.item_advice_states = [
     'bep-codir__state__proposed',
-    'bep-ca__state__proposed')
-cecs_grp.itemAdviceEditStates = (
+    'bep-ca__state__proposed']
+cecs_org.item_advice_edit_states = [
     'bep-codir__state__proposed',
-    'bep-ca__state__proposed')
-cecs_grp.itemAdviceViewStates = (
+    'bep-ca__state__proposed']
+cecs_org.item_advice_view_states = [
     'bep-codir__state__accepted',
     'bep-codir__state__accepted_but_modified',
     'bep-codir__state__pre_accepted',
@@ -268,63 +268,63 @@ cecs_grp.itemAdviceViewStates = (
     'bep-ca__state__refused',
     'bep-ca__state__returned_to_proposing_group',
     'bep-ca__state__delayed',
-    'bep-ca__state__validated')
-ai_grp = GroupDescriptor('attraction-investisseurs', 'Attraction Investisseurs', 'AI')
-ae_grp = GroupDescriptor('animation-economique', 'Animation Économique', 'AE')
-is_grp = GroupDescriptor('intelligence-strategique', 'Intelligence Stratégique', 'IS')
-env_grp = GroupDescriptor('environnement', 'Environnement', 'ENV')
-fact_grp = GroupDescriptor('facturation', 'Facturation', 'FACT')
-coll_grp = GroupDescriptor('collectes', 'Collectes', 'COLL')
-parsc_grp = GroupDescriptor('parcs', 'Parcs', 'PARCS')
-be_grp = GroupDescriptor('bureau-detudes', 'Bureau d\'Études', 'BE')
-dt_grp = GroupDescriptor('developpement-territorial', 'Développement Territorial', 'DT')
-mo_grp = GroupDescriptor('maitrise-douvrages', 'Maitrise d\'ouvrages', 'MO')
-infra_grp = GroupDescriptor('infrastructure', 'Infrastructure', 'INFRA')
-amt_grp = GroupDescriptor('amenagement-du-territoire', 'Aménagement du territoire', 'AMT')
-ne_grp = GroupDescriptor('namur-expo', 'Namur Expo', 'EXPO')
-crema_grp = GroupDescriptor('bep-crematorium', 'BEP Crématorium', 'CREMA')
-idefin_grp = GroupDescriptor('idefin', 'Idefin', 'IDEFIN')
-tlm_grp = GroupDescriptor('tout-le-monde', 'Tout le monde', 'TLM')
+    'bep-ca__state__validated']
+ai_org = OrgDescriptor('attraction-investisseurs', u'Attraction Investisseurs', u'AI')
+ae_org = OrgDescriptor('animation-economique', u'Animation Économique', u'AE')
+is_org = OrgDescriptor('intelligence-strategique', u'Intelligence Stratégique', u'IS')
+env_org = OrgDescriptor('environnement', u'Environnement', u'ENV')
+fact_org = OrgDescriptor('facturation', u'Facturation', u'FACT')
+coll_org = OrgDescriptor('collectes', u'Collectes', u'COLL')
+parsc_org = OrgDescriptor('parcs', u'Parcs', u'PARCS')
+be_org = OrgDescriptor('bureau-detudes', u'Bureau d\'Études', u'BE')
+dt_org = OrgDescriptor('developpement-territorial', u'Développement Territorial', u'DT')
+mo_org = OrgDescriptor('maitrise-douvrages', u'Maitrise d\'ouvrages', u'MO')
+infra_org = OrgDescriptor('infrastructure', u'Infrastructure', u'INFRA')
+amt_org = OrgDescriptor('amenagement-du-territoire', u'Aménagement du territoire', u'AMT')
+ne_org = OrgDescriptor('namur-expo', u'Namur Expo', u'EXPO')
+crema_org = OrgDescriptor('bep-crematorium', u'BEP Crématorium', u'CREMA')
+idefin_org = OrgDescriptor('idefin', u'Idefin', u'IDEFIN')
+tlm_org = OrgDescriptor('tout-le-monde', u'Tout le monde', u'TLM')
 ca_powerobservers = PloneGroupDescriptor('meeting-config-ca_powerobservers',
                                          'meeting-config-ca_powerobservers',
                                          [])
 assembly_member.ploneGroups = [ca_powerobservers]
 
-dg_grp.advisers.append(rde)
-dg_grp.creators.append(rde)
-dg_grp.reviewers.append(rde)
+dg_org.advisers.append(rde)
+dg_org.creators.append(rde)
+dg_org.reviewers.append(rde)
 
-sg_grp.advisers.append(ogr)
-sg_grp.creators += [ito, jca, ogr, str_user]
-sg_grp.reviewers.append(ogr)
+sg_org.advisers.append(ogr)
+sg_org.creators += [ito, jca, ogr, str_user]
+sg_org.reviewers.append(ogr)
 
-com_grp.advisers += [ibe, sma]
-com_grp.creators += [ibe, sma]
-com_grp.reviewers += [ibe, sma]
+com_org.advisers += [ibe, sma]
+com_org.creators += [ibe, sma]
+com_org.reviewers += [ibe, sma]
 
-jur_grp.advisers += [ajo, mdu]
-jur_grp.creators += [ajo, mdu]
-jur_grp.reviewers += [ajo]
+jur_org.advisers += [ajo, mdu]
+jur_org.creators += [ajo, mdu]
+jur_org.reviewers += [ajo]
 
-fin_grp.advisers += [ajo, fma, mdu]
-fin_grp.creators += [ajo, fma, mdu]
-fin_grp.reviewers += [ajo, fma]
+fin_org.advisers += [ajo, fma, mdu]
+fin_org.creators += [ajo, fma, mdu]
+fin_org.reviewers += [ajo, fma]
 
-info_grp.advisers += [gqu, jyp, mdr, pli, sbr, the]
-info_grp.creators += [gqu, jyp, mdr, pli, sbr, the]
-info_grp.reviewers += [mdr]
+info_org.advisers += [gqu, jyp, mdr, pli, sbr, the]
+info_org.creators += [gqu, jyp, mdr, pli, sbr, the]
+info_org.reviewers += [mdr]
 
-ce_grp.advisers += [cbo, dlo, dma, dde, ebe, jpo, lgo, mdh, nvg, qox]
-ce_grp.creators += [cbo, dlo, dma, dde, ebe, jpo, lgo, mdh, nvg, qox]
-ce_grp.reviewers += [lgo]
-cecs_grp.advisers += [dma]
+ce_org.advisers += [cbo, dlo, dma, dde, ebe, jpo, lgo, mdh, nvg, qox]
+ce_org.creators += [cbo, dlo, dma, dde, ebe, jpo, lgo, mdh, nvg, qox]
+ce_org.reviewers += [lgo]
+cecs_org.advisers += [dma]
 
-rh_grp.advisers = [isa]
-rh_grp.creators = [isa]
-rh_grp.reviewers = [isa]
-rhc_grp.advisers = [isa]
-rhc_grp.creators = [isa]
-rhc_grp.reviewers = [isa]
+rh_org.advisers = [isa]
+rh_org.creators = [isa]
+rh_org.reviewers = [isa]
+rhc_org.advisers = [isa]
+rhc_org.creators = [isa]
+rhc_org.reviewers = [isa]
 
 # Meeting configurations -------------------------------------------------------
 # BEP - CA
@@ -484,7 +484,7 @@ for cfg in cfgs:
     cfg.customAdvisers = ((
         {'delay_label': '',
          'for_item_created_until': '',
-         'group': 'coaching-entreprises-chef-de-service',
+         'org': 'coaching-entreprises-chef-de-service',
          'available_on': '',
          'delay': '',
          'gives_auto_advice_on_help_message': '',
@@ -495,7 +495,7 @@ for cfg in cfgs:
          'row_id': 'row_id_1'},
         {'delay_label': '',
          'for_item_created_until': '',
-         'group': 'service-juridique',
+         'org': 'service-juridique',
          'available_on': '',
          'delay': '',
          'gives_auto_advice_on_help_message': '',
@@ -506,7 +506,7 @@ for cfg in cfgs:
          'row_id': 'row_id_2'},
         {'delay_label': '',
          'for_item_created_until': '',
-         'group': 'finances-et-comptabilite',
+         'org': 'finances-et-comptabilite',
          'available_on': '',
          'delay': '',
          'gives_auto_advice_on_help_message': '',
@@ -555,11 +555,11 @@ for cfg in cfgs:
 data = PloneMeetingConfiguration(
     meetingFolderTitle='Mes séances',
     meetingConfigs=cfgs,
-    groups=[
-        dg_grp, sg_grp, com_grp, jur_grp, fin_grp, rh_grp, rhc_grp, sr_grp,
-        info_grp, de_grp, ce_grp, cecs_grp, ai_grp, ae_grp, is_grp, env_grp, fact_grp,
-        coll_grp, parsc_grp, be_grp, dt_grp, mo_grp, infra_grp, amt_grp, ne_grp,
-        crema_grp, idefin_grp, tlm_grp])
+    orgs=[
+        dg_org, sg_org, com_org, jur_org, fin_org, rh_org, rhc_org, sr_org,
+        info_org, de_org, ce_org, cecs_org, ai_org, ae_org, is_org, env_org, fact_org,
+        coll_org, parsc_org, be_org, dt_org, mo_org, infra_org, amt_org, ne_org,
+        crema_org, idefin_org, tlm_org])
 data.enableUserPreferences = False
 data.configGroups = (
     {'row_id': 'bep', 'label': 'BEP'},

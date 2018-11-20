@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
-from plone.testing import z2, zca
 from plone.app.testing import FunctionalTesting
 from plone.app.testing import PloneWithPackageLayer
+from plone.testing import z2
+from plone.testing import zca
+from Products.MeetingCommunes.testing import MCLayer
+
 import Products.MeetingBEP
 
 
@@ -12,7 +15,7 @@ MBEP_ZCML = zca.ZCMLSandbox(filename="testing.zcml",
 MBEP_Z2 = z2.IntegrationTesting(bases=(z2.STARTUP, MBEP_ZCML),
                                 name='MBEP_Z2')
 
-MBEP_TESTING_PROFILE = PloneWithPackageLayer(
+MBEP_TESTING_PROFILE = MCLayer(
     zcml_filename="testing.zcml",
     zcml_package=Products.MeetingBEP,
     additional_z2_products=('imio.dashboard',

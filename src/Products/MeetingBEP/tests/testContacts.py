@@ -23,15 +23,15 @@
 #
 
 from Products.MeetingBEP.tests.MeetingBEPTestCase import MeetingBEPTestCase
-from Products.MeetingCommunes.tests.testMeetingGroup import testMeetingGroup as mctmg
+from Products.MeetingCommunes.tests.testContacts import testContacts as mctc
 
 
-class testMeetingGroup(MeetingBEPTestCase, mctmg):
+class testContacts(MeetingBEPTestCase, mctc):
     ''' '''
 
 
 def test_suite():
     from unittest import TestSuite, makeSuite
     suite = TestSuite()
-    suite.addTest(makeSuite(testMeetingGroup, prefix='test_pm_'))
+    suite.addTest(makeSuite(testContacts, prefix='test_pm_'))
     return suite

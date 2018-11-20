@@ -21,4 +21,12 @@
    provides="Products.GenericSetup.interfaces.EXTENSION"
    for="Products.CMFPlone.interfaces.IPloneSiteRoot"/>
 
+  <genericsetup:upgradeStep
+      title="Go to MeetingBEP 4.1"
+      description=""
+      source="4.0"
+      destination="4.1"
+      handler="Products.MeetingBEP.migrations.migrate_to_4_1.migrate"
+      profile="Products.MeetingBEP:default" />
+
 </configure>
