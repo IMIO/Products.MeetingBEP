@@ -27,8 +27,6 @@ categories = [
                        "Approbation du procès verbal de la dernière réunion"),
     CategoryDescriptor('decision',
                        "Décision"),
-    CategoryDescriptor('information-strategie',
-                       "Information et Stratégie"),
     CategoryDescriptor('communication',
                        "Communication"),
 ]
@@ -55,6 +53,7 @@ extraitPVTemplate = PodTemplateDescriptor('extrait-pv', 'Extrait PV')
 extraitPVTemplate.odt_file = 'extraitpv.odt'
 extraitPVTemplate.pod_formats = ['odt', 'pdf', ]
 extraitPVTemplate.pod_portal_types = ['MeetingItem']
+extraitPVTemplate.tal_condition = u'python:tool.isManager(here)'
 
 templates = [agendaTemplate, decisionsTemplate, noteTravailTemplate, extraitPVTemplate]
 
@@ -328,8 +327,6 @@ rhc_org.reviewers = [isa]
 
 # Meeting configurations -------------------------------------------------------
 # BEP - CA
-bepca = MeetingConfigDescriptor(
-    'bep-ca', "Conseil d'Administration", "Conseil d'Administration", isDefault=True)
 bepca = deepcopy(simple_import_data.simpleMeeting)
 bepca.id = 'bep-ca'
 bepca.title = "Conseil d'Administration"
@@ -340,8 +337,6 @@ bepca.podTemplates = templates
 bepca.addContacts = True
 
 # BEP - Audit
-bepaudit = MeetingConfigDescriptor(
-    'bep-audit', "Comité d'Audit", "Comité d'Audit", isDefault=False)
 bepaudit = deepcopy(simple_import_data.simpleMeeting)
 bepaudit.id = 'bep-audit'
 bepaudit.title = "Comité d'Audit"
@@ -351,8 +346,6 @@ bepaudit.folderTitle = "Comité d'Audit"
 bepaudit.podTemplates = []
 
 # BEP - Rémunération
-bepremun = MeetingConfigDescriptor(
-    'bep-remun', "Comité de Rémunération", "Comité de Rémunération", isDefault=False)
 bepremun = deepcopy(simple_import_data.simpleMeeting)
 bepremun.id = 'bep-remun'
 bepremun.title = "Comité de Rémunération"
@@ -361,9 +354,16 @@ bepremun.configGroup = 'bep'
 bepremun.folderTitle = "Comité de Rémunération"
 bepremun.podTemplates = []
 
+# BEP - AG
+bepag = deepcopy(simple_import_data.simpleMeeting)
+bepag.id = 'bep-ag'
+bepag.title = "Assemblée Générale"
+bepag.shortName = 'BepAG'
+bepag.configGroup = 'bep'
+bepag.folderTitle = "Assemblée Générale"
+bepag.podTemplates = []
+
 # EXPA - CA
-expaca = MeetingConfigDescriptor(
-    'expa-ca', "Conseil d'Administration", "Conseil d'Administration", isDefault=False)
 expaca = deepcopy(simple_import_data.simpleMeeting)
 expaca.id = 'expa-ca'
 expaca.title = "Conseil d'Administration"
@@ -372,9 +372,34 @@ expaca.shortName = 'ExpaCA'
 expaca.configGroup = 'expa'
 expaca.podTemplates = []
 
+# EXPA - Audit
+expaaudit = deepcopy(simple_import_data.simpleMeeting)
+expaaudit.id = 'expa-audit'
+expaaudit.title = "Comité d'Audit"
+expaaudit.shortName = 'ExpaAudit'
+expaaudit.configGroup = 'expa'
+expaaudit.folderTitle = "Comité d'Audit"
+expaaudit.podTemplates = []
+
+# EXPA - Rémunération
+exparemun = deepcopy(simple_import_data.simpleMeeting)
+exparemun.id = 'expa-remun'
+exparemun.title = "Comité de Rémunération"
+exparemun.shortName = 'ExpaRemun'
+exparemun.configGroup = 'expa'
+exparemun.folderTitle = "Comité de Rémunération"
+exparemun.podTemplates = []
+
+# EXPA - AG
+expaag = deepcopy(simple_import_data.simpleMeeting)
+expaag.id = 'expa-ag'
+expaag.title = "Assemblée Générale"
+expaag.shortName = 'ExpaAG'
+expaag.configGroup = 'expa'
+expaag.folderTitle = "Assemblée Générale"
+expaag.podTemplates = []
+
 # ENVIRO - CA
-enviroca = MeetingConfigDescriptor(
-    'enviro-ca', "Conseil d'Administration", "Conseil d'Administration", isDefault=False)
 enviroca = deepcopy(simple_import_data.simpleMeeting)
 enviroca.id = 'enviro-ca'
 enviroca.title = "Conseil d'Administration"
@@ -383,9 +408,34 @@ enviroca.shortName = 'EnviroCA'
 enviroca.configGroup = 'enviro'
 enviroca.podTemplates = []
 
+# ENVIRO - Audit
+enviroaudit = deepcopy(simple_import_data.simpleMeeting)
+enviroaudit.id = 'enviro-audit'
+enviroaudit.title = "Comité d'Audit"
+enviroaudit.shortName = 'EnviroAudit'
+enviroaudit.configGroup = 'enviro'
+enviroaudit.folderTitle = "Comité d'Audit"
+enviroaudit.podTemplates = []
+
+# ENVIRO - Rémunération
+enviroremun = deepcopy(simple_import_data.simpleMeeting)
+enviroremun.id = 'enviro-remun'
+enviroremun.title = "Comité de Rémunération"
+enviroremun.shortName = 'EnviroRemun'
+enviroremun.configGroup = 'enviro'
+enviroremun.folderTitle = "Comité de Rémunération"
+enviroremun.podTemplates = []
+
+# ENVIRO - AG
+enviroag = deepcopy(simple_import_data.simpleMeeting)
+enviroag.id = 'enviro-ag'
+enviroag.title = "Assemblée Générale"
+enviroag.shortName = 'EnviroAG'
+enviroag.configGroup = 'enviro'
+enviroag.folderTitle = "Assemblée Générale"
+enviroag.podTemplates = []
+
 # CREMA - CA
-cremaca = MeetingConfigDescriptor(
-    'crema-ca', "Conseil d'Administration", "Conseil d'Administration", isDefault=False)
 cremaca = deepcopy(simple_import_data.simpleMeeting)
 cremaca.id = 'crema-ca'
 cremaca.title = "Conseil d'Administration"
@@ -393,6 +443,33 @@ cremaca.folderTitle = "Conseil d'Administration"
 cremaca.shortName = 'CremaCA'
 cremaca.configGroup = 'crema'
 cremaca.podTemplates = []
+
+# CREMA - Audit
+cremaaudit = deepcopy(simple_import_data.simpleMeeting)
+cremaaudit.id = 'crema-audit'
+cremaaudit.title = "Comité d'Audit"
+cremaaudit.shortName = 'CremaAudit'
+cremaaudit.configGroup = 'crema'
+cremaaudit.folderTitle = "Comité d'Audit"
+cremaaudit.podTemplates = []
+
+# CREMA - Rémunération
+cremaremun = deepcopy(simple_import_data.simpleMeeting)
+cremaremun.id = 'crema-remun'
+cremaremun.title = "Comité de Rémunération"
+cremaremun.shortName = 'CremaRemun'
+cremaremun.configGroup = 'crema'
+cremaremun.folderTitle = "Comité de Rémunération"
+cremaremun.podTemplates = []
+
+# CREMA - AG
+cremaag = deepcopy(simple_import_data.simpleMeeting)
+cremaag.id = 'crema-ag'
+cremaag.title = "Assemblée Générale"
+cremaag.shortName = 'CremaAG'
+cremaag.configGroup = 'crema'
+cremaag.folderTitle = "Assemblée Générale"
+cremaag.podTemplates = []
 
 # IDEFIN - CA
 idefinca = MeetingConfigDescriptor(
@@ -405,7 +482,38 @@ idefinca.shortName = 'IdefinCA'
 idefinca.configGroup = 'idefin'
 idefinca.podTemplates = []
 
-cfgs = (bepca, bepaudit, bepremun, expaca, enviroca, cremaca, idefinca)
+# IDEFIN - Audit
+idefinaudit = deepcopy(simple_import_data.simpleMeeting)
+idefinaudit.id = 'idefin-audit'
+idefinaudit.title = "Comité d'Audit"
+idefinaudit.shortName = 'IdefinAudit'
+idefinaudit.configGroup = 'idefin'
+idefinaudit.folderTitle = "Comité d'Audit"
+idefinaudit.podTemplates = []
+
+# IDEFIN - Rémunération
+idefinremun = deepcopy(simple_import_data.simpleMeeting)
+idefinremun.id = 'idefin-remun'
+idefinremun.title = "Comité de Rémunération"
+idefinremun.shortName = 'IdefinRemun'
+idefinremun.configGroup = 'idefin'
+idefinremun.folderTitle = "Comité de Rémunération"
+idefinremun.podTemplates = []
+
+# IDEFIN - AG
+idefinag = deepcopy(simple_import_data.simpleMeeting)
+idefinag.id = 'idefin-ag'
+idefinag.title = "Assemblée Générale"
+idefinag.shortName = 'IdefinAG'
+idefinag.configGroup = 'idefin'
+idefinag.folderTitle = "Assemblée Générale"
+idefinag.podTemplates = []
+
+cfgs = (bepca, bepaudit, bepremun, bepag,
+        expaca, expaaudit, exparemun, expaag,
+        enviroca, enviroaudit, enviroremun, enviroag,
+        cremaca, cremaaudit, cremaremun, cremaag,
+        idefinca, idefinaudit, idefinremun, idefinag)
 
 for cfg in cfgs:
     # assembly and signatures
@@ -414,26 +522,33 @@ for cfg in cfgs:
          'signatureNumber': '1',
          'date_from': '',
          'name': 'O. GRANVILLE',
+         'function': '',
          'date_to': ''},
         {'function': 'Le Signataire 2 FF',
          'signatureNumber': '2',
          'date_from': '',
          'name': 'Vraiment Exemple',
+         'function': '',
          'date_to': ''},
         {'function': 'Charg\xc3\xa9 de Mission',
          'signatureNumber': '3',
          'date_from': '',
          'name': 'S. TRIFFOY',
+         'function': '',
          'date_to': ''},
         {'function': 'Directeur, Secr\xc3\xa9tariat G\xc3\xa9n\xc3\xa9ral',
          'signatureNumber': '4',
          'date_from': '',
          'name': 'O. GRANVILLE',
+         'function': '',
          'date_to': ''})
     # data
     cfg.useGroupsAsCategories = False
     cfg.usedMeetingAttributes = ['startDate', 'endDate', 'attendees', 'excused',
                                  'signatories', 'replacements', 'place', 'observations', ]
+    # AG
+    if cfg.id.endswith('-ag'):
+        cfg.usedMeetingAttributes = ['startDate', 'endDate', 'assembly', 'signatures', 'place', 'observations', ]
     cfg.categories = categories
 
     # gui
@@ -568,4 +683,4 @@ data.configGroups = (
     {'row_id': 'crema', 'label': 'CREMA'},
     {'row_id': 'idefin', 'label': 'IDEFIN'},
 )
-# ------------------------------------------------------------------------------
+data.usersOutsideGroups = [assembly_member]
