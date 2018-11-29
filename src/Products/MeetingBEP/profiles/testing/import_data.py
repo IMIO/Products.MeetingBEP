@@ -18,6 +18,7 @@ codir.folderTitle = 'CoDir'
 codir.shortName = 'codir'
 codir.id = 'codir'
 codir.shortName = 'CoDir'
+codir.podTemplates = []
 
 data = deepcopy(mc_import_data.data)
 data.meetingConfigs = (ca, codir)
