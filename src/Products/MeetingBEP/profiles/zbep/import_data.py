@@ -516,6 +516,8 @@ cfgs = (bepca, bepaudit, bepremun, bepag,
         idefinca, idefinaudit, idefinremun, idefinag)
 
 for cfg in cfgs:
+    cfg.budgetDefault = "<p>La dépense sera imputée sur le budget n° XXX dont " \
+        "le solde permet de supporter celle-ci.</p>"
     # assembly and signatures
     cfg.certifiedSignatures = (
         {'function': 'Directeur, Secr\xc3\xa9tariat G\xc3\xa9n\xc3\xa9ral',
