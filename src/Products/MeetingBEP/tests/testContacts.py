@@ -26,8 +26,12 @@ from Products.MeetingBEP.tests.MeetingBEPTestCase import MeetingBEPTestCase
 from Products.MeetingCommunes.tests.testContacts import testContacts as mctc
 
 
-class testContacts(MeetingBEPTestCase, mctc):
+class testContacts(mctc, MeetingBEPTestCase):
     ''' '''
+
+    def setUp(self):
+        ''' '''
+        super(testContacts, self).setUp()
 
 
 def test_suite():
