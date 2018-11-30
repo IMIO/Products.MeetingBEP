@@ -33,29 +33,60 @@ categories = [
 
 # Pod templates ----------------------------------------------------------------
 agendaTemplate = PodTemplateDescriptor('oj', 'Ordre du jour')
+agendaTemplate.is_reusable = True
 agendaTemplate.odt_file = 'oj.odt'
 agendaTemplate.pod_formats = ['odt', 'pdf', ]
 agendaTemplate.pod_portal_types = ['Meeting']
 agendaTemplate.tal_condition = u'python:tool.isManager(here)'
 
 decisionsTemplate = PodTemplateDescriptor('pv', 'Procès-verbal')
+decisionsTemplate.is_reusable = True
 decisionsTemplate.odt_file = 'pv.odt'
 decisionsTemplate.pod_formats = ['odt', 'pdf', ]
 decisionsTemplate.pod_portal_types = ['Meeting']
 decisionsTemplate.tal_condition = u'python:tool.isManager(here)'
 
 noteTravailTemplate = PodTemplateDescriptor('note-travail', 'Note de travail')
+noteTravailTemplate.is_reusable = True
 noteTravailTemplate.odt_file = 'notedetravail.odt'
 noteTravailTemplate.pod_formats = ['odt', 'pdf', ]
 noteTravailTemplate.pod_portal_types = ['MeetingItem']
 
 extraitPVTemplate = PodTemplateDescriptor('extrait-pv', 'Extrait PV')
+extraitPVTemplate.is_reusable = True
 extraitPVTemplate.odt_file = 'extraitpv.odt'
 extraitPVTemplate.pod_formats = ['odt', 'pdf', ]
 extraitPVTemplate.pod_portal_types = ['MeetingItem']
 extraitPVTemplate.tal_condition = u'python:tool.isManager(here)'
 
 templates = [agendaTemplate, decisionsTemplate, noteTravailTemplate, extraitPVTemplate]
+
+reuseAgendaTemplate = PodTemplateDescriptor('oj', 'Ordre du jour')
+reuseAgendaTemplate.pod_template_to_use = {'cfg_id': 'bep-ca', 'template_id': 'oj'}
+reuseAgendaTemplate.pod_formats = ['odt', 'pdf', ]
+reuseAgendaTemplate.pod_portal_types = ['Meeting']
+reuseAgendaTemplate.tal_condition = u'python:tool.isManager(here)'
+
+reuseDecisionsTemplate = PodTemplateDescriptor('pv', 'Procès-verbal')
+reuseDecisionsTemplate.pod_template_to_use = {'cfg_id': 'bep-ca', 'template_id': 'pv'}
+reuseDecisionsTemplate.pod_formats = ['odt', 'pdf', ]
+reuseDecisionsTemplate.pod_portal_types = ['Meeting']
+reuseDecisionsTemplate.tal_condition = u'python:tool.isManager(here)'
+
+reuseNoteTravailTemplate = PodTemplateDescriptor('note-travail', 'Note de travail')
+reuseNoteTravailTemplate.pod_template_to_use = {'cfg_id': 'bep-ca', 'template_id': 'note-travail'}
+reuseNoteTravailTemplate.pod_formats = ['odt', 'pdf', ]
+reuseNoteTravailTemplate.pod_portal_types = ['MeetingItem']
+
+reuseExtraitPVTemplate = PodTemplateDescriptor('extrait-pv', 'Extrait PV')
+reuseExtraitPVTemplate.pod_template_to_use = {'cfg_id': 'bep-ca', 'template_id': 'extrait-pv'}
+reuseExtraitPVTemplate.pod_formats = ['odt', 'pdf', ]
+reuseExtraitPVTemplate.pod_portal_types = ['MeetingItem']
+reuseExtraitPVTemplate.tal_condition = u'python:tool.isManager(here)'
+
+reuse_templates = [reuseAgendaTemplate, reuseDecisionsTemplate,
+                   reuseNoteTravailTemplate, reuseExtraitPVTemplate]
+
 
 # Users ------------------------------------------------------------------------
 ajo = UserDescriptor('ajo', [], email="ajo@bep.be", fullname="Amélie JOLY")
@@ -88,7 +119,7 @@ isa = UserDescriptor('isa', [], email="isa@bep.be", fullname="Isabelle SADIN")
 assembly_member = UserDescriptor('assembly_member', [], email="test@test.be", fullname="Assembly Member")
 
 # Groups -----------------------------------------------------------------------
-dg_org = OrgDescriptor('dirgen', u'Direction Générale', u'DG')
+dg_org = OrgDescriptor('direction-generale', u'Direction Générale', u'DG')
 dg_org.item_advice_states = [
     u'bep-audit__state__presented',
     u'bep-remun__state__presented',
@@ -164,76 +195,76 @@ sg_org = OrgDescriptor('secretariat', u'Secrétariat Général', u'SG')
 com_org = OrgDescriptor('communication', u'Communication', u'COM')
 jur_org = OrgDescriptor('service-juridique', u'Service Juridique', u'JUR')
 jur_org.item_advice_states = [
-        'bep-codir__state__presented',
-        'bep-codir__state__returned_to_proposing_group',
-        'bep-codir__state__validated',
-        'bep-ca__state__presented',
-        'bep-ca__state__returned_to_proposing_group',
-        'bep-ca__state__validated']
+    'bep-codir__state__presented',
+    'bep-codir__state__returned_to_proposing_group',
+    'bep-codir__state__validated',
+    'bep-ca__state__presented',
+    'bep-ca__state__returned_to_proposing_group',
+    'bep-ca__state__validated']
 jur_org.item_advice_edit_states = [
-        'bep-codir__state__presented',
-        'bep-codir__state__returned_to_proposing_group',
-        'bep-codir__state__validated',
-        'bep-ca__state__presented',
-        'bep-ca__state__returned_to_proposing_group',
-        'bep-ca__state__validated']
+    'bep-codir__state__presented',
+    'bep-codir__state__returned_to_proposing_group',
+    'bep-codir__state__validated',
+    'bep-ca__state__presented',
+    'bep-ca__state__returned_to_proposing_group',
+    'bep-ca__state__validated']
 jur_org.item_advice_view_states = [
-        'bep-codir__state__accepted',
-        'bep-codir__state__accepted_but_modified',
-        'bep-codir__state__pre_accepted',
-        'bep-codir__state__itemfrozen',
-        'bep-codir__state__presented',
-        'bep-codir__state__refused',
-        'bep-codir__state__returned_to_proposing_group',
-        'bep-codir__state__delayed',
-        'bep-codir__state__validated',
-        'bep-ca__state__accepted',
-        'bep-ca__state__accepted_but_modified',
-        'bep-ca__state__accepted_out_of_meeting',
-        'bep-ca__state__accepted_out_of_meeting_emergency',
-        'bep-ca__state__pre_accepted',
-        'bep-ca__state__itemfrozen',
-        'bep-ca__state__presented',
-        'bep-ca__state__refused',
-        'bep-ca__state__returned_to_proposing_group',
-        'bep-ca__state__delayed',
-        'bep-ca__state__validated']
+    'bep-codir__state__accepted',
+    'bep-codir__state__accepted_but_modified',
+    'bep-codir__state__pre_accepted',
+    'bep-codir__state__itemfrozen',
+    'bep-codir__state__presented',
+    'bep-codir__state__refused',
+    'bep-codir__state__returned_to_proposing_group',
+    'bep-codir__state__delayed',
+    'bep-codir__state__validated',
+    'bep-ca__state__accepted',
+    'bep-ca__state__accepted_but_modified',
+    'bep-ca__state__accepted_out_of_meeting',
+    'bep-ca__state__accepted_out_of_meeting_emergency',
+    'bep-ca__state__pre_accepted',
+    'bep-ca__state__itemfrozen',
+    'bep-ca__state__presented',
+    'bep-ca__state__refused',
+    'bep-ca__state__returned_to_proposing_group',
+    'bep-ca__state__delayed',
+    'bep-ca__state__validated']
 fin_org = OrgDescriptor('finances-et-comptabilite', u'Finances et Comptabilité', u'FIN')
 fin_org.item_advice_states = [
-        'bep-codir__state__presented',
-        'bep-codir__state__returned_to_proposing_group',
-        'bep-codir__state__validated',
-        'bep-ca__state__presented',
-        'bep-ca__state__returned_to_proposing_group',
-        'bep-ca__state__validated']
+    'bep-codir__state__presented',
+    'bep-codir__state__returned_to_proposing_group',
+    'bep-codir__state__validated',
+    'bep-ca__state__presented',
+    'bep-ca__state__returned_to_proposing_group',
+    'bep-ca__state__validated']
 fin_org.item_advice_edit_states = [
-        'bep-codir__state__presented',
-        'bep-codir__state__returned_to_proposing_group',
-        'bep-codir__state__validated',
-        'bep-ca__state__presented',
-        'bep-ca__state__returned_to_proposing_group',
-        'bep-ca__state__validated']
+    'bep-codir__state__presented',
+    'bep-codir__state__returned_to_proposing_group',
+    'bep-codir__state__validated',
+    'bep-ca__state__presented',
+    'bep-ca__state__returned_to_proposing_group',
+    'bep-ca__state__validated']
 fin_org.item_advice_view_states = [
-        'bep-codir__state__accepted',
-        'bep-codir__state__accepted_but_modified',
-        'bep-codir__state__pre_accepted',
-        'bep-codir__state__itemfrozen',
-        'bep-codir__state__presented',
-        'bep-codir__state__refused',
-        'bep-codir__state__returned_to_proposing_group',
-        'bep-codir__state__delayed',
-        'bep-codir__state__validated',
-        'bep-ca__state__accepted',
-        'bep-ca__state__accepted_but_modified',
-        'bep-ca__state__accepted_out_of_meeting',
-        'bep-ca__state__accepted_out_of_meeting_emergency',
-        'bep-ca__state__pre_accepted',
-        'bep-ca__state__itemfrozen',
-        'bep-ca__state__presented',
-        'bep-ca__state__refused',
-        'bep-ca__state__returned_to_proposing_group',
-        'bep-ca__state__delayed',
-        'bep-ca__state__validated']
+    'bep-codir__state__accepted',
+    'bep-codir__state__accepted_but_modified',
+    'bep-codir__state__pre_accepted',
+    'bep-codir__state__itemfrozen',
+    'bep-codir__state__presented',
+    'bep-codir__state__refused',
+    'bep-codir__state__returned_to_proposing_group',
+    'bep-codir__state__delayed',
+    'bep-codir__state__validated',
+    'bep-ca__state__accepted',
+    'bep-ca__state__accepted_but_modified',
+    'bep-ca__state__accepted_out_of_meeting',
+    'bep-ca__state__accepted_out_of_meeting_emergency',
+    'bep-ca__state__pre_accepted',
+    'bep-ca__state__itemfrozen',
+    'bep-ca__state__presented',
+    'bep-ca__state__refused',
+    'bep-ca__state__returned_to_proposing_group',
+    'bep-ca__state__delayed',
+    'bep-ca__state__validated']
 rh_org = OrgDescriptor('ressources-humaines', u'Ressources Humaines', u'RH')
 rhc_org = OrgDescriptor('ressources-humaines-confidentiel', u'Ressources Humaines (Confidentiel)', u'RHC')
 sr_org = OrgDescriptor('services-generaux', u'Services Généraux', u'SG')
@@ -343,7 +374,7 @@ bepaudit.title = "Comité d'Audit"
 bepaudit.shortName = 'BepAudit'
 bepaudit.configGroup = 'bep'
 bepaudit.folderTitle = "Comité d'Audit"
-bepaudit.podTemplates = []
+bepaudit.podTemplates = reuse_templates
 
 # BEP - Rémunération
 bepremun = deepcopy(simple_import_data.simpleMeeting)
@@ -352,7 +383,7 @@ bepremun.title = "Comité de Rémunération"
 bepremun.shortName = 'BepRemun'
 bepremun.configGroup = 'bep'
 bepremun.folderTitle = "Comité de Rémunération"
-bepremun.podTemplates = []
+bepremun.podTemplates = reuse_templates
 
 # BEP - AG
 bepag = deepcopy(simple_import_data.simpleMeeting)
@@ -361,7 +392,7 @@ bepag.title = "Assemblée Générale"
 bepag.shortName = 'BepAG'
 bepag.configGroup = 'bep'
 bepag.folderTitle = "Assemblée Générale"
-bepag.podTemplates = []
+bepag.podTemplates = reuse_templates
 
 # EXPA - CA
 expaca = deepcopy(simple_import_data.simpleMeeting)
@@ -370,7 +401,7 @@ expaca.title = "Conseil d'Administration"
 expaca.folderTitle = "Conseil d'Administration"
 expaca.shortName = 'ExpaCA'
 expaca.configGroup = 'expa'
-expaca.podTemplates = []
+expaca.podTemplates = reuse_templates
 
 # EXPA - Audit
 expaaudit = deepcopy(simple_import_data.simpleMeeting)
@@ -379,7 +410,7 @@ expaaudit.title = "Comité d'Audit"
 expaaudit.shortName = 'ExpaAudit'
 expaaudit.configGroup = 'expa'
 expaaudit.folderTitle = "Comité d'Audit"
-expaaudit.podTemplates = []
+expaaudit.podTemplates = reuse_templates
 
 # EXPA - Rémunération
 exparemun = deepcopy(simple_import_data.simpleMeeting)
@@ -388,7 +419,7 @@ exparemun.title = "Comité de Rémunération"
 exparemun.shortName = 'ExpaRemun'
 exparemun.configGroup = 'expa'
 exparemun.folderTitle = "Comité de Rémunération"
-exparemun.podTemplates = []
+exparemun.podTemplates = reuse_templates
 
 # EXPA - AG
 expaag = deepcopy(simple_import_data.simpleMeeting)
@@ -397,7 +428,7 @@ expaag.title = "Assemblée Générale"
 expaag.shortName = 'ExpaAG'
 expaag.configGroup = 'expa'
 expaag.folderTitle = "Assemblée Générale"
-expaag.podTemplates = []
+expaag.podTemplates = reuse_templates
 
 # ENVIRO - CA
 enviroca = deepcopy(simple_import_data.simpleMeeting)
@@ -406,7 +437,7 @@ enviroca.title = "Conseil d'Administration"
 enviroca.folderTitle = "Conseil d'Administration"
 enviroca.shortName = 'EnviroCA'
 enviroca.configGroup = 'enviro'
-enviroca.podTemplates = []
+enviroca.podTemplates = reuse_templates
 
 # ENVIRO - Audit
 enviroaudit = deepcopy(simple_import_data.simpleMeeting)
@@ -415,7 +446,7 @@ enviroaudit.title = "Comité d'Audit"
 enviroaudit.shortName = 'EnviroAudit'
 enviroaudit.configGroup = 'enviro'
 enviroaudit.folderTitle = "Comité d'Audit"
-enviroaudit.podTemplates = []
+enviroaudit.podTemplates = reuse_templates
 
 # ENVIRO - Rémunération
 enviroremun = deepcopy(simple_import_data.simpleMeeting)
@@ -424,7 +455,7 @@ enviroremun.title = "Comité de Rémunération"
 enviroremun.shortName = 'EnviroRemun'
 enviroremun.configGroup = 'enviro'
 enviroremun.folderTitle = "Comité de Rémunération"
-enviroremun.podTemplates = []
+enviroremun.podTemplates = reuse_templates
 
 # ENVIRO - AG
 enviroag = deepcopy(simple_import_data.simpleMeeting)
@@ -433,7 +464,7 @@ enviroag.title = "Assemblée Générale"
 enviroag.shortName = 'EnviroAG'
 enviroag.configGroup = 'enviro'
 enviroag.folderTitle = "Assemblée Générale"
-enviroag.podTemplates = []
+enviroag.podTemplates = reuse_templates
 
 # CREMA - CA
 cremaca = deepcopy(simple_import_data.simpleMeeting)
@@ -442,7 +473,7 @@ cremaca.title = "Conseil d'Administration"
 cremaca.folderTitle = "Conseil d'Administration"
 cremaca.shortName = 'CremaCA'
 cremaca.configGroup = 'crema'
-cremaca.podTemplates = []
+cremaca.podTemplates = reuse_templates
 
 # CREMA - Audit
 cremaaudit = deepcopy(simple_import_data.simpleMeeting)
@@ -451,7 +482,7 @@ cremaaudit.title = "Comité d'Audit"
 cremaaudit.shortName = 'CremaAudit'
 cremaaudit.configGroup = 'crema'
 cremaaudit.folderTitle = "Comité d'Audit"
-cremaaudit.podTemplates = []
+cremaaudit.podTemplates = reuse_templates
 
 # CREMA - Rémunération
 cremaremun = deepcopy(simple_import_data.simpleMeeting)
@@ -460,7 +491,7 @@ cremaremun.title = "Comité de Rémunération"
 cremaremun.shortName = 'CremaRemun'
 cremaremun.configGroup = 'crema'
 cremaremun.folderTitle = "Comité de Rémunération"
-cremaremun.podTemplates = []
+cremaremun.podTemplates = reuse_templates
 
 # CREMA - AG
 cremaag = deepcopy(simple_import_data.simpleMeeting)
@@ -469,7 +500,7 @@ cremaag.title = "Assemblée Générale"
 cremaag.shortName = 'CremaAG'
 cremaag.configGroup = 'crema'
 cremaag.folderTitle = "Assemblée Générale"
-cremaag.podTemplates = []
+cremaag.podTemplates = reuse_templates
 
 # IDEFIN - CA
 idefinca = MeetingConfigDescriptor(
@@ -480,7 +511,7 @@ idefinca.title = "Conseil d'Administration"
 idefinca.folderTitle = "Conseil d'Administration"
 idefinca.shortName = 'IdefinCA'
 idefinca.configGroup = 'idefin'
-idefinca.podTemplates = []
+idefinca.podTemplates = reuse_templates
 
 # IDEFIN - Audit
 idefinaudit = deepcopy(simple_import_data.simpleMeeting)
@@ -489,7 +520,7 @@ idefinaudit.title = "Comité d'Audit"
 idefinaudit.shortName = 'IdefinAudit'
 idefinaudit.configGroup = 'idefin'
 idefinaudit.folderTitle = "Comité d'Audit"
-idefinaudit.podTemplates = []
+idefinaudit.podTemplates = reuse_templates
 
 # IDEFIN - Rémunération
 idefinremun = deepcopy(simple_import_data.simpleMeeting)
@@ -498,7 +529,7 @@ idefinremun.title = "Comité de Rémunération"
 idefinremun.shortName = 'IdefinRemun'
 idefinremun.configGroup = 'idefin'
 idefinremun.folderTitle = "Comité de Rémunération"
-idefinremun.podTemplates = []
+idefinremun.podTemplates = reuse_templates
 
 # IDEFIN - AG
 idefinag = deepcopy(simple_import_data.simpleMeeting)
@@ -507,7 +538,7 @@ idefinag.title = "Assemblée Générale"
 idefinag.shortName = 'IdefinAG'
 idefinag.configGroup = 'idefin'
 idefinag.folderTitle = "Assemblée Générale"
-idefinag.podTemplates = []
+idefinag.podTemplates = reuse_templates
 
 cfgs = (bepca, bepaudit, bepremun, bepag,
         expaca, expaaudit, exparemun, expaag,
@@ -634,7 +665,7 @@ for cfg in cfgs:
          'row_id': 'row_id_2'}, ))
     cfg.useCopies = True
     cfg.selectableCopyGroups = (
-        u'dirgen_observers', u'dirgen_reviewers',
+        u'direction-generale_observers', u'direction-generale_reviewers',
         u'secretariat_observers', u'secretariat_reviewers',
         u'communication_observers', u'communication_reviewers',
         u'service-juridique_observers', u'service-juridique_reviewers',
