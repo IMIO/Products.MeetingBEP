@@ -115,7 +115,7 @@ class testCustomMeetingItem(MeetingBEPTestCase, mctcmi):
         cfg.setCustomAdvisers(
             ({'delay_label': '',
               'for_item_created_until': '',
-              'group': 'vendors',
+              'org': self.vendors_uid,
               'available_on': '', 'delay': '',
               'gives_auto_advice_on_help_message': '',
               'gives_auto_advice_on': "python: True",
@@ -130,7 +130,7 @@ class testCustomMeetingItem(MeetingBEPTestCase, mctcmi):
         item.setDecision(DU_ORIGINAL_VALUE + EXTRA_VALUE)
         self.validateItem(item)
         # vendors advice is asked
-        self.assertTrue('vendors' in item.adviceIndex)
+        self.assertTrue(self.vendors_uid in item.adviceIndex)
         self.changeUser('pmManager')
         item.setEmergency('emergency_accepted')
         self.do(item, 'accept_out_of_meeting_emergency')
@@ -144,7 +144,7 @@ class testCustomMeetingItem(MeetingBEPTestCase, mctcmi):
         ratification_sentence = DU_RATIFICATION_VALUE.format(**data)
         self.assertEqual(cloned_item.getDecision(), ratification_sentence + EXTRA_VALUE)
         # vendors advice was inherited
-        self.assertTrue(cloned_item.adviceIndex['vendors']['inherited'])
+        self.assertTrue(cloned_item.adviceIndex[self.vendors_uid]['inherited'])
 
 
 def test_suite():
