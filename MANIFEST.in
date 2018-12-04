@@ -1,4 +1,6 @@
 recursive-include Products *
+recursive-include src *.csv
+recursive-include src *.dtml
 global-exclude *pyc
 global-exclude *svnignore
 include *.conf
