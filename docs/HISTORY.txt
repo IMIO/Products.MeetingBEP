@@ -1,6 +1,12 @@
 Products.MeetingBEP Changelog
 =============================
 
+4.1b2 (unreleased)
+------------------
+
+- Nothing changed yet.
+
+
 4.1b1 (2018-12-04)
 ------------------
 
