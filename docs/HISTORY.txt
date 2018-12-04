@@ -1,7 +1,7 @@
 Products.MeetingBEP Changelog
 =============================
 
-4.1b1 (unreleased)
+4.1b1 (2018-12-04)
 ------------------
 
 - Restricted power observers have... restricted access to some informations of
