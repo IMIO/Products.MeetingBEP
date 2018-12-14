@@ -24,7 +24,8 @@ annexeSeance = AnnexTypeDescriptor('annexe', 'Annexe', u'attach.png', relatedTo=
 # Categories -------------------------------------------------------------------
 categories = [
     CategoryDescriptor('approbation-pv',
-                       "Approbation du procès verbal de la dernière réunion"),
+                       "Approbation du procès verbal de la dernière réunion",
+                       usingGroups=['dirgen', 'secretariat']),
     CategoryDescriptor('decision',
                        "Décision"),
     CategoryDescriptor('communication',
@@ -87,7 +88,6 @@ reuseExtraitPVTemplate.tal_condition = u'python:tool.isManager(here)'
 reuse_templates = [reuseAgendaTemplate, reuseDecisionsTemplate,
                    reuseNoteTravailTemplate, reuseExtraitPVTemplate]
 
-
 # Users ------------------------------------------------------------------------
 ajo = UserDescriptor('ajo', [], email="ajo@bep.be", fullname="Amélie JOLY")
 cbo = UserDescriptor('cbo', [], email="cbo@bep.be", fullname="Charlotte BOUILLET")
@@ -119,94 +119,25 @@ isa = UserDescriptor('isa', [], email="isa@bep.be", fullname="Isabelle SADIN")
 assembly_member = UserDescriptor('assembly_member', [], email="test@test.be", fullname="Assembly Member")
 
 # Groups -----------------------------------------------------------------------
-dg_org = OrgDescriptor('direction-generale', u'Direction Générale', u'DG')
-dg_org.item_advice_states = [
-    u'bep-audit__state__presented',
-    u'bep-remun__state__presented',
-    u'bep-ca__state__presented',
-    u'crema-ca__state__presented',
-    u'enviro-ca__state__presented',
-    u'expa-ca__state__presented',
-    u'idefin-ca__state__presented']
-dg_org.item_advice_edit_states = [
-    u'bep-audit__state__presented',
-    u'bep-remun__state__presented',
-    u'bep-ca__state__presented',
-    u'crema-ca__state__presented',
-    u'enviro-ca__state__presented',
-    u'expa-ca__state__presented',
-    u'idefin-ca__state__presented']
-dg_org.item_advice_view_states = [
-    u'bep-audit__state__accepted',
-    u'bep-audit__state__accepted_but_modified',
-    u'bep-audit__state__pre_accepted',
-    u'bep-audit__state__itemfrozen',
-    u'bep-audit__state__presented',
-    u'bep-audit__state__refused',
-    u'bep-audit__state__returned_to_proposing_group',
-    u'bep-audit__state__delayed',
-    u'bep-remun__state__accepted',
-    u'bep-remun__state__accepted_but_modified',
-    u'bep-remun__state__pre_accepted',
-    u'bep-remun__state__itemfrozen',
-    u'bep-remun__state__presented',
-    u'bep-remun__state__refused',
-    u'bep-remun__state__returned_to_proposing_group',
-    u'bep-remun__state__delayed',
-    u'bep-ca__state__accepted',
-    u'bep-ca__state__accepted_but_modified',
-    u'bep-ca__state__pre_accepted',
-    u'bep-ca__state__itemfrozen',
-    u'bep-ca__state__presented',
-    u'bep-ca__state__refused',
-    u'bep-ca__state__returned_to_proposing_group',
-    u'bep-ca__state__delayed',
-    u'crema-ca__state__accepted',
-    u'crema-ca__state__accepted_but_modified',
-    u'crema-ca__state__pre_accepted',
-    u'crema-ca__state__itemfrozen',
-    u'crema-ca__state__presented',
-    u'crema-ca__state__refused',
-    u'crema-ca__state__returned_to_proposing_group',
-    u'crema-ca__state__delayed',
-    u'enviro-ca__state__accepted',
-    u'enviro-ca__state__accepted_but_modified',
-    u'enviro-ca__state__pre_accepted',
-    u'enviro-ca__state__itemfrozen',
-    u'enviro-ca__state__presented',
-    u'enviro-ca__state__delayed',
-    u'expa-ca__state__accepted',
-    u'expa-ca__state__accepted_but_modified',
-    u'expa-ca__state__pre_accepted',
-    u'expa-ca__state__itemfrozen',
-    u'expa-ca__state__presented',
-    u'expa-ca__state__refused',
-    u'expa-ca__state__returned_to_proposing_group',
-    u'expa-ca__state__delayed',
-    u'idefin-ca__state__accepted',
-    u'idefin-ca__state__accepted_but_modified',
-    u'idefin-ca__state__pre_accepted',
-    u'idefin-ca__state__itemfrozen',
-    u'idefin-ca__state__presented',
-    u'idefin-ca__state__refused',
-    u'idefin-ca__state__returned_to_proposing_group',
-    u'idefin-ca__state__delayed']
-sg_org = OrgDescriptor('secretariat', u'Secrétariat Général', u'SG')
+dg_org = OrgDescriptor('dirgen', u'Direction Générale', u'DG')
+sg_org = OrgDescriptor('secretariat', u'Secrétariat Général', u'SECGEN')
+sgcs_org = OrgDescriptor('secretariat-general-chef-de-service',
+                         u'Secrétariat Général (Chef de service)',
+                         u'SECGEN (chef de service)')
 com_org = OrgDescriptor('communication', u'Communication', u'COM')
+comcs_org = OrgDescriptor('communication-web-chef-de-service',
+                          u'Communication & Web (Chef de service)',
+                          u'Com & Web (chef)')
 jur_org = OrgDescriptor('service-juridique', u'Service Juridique', u'JUR')
 jur_org.item_advice_states = [
     'bep-codir__state__presented',
-    'bep-codir__state__returned_to_proposing_group',
     'bep-codir__state__validated',
     'bep-ca__state__presented',
-    'bep-ca__state__returned_to_proposing_group',
     'bep-ca__state__validated']
 jur_org.item_advice_edit_states = [
     'bep-codir__state__presented',
-    'bep-codir__state__returned_to_proposing_group',
     'bep-codir__state__validated',
     'bep-ca__state__presented',
-    'bep-ca__state__returned_to_proposing_group',
     'bep-ca__state__validated']
 jur_org.item_advice_view_states = [
     'bep-codir__state__accepted',
@@ -215,7 +146,6 @@ jur_org.item_advice_view_states = [
     'bep-codir__state__itemfrozen',
     'bep-codir__state__presented',
     'bep-codir__state__refused',
-    'bep-codir__state__returned_to_proposing_group',
     'bep-codir__state__delayed',
     'bep-codir__state__validated',
     'bep-ca__state__accepted',
@@ -226,23 +156,18 @@ jur_org.item_advice_view_states = [
     'bep-ca__state__itemfrozen',
     'bep-ca__state__presented',
     'bep-ca__state__refused',
-    'bep-ca__state__returned_to_proposing_group',
     'bep-ca__state__delayed',
     'bep-ca__state__validated']
 fin_org = OrgDescriptor('finances-et-comptabilite', u'Finances et Comptabilité', u'FIN')
 fin_org.item_advice_states = [
     'bep-codir__state__presented',
-    'bep-codir__state__returned_to_proposing_group',
     'bep-codir__state__validated',
     'bep-ca__state__presented',
-    'bep-ca__state__returned_to_proposing_group',
     'bep-ca__state__validated']
 fin_org.item_advice_edit_states = [
     'bep-codir__state__presented',
-    'bep-codir__state__returned_to_proposing_group',
     'bep-codir__state__validated',
     'bep-ca__state__presented',
-    'bep-ca__state__returned_to_proposing_group',
     'bep-ca__state__validated']
 fin_org.item_advice_view_states = [
     'bep-codir__state__accepted',
@@ -251,7 +176,6 @@ fin_org.item_advice_view_states = [
     'bep-codir__state__itemfrozen',
     'bep-codir__state__presented',
     'bep-codir__state__refused',
-    'bep-codir__state__returned_to_proposing_group',
     'bep-codir__state__delayed',
     'bep-codir__state__validated',
     'bep-ca__state__accepted',
@@ -262,43 +186,18 @@ fin_org.item_advice_view_states = [
     'bep-ca__state__itemfrozen',
     'bep-ca__state__presented',
     'bep-ca__state__refused',
-    'bep-ca__state__returned_to_proposing_group',
     'bep-ca__state__delayed',
     'bep-ca__state__validated']
-rh_org = OrgDescriptor('ressources-humaines', u'Ressources Humaines', u'RH')
+log_org = OrgDescriptor('logistique', u'Logistique & Recyparcs', u'Logistic & Recyparc')
+logcs_org = OrgDescriptor('logistic-recyparcs-chef-de-serivce',
+                          u'Logistique & Recyparcs (Chef de service)',
+                          u'Logistic & recyparc (chef)')
 rhc_org = OrgDescriptor('ressources-humaines-confidentiel', u'Ressources Humaines (Confidentiel)', u'RHC')
 sr_org = OrgDescriptor('services-generaux', u'Services Généraux', u'SG')
 info_org = OrgDescriptor('informatique', u'Informatique', u'INFO')
 de_org = OrgDescriptor('developpement-economique', u'Développement Économiqe', u'DE')
 ce_org = OrgDescriptor('coaching-entreprises', u'Coaching Entreprises', u'CE')
 cecs_org = OrgDescriptor('coaching-entreprises-chef-de-service', u'Coaching Entreprises (Chef de service)', u'CECS')
-cecs_org.item_advice_states = [
-    'bep-codir__state__proposed',
-    'bep-ca__state__proposed']
-cecs_org.item_advice_edit_states = [
-    'bep-codir__state__proposed',
-    'bep-ca__state__proposed']
-cecs_org.item_advice_view_states = [
-    'bep-codir__state__accepted',
-    'bep-codir__state__accepted_but_modified',
-    'bep-codir__state__pre_accepted',
-    'bep-codir__state__itemfrozen',
-    'bep-codir__state__proposed',
-    'bep-codir__state__presented',
-    'bep-codir__state__refused',
-    'bep-codir__state__returned_to_proposing_group',
-    'bep-codir__state__delayed',
-    'bep-codir__state__validated',
-    'bep-ca__state__accepted',
-    'bep-ca__state__accepted_but_modified',
-    'bep-ca__state__pre_accepted',
-    'bep-ca__state__itemfrozen',
-    'bep-ca__state__proposed',
-    'bep-ca__state__presented',
-    'bep-ca__state__refused',
-    'bep-ca__state__returned_to_proposing_group',
-    'bep-ca__state__delayed',
-    'bep-ca__state__validated']
 ai_org = OrgDescriptor('attraction-investisseurs', u'Attraction Investisseurs', u'AI')
 ae_org = OrgDescriptor('animation-economique', u'Animation Économique', u'AE')
 is_org = OrgDescriptor('intelligence-strategique', u'Intelligence Stratégique', u'IS')
@@ -306,19 +205,27 @@ env_org = OrgDescriptor('environnement', u'Environnement', u'ENV')
 fact_org = OrgDescriptor('facturation', u'Facturation', u'FACT')
 coll_org = OrgDescriptor('collectes', u'Collectes', u'COLL')
 parsc_org = OrgDescriptor('parcs', u'Parcs', u'PARCS')
-be_org = OrgDescriptor('bureau-detudes', u'Bureau d\'Études', u'BE')
+ti_org = OrgDescriptor('traitement-industriel',
+                       u'Traitement industriel & études de projets',
+                       u'Traitement ind et étude projets')
+tics_org = OrgDescriptor('traitement-industriel-etudes-de-projets-chef-de-service',
+                         u'Traitement industriel & études de projets (Chef de service)',
+                         u'')
 dt_org = OrgDescriptor('developpement-territorial', u'Développement Territorial', u'DT')
 mo_org = OrgDescriptor('maitrise-douvrages', u'Maitrise d\'ouvrages', u'MO')
+mocs_org = OrgDescriptor('maitrise-douvrage-chef-de-service',
+                         u'Maitrise d\'ouvrages (Chef de service)',
+                         u'Maîtrise (chef)')
 infra_org = OrgDescriptor('infrastructure', u'Infrastructure', u'INFRA')
 amt_org = OrgDescriptor('amenagement-du-territoire', u'Aménagement du territoire', u'AMT')
 ne_org = OrgDescriptor('namur-expo', u'Namur Expo', u'EXPO')
 crema_org = OrgDescriptor('bep-crematorium', u'BEP Crématorium', u'CREMA')
 idefin_org = OrgDescriptor('idefin', u'Idefin', u'IDEFIN')
-tlm_org = OrgDescriptor('tout-le-monde', u'Tout le monde', u'TLM')
-ca_powerobservers = PloneGroupDescriptor('meeting-config-ca_powerobservers',
-                                         'meeting-config-ca_powerobservers',
-                                         [])
-assembly_member.ploneGroups = [ca_powerobservers]
+ca_restrictedpowerobservers = PloneGroupDescriptor(
+    'meeting-config-ca_restrictedpowerobservers',
+    'meeting-config-ca_restrictedpowerobservers',
+    [])
+assembly_member.ploneGroups = [ca_restrictedpowerobservers]
 
 dg_org.advisers.append(rde)
 dg_org.creators.append(rde)
@@ -327,6 +234,7 @@ dg_org.reviewers.append(rde)
 sg_org.advisers.append(ogr)
 sg_org.creators += [ito, jca, ogr, str_user]
 sg_org.reviewers.append(ogr)
+sgcs_org.advisers.append(ogr)
 
 com_org.advisers += [ibe, sma]
 com_org.creators += [ibe, sma]
@@ -349,9 +257,6 @@ ce_org.creators += [cbo, dlo, dma, dde, ebe, jpo, lgo, mdh, nvg, qox]
 ce_org.reviewers += [lgo]
 cecs_org.advisers += [dma]
 
-rh_org.advisers = [isa]
-rh_org.creators = [isa]
-rh_org.reviewers = [isa]
 rhc_org.advisers = [isa]
 rhc_org.creators = [isa]
 rhc_org.reviewers = [isa]
@@ -547,8 +452,8 @@ cfgs = (bepca, bepaudit, bepremun, bepag,
         idefinca, idefinaudit, idefinremun, idefinag)
 
 for cfg in cfgs:
-    cfg.budgetDefault = "<p>La dépense sera imputée sur le budget n° XXX dont " \
-        "le solde permet de supporter celle-ci.</p>"
+    cfg.budgetDefault = '<p>La dépense sera imputée sur le budget n°<span class="highlight-yellow"> XXX</span> ' \
+        'dont le solde permet de supporter celle-ci.</p>'
     # assembly and signatures
     cfg.certifiedSignatures = (
         {'function': 'Directeur, Secr\xc3\xa9tariat G\xc3\xa9n\xc3\xa9ral',
@@ -585,29 +490,35 @@ for cfg in cfgs:
     cfg.categories = categories
 
     # gui
-    cfg.itemColumns = ('Creator', 'ModificationDate', 'review_state', 'getProposingGroup',
-                       'advices', 'linkedMeetingDate', 'actions')
-    cfg.meetingColumns = ('Creator', 'CreationDate', 'review_state', 'actions')
-    cfg.meetingColumns = ('Creator', 'CreationDate', 'review_state', 'actions')
-    cfg.itemsListVisibleColumns = ('Creator', 'ModificationDate', 'review_state',
-                                   'getProposingGroup', 'advices', 'actions')
-    cfg.availableItemsListVisibleColumns = ('Creator', 'ModificationDate',
-                                            'getProposingGroup', 'advices', 'actions')
-    cfg.dashboardItemsListingsFilters = (u'c4', u'c5', u'c6', u'c7', u'c8', u'c9', u'c10',
-                                         u'c11', u'c12', u'c13', u'c14', u'c15', u'c16')
-    cfg.dashboardMeetingAvailableItemsFilters = (u'c4', u'c7', u'c8', u'c11', u'c16')
-    cfg.dashboardMeetingLinkedItemsFilters = (u'c4', u'c5', u'c6', u'c7',
-                                              u'c11', u'c12', u'c16', u'c19')
+    cfg.itemColumns = (u'item_reference', u'Creator', u'ModificationDate', u'review_state', u'getProposingGroup',
+                       u'advices', u'linkedMeetingDate', u'getPreferredMeetingDate', u'actions')
+    cfg.meetingColumns = (u'Creator', u'CreationDate', u'review_state', u'actions')
+    cfg.itemsListVisibleColumns = (u'item_reference', u'Creator', u'ModificationDate', u'review_state',
+                                   u'getProposingGroup', u'advices', u'actions')
+    cfg.availableItemsListVisibleColumns = (u'Creator', u'ModificationDate', u'getProposingGroup',
+                                            u'advices', u'getPreferredMeetingDate', u'actions')
+    cfg.dashboardItemsListingsFilters = (u'c4', u'c5', u'c6', u'c7', u'c8', u'c9', u'c10', u'c11',
+                                         u'c13', u'c14', u'c15', u'c17', u'c18', u'c19')
+    cfg.dashboardMeetingAvailableItemsFilters = (u'c4', u'c5', u'c7', u'c8', u'c11',
+                                                 u'c13', u'c14', u'c17', u'c19')
+    cfg.dashboardMeetingLinkedItemsFilters = (u'c4', u'c5', u'c6', u'c7', u'c8',
+                                              u'c11', u'c13', u'c14', u'c17', u'c19')
     # workflow
     cfg.workflowAdaptations = (
         u'no_global_observation', u'no_publication',
-        u'presented_item_back_to_proposed', u'return_to_proposing_group',
-        u'accepted_out_of_meeting', u'accepted_out_of_meeting_emergency_and_duplicated',
-        u'refused')
+        u'presented_item_back_to_proposed',  # u'return_to_proposing_group',
+        u'accepted_out_of_meeting', u'accepted_out_of_meeting_emergency_and_duplicated', u'refused')
     cfg.itemConditionsInterface = 'Products.MeetingBEP.interfaces.IMeetingItemBEPWorkflowConditions'
     cfg.itemActionsInterface = 'Products.MeetingBEP.interfaces.IMeetingItemBEPWorkflowActions'
     cfg.meetingConditionsInterface = 'Products.MeetingBEP.interfaces.IMeetingBEPWorkflowConditions'
     cfg.meetingActionsInterface = 'Products.MeetingBEP.interfaces.IMeetingBEPWorkflowActions'
+    cfg.transitionsToConfirm = (
+        u'MeetingItem.accept_but_modify', u'MeetingItem.accept_out_of_meeting_emergency',
+        u'MeetingItem.accept_out_of_meeting', u'MeetingItem.pre_accept',
+        u'MeetingItem.propose', u'MeetingItem.refuse', u'MeetingItem.backToItemCreated',
+        u'MeetingItem.backToProposed', u'MeetingItem.backToValidatedFromAcceptedOutOfMeeting',
+        u'MeetingItem.backToValidatedFromAcceptedOutOfMeetingEmergency', u'MeetingItem.delay',
+        u'MeetingItem.backToValidated', u'MeetingItem.validate')
     cfg.itemDecidedStates = (
         u'accepted', u'accepted_but_modified', u'accepted_out_of_meeting',
         u'accepted_out_of_meeting_emergency', u'pre_accepted', u'refused', u'delayed')
@@ -618,59 +529,124 @@ for cfg in cfgs:
         {'transition': 'validate',
          'field_name': 'MeetingItem.decision',
          'tal_expression': 'python: here.adapted().adaptDecisionClonedItem()'},)
+    cfg.onMeetingTransitionItemTransitionToTrigger = (
+        {'meeting_transition': 'freeze', 'item_transition': 'itemfreeze'},
+        {'meeting_transition': 'decide', 'item_transition': 'itemfreeze'},
+        {'meeting_transition': 'close', 'item_transition': 'itemfreeze'},
+        {'meeting_transition': 'close', 'item_transition': 'accept'})
     # advices and access
     cfg.usedAdviceTypes = (u'asked_again', u'positive', u'positive_with_remarks', u'negative', u'nil')
     cfg.enableAdviceConfidentiality = True
     cfg.adviceConfidentialityDefault = True
-    cfg.itemRestrictedPowerObserversStates = (
-        u'accepted', u'accepted_but_modified', u'pre_accepted',
-        u'itemfrozen', u'refused', u'returned_to_proposing_group',
-        u'delayed')
+    cfg.itemPowerObserversStates = (u'accepted', u'accepted_but_modified', u'pre_accepted',
+                                    u'itemfrozen', u'refused', u'delayed')
+    cfg.meetingPowerObserversStates = (u'closed', u'decided', u'frozen')
+    cfg.itemRestrictedPowerObserversStates = (u'accepted', u'accepted_but_modified', u'pre_accepted',
+                                              u'itemfrozen', u'refused', u'delayed')
     cfg.meetingRestrictedPowerObserversStates = (u'closed', u'decided', u'frozen')
     cfg.adviceConfidentialFor = ('restricted_power_observers', )
     cfg.hideHistoryTo = ('restricted_power_observers', )
-    cfg.customAdvisers = ((
+    cfg.itemAdviceStates = ('proposed',)
+    cfg.itemAdviceEditStates = ('proposed',)
+    cfg.itemAdviceViewStates = (u'accepted', u'accepted_but_modified', u'accepted_out_of_meeting',
+                                u'accepted_out_of_meeting_emergency', u'pre_accepted', u'itemfrozen',
+                                u'proposed', u'presented', u'refused', u'delayed', u'validated')
+    cfg.customAdvisers = (
         {'delay_label': '',
          'for_item_created_until': '',
-         'org': 'coaching-entreprises-chef-de-service',
          'available_on': '',
          'delay': '',
          'gives_auto_advice_on_help_message': '',
-         'gives_auto_advice_on': "python: item.getProposingGroup() == 'coaching-entreprises'",
+         'gives_auto_advice_on': 'python: True',
+         'org': 'service-juridique',
          'delay_left_alert': '',
          'is_linked_to_previous_row': '0',
          'for_item_created_from': '2018/01/01',
-         'row_id': 'row_id_1'},
+         'row_id': '2018-12-14.3789235136'},
         {'delay_label': '',
          'for_item_created_until': '',
-         'org': 'service-juridique',
          'available_on': '',
          'delay': '',
          'gives_auto_advice_on_help_message': '',
-         'gives_auto_advice_on': "python: True",
+         'gives_auto_advice_on': 'python: True',
+         'org': 'finances-et-comptabilite',
          'delay_left_alert': '',
          'is_linked_to_previous_row': '0',
          'for_item_created_from': '2018/01/01',
          'row_id': 'row_id_2'},
         {'delay_label': '',
          'for_item_created_until': '',
-         'org': 'finances-et-comptabilite',
          'available_on': '',
          'delay': '',
          'gives_auto_advice_on_help_message': '',
-         'gives_auto_advice_on': "python: True",
+         'gives_auto_advice_on': "python: item.getProposingGroup() == pm_utils.org_id_to_uid('coaching-entreprises')",
+         'org': 'coaching-entreprises-chef-de-service',
          'delay_left_alert': '',
          'is_linked_to_previous_row': '0',
-         'for_item_created_from': '2018/01/01',
-         'row_id': 'row_id_2'}, ))
+         'for_item_created_from': '2018/08/01',
+         'row_id': 'row_id_1'},
+        {'delay_label': '',
+         'for_item_created_until': '',
+         'available_on': '',
+         'delay': '',
+         'gives_auto_advice_on_help_message': '',
+         'gives_auto_advice_on': "python: item.getProposingGroup() == pm_utils.org_id_to_uid('communication')",
+         'org': 'communication-web-chef-de-service',
+         'delay_left_alert': '',
+         'is_linked_to_previous_row': '0',
+         'for_item_created_from': '2018/12/09',
+         'row_id': '2018-12-09.4064779048'},
+        {'delay_label': '',
+         'for_item_created_until': '',
+         'available_on': '',
+         'delay': '',
+         'gives_auto_advice_on_help_message': '',
+         'gives_auto_advice_on': "python: item.getProposingGroup() == pm_utils.org_id_to_uid('logistique')",
+         'org': 'logistic-recyparcs-chef-de-serivce',
+         'delay_left_alert': '',
+         'is_linked_to_previous_row': '0',
+         'for_item_created_from': '2018/12/09',
+         'row_id': '2018-12-09.4064775388'},
+        {'delay_label': '',
+         'for_item_created_until': '',
+         'available_on': '',
+         'delay': '',
+         'gives_auto_advice_on_help_message': '',
+         'gives_auto_advice_on': "python: item.getProposingGroup() == pm_utils.org_id_to_uid('maitrise-douvrages')",
+         'org': 'maitrise-douvrage-chef-de-service',
+         'delay_left_alert': '',
+         'is_linked_to_previous_row': '0',
+         'for_item_created_from': '2018/12/09',
+         'row_id': '2018-12-09.4064772101'},
+        {'delay_label': '',
+         'for_item_created_until': '',
+         'available_on': '',
+         'delay': '',
+         'gives_auto_advice_on_help_message': '',
+         'gives_auto_advice_on': "python: item.getProposingGroup() == pm_utils.org_id_to_uid('secretariat')",
+         'org': 'secretariat-general-chef-de-service',
+         'delay_left_alert': '',
+         'is_linked_to_previous_row': '0',
+         'for_item_created_from': '2018/12/09',
+         'row_id': '2018-12-09.4064780584'},
+        {'delay_label': '',
+         'for_item_created_until': '',
+         'available_on': '',
+         'delay': '',
+         'gives_auto_advice_on_help_message': '',
+         'gives_auto_advice_on': "python: item.getProposingGroup() == pm_utils.org_id_to_uid('traitement-industriel')",
+         'org': 'traitement-industriel-etudes-de-projets-chef-de-service',
+         'delay_left_alert': '',
+         'is_linked_to_previous_row': '0',
+         'for_item_created_from': '2018/12/09',
+         'row_id': '2018-12-09.4064787347'})
     cfg.useCopies = True
     cfg.selectableCopyGroups = (
-        u'direction-generale_observers', u'direction-generale_reviewers',
+        u'dirgen_observers', u'dirgen_reviewers',
         u'secretariat_observers', u'secretariat_reviewers',
         u'communication_observers', u'communication_reviewers',
         u'service-juridique_observers', u'service-juridique_reviewers',
         u'finances-et-comptabilite_observers', u'finances-et-comptabilite_reviewers',
-        u'ressources-humaines_observers', u'ressources-humaines_reviewers',
         u'ressources-humaines-confidentiel_observers', u'ressources-humaines-confidentiel_reviewers',
         u'services-generaux_observers', u'services-generaux_reviewers',
         u'informatique_observers', u'informatique_reviewers',
@@ -692,22 +668,21 @@ for cfg in cfgs:
         u'bep-crematorium_observers', u'bep-crematorium_reviewers',
         u'idefin_observers', u'idefin_reviewers',
         u'coaching-entreprises-chef-de-service_observers',
-        u'coaching-entreprises-chef-de-service_reviewers',
-        u'tout-le-monde_observers', u'tout-le-monde_reviewers')
+        u'coaching-entreprises-chef-de-service_reviewers')
     cfg.itemCopyGroupsStates = (
         u'accepted', u'accepted_but_modified', u'accepted_out_of_meeting',
         u'accepted_out_of_meeting_emergency', u'pre_accepted',
         u'itemfrozen', u'refused', u'delayed')
-
+    cfg.powerAdvisersGroups = (u'dirgen', )
 
 data = PloneMeetingConfiguration(
     meetingFolderTitle='Mes séances',
     meetingConfigs=cfgs,
     orgs=[
-        dg_org, sg_org, com_org, jur_org, fin_org, rh_org, rhc_org, sr_org,
+        dg_org, sg_org, sgcs_org, com_org, comcs_org, jur_org, fin_org, log_org, logcs_org, rhc_org, sr_org,
         info_org, de_org, ce_org, cecs_org, ai_org, ae_org, is_org, env_org, fact_org,
-        coll_org, parsc_org, be_org, dt_org, mo_org, infra_org, amt_org, ne_org,
-        crema_org, idefin_org, tlm_org])
+        coll_org, parsc_org, ti_org, tics_org, dt_org, mo_org, mocs_org, infra_org, amt_org, ne_org,
+        crema_org, idefin_org])
 data.enableUserPreferences = False
 data.configGroups = (
     {'row_id': 'bep', 'label': 'BEP'},
