@@ -124,70 +124,191 @@ sg_org = OrgDescriptor('secretariat', u'Secrétariat Général', u'SECGEN')
 sgcs_org = OrgDescriptor('secretariat-general-chef-de-service',
                          u'Secrétariat Général (Chef de service)',
                          u'SECGEN (chef de service)')
-com_org = OrgDescriptor('communication', u'Communication', u'COM')
+com_org = OrgDescriptor('communication', u'Communication & Web', u'COM')
 comcs_org = OrgDescriptor('communication-web-chef-de-service',
                           u'Communication & Web (Chef de service)',
                           u'Com & Web (chef)')
 jur_org = OrgDescriptor('service-juridique', u'Service Juridique', u'JUR')
 jur_org.item_advice_states = [
-    'bep-codir__state__presented',
-    'bep-codir__state__validated',
-    'bep-ca__state__presented',
-    'bep-ca__state__validated']
-jur_org.item_advice_edit_states = [
-    'bep-codir__state__presented',
-    'bep-codir__state__validated',
-    'bep-ca__state__presented',
-    'bep-ca__state__validated']
+    u'bep-ca__state__validated',
+    u'bep-ca__state__presented',
+    u'bep-audit__state__validated',
+    u'bep-audit__state__presented',
+    u'bep-remun__state__validated',
+    u'bep-remun__state__presented',
+    u'bep-ag__state__validated',
+    u'bep-ag__state__presented',
+    u'expa-ca__state__validated',
+    u'expa-ca__state__presented',
+    u'expa-audit__state__validated',
+    u'expa-audit__state__presented',
+    u'expa-remun__state__validated',
+    u'expa-remun__state__presented',
+    u'expa-ag__state__validated',
+    u'expa-ag__state__presented',
+    u'enviro-ca__state__validated',
+    u'enviro-ca__state__presented',
+    u'enviro-audit__state__validated',
+    u'enviro-audit__state__presented',
+    u'enviro-remun__state__validated',
+    u'enviro-remun__state__presented',
+    u'enviro-ag__state__validated',
+    u'enviro-ag__state__presented',
+    u'crema-ca__state__validated',
+    u'crema-ca__state__presented',
+    u'crema-audit__state__validated',
+    u'crema-audit__state__presented',
+    u'crema-remun__state__validated',
+    u'crema-remun__state__presented',
+    u'crema-ag__state__validated',
+    u'crema-ag__state__presented',
+    u'idefin-ca__state__validated',
+    u'idefin-ca__state__presented',
+    u'idefin-audit__state__validated',
+    u'idefin-audit__state__presented',
+    u'idefin-remun__state__validated',
+    u'idefin-remun__state__presented',
+    u'idefin-ag__state__validated',
+    u'idefin-ag__state__presented']
+jur_org.item_advice_edit_states = jur_org.item_advice_states
 jur_org.item_advice_view_states = [
-    'bep-codir__state__accepted',
-    'bep-codir__state__accepted_but_modified',
-    'bep-codir__state__pre_accepted',
-    'bep-codir__state__itemfrozen',
-    'bep-codir__state__presented',
-    'bep-codir__state__refused',
-    'bep-codir__state__delayed',
-    'bep-codir__state__validated',
-    'bep-ca__state__accepted',
-    'bep-ca__state__accepted_but_modified',
-    'bep-ca__state__accepted_out_of_meeting',
-    'bep-ca__state__accepted_out_of_meeting_emergency',
-    'bep-ca__state__pre_accepted',
-    'bep-ca__state__itemfrozen',
-    'bep-ca__state__presented',
-    'bep-ca__state__refused',
-    'bep-ca__state__delayed',
-    'bep-ca__state__validated']
+    u'bep-ca__state__accepted_out_of_meeting',
+    u'bep-ca__state__validated',
+    u'bep-ca__state__presented',
+    u'bep-ca__state__delayed',
+    u'bep-ca__state__pre_accepted',
+    u'bep-ca__state__itemfrozen',
+    u'bep-ca__state__accepted_out_of_meeting_emergency',
+    u'bep-ca__state__refused',
+    u'bep-ca__state__accepted',
+    u'bep-ca__state__accepted_but_modified',
+    u'bep-audit__state__accepted',
+    u'bep-audit__state__validated', u'bep-audit__state__presented',
+    u'bep-audit__state__delayed', u'bep-audit__state__pre_accepted',
+    u'bep-audit__state__itemfrozen',
+    u'bep-audit__state__accepted_out_of_meeting_emergency',
+    u'bep-audit__state__accepted_but_modified',
+    u'bep-audit__state__accepted_out_of_meeting', u'bep-audit__state__refused',
+    u'bep-remun__state__accepted', u'bep-remun__state__validated',
+    u'bep-remun__state__presented', u'bep-remun__state__delayed',
+    u'bep-remun__state__pre_accepted', u'bep-remun__state__itemfrozen',
+    u'bep-remun__state__accepted_out_of_meeting_emergency',
+    u'bep-remun__state__accepted_but_modified',
+    u'bep-remun__state__accepted_out_of_meeting', u'bep-remun__state__refused',
+    u'bep-ag__state__accepted', u'bep-ag__state__validated',
+    u'bep-ag__state__presented', u'bep-ag__state__delayed',
+    u'bep-ag__state__pre_accepted', u'bep-ag__state__itemfrozen',
+    u'bep-ag__state__accepted_out_of_meeting_emergency',
+    u'bep-ag__state__accepted_but_modified',
+    u'bep-ag__state__accepted_out_of_meeting', u'bep-ag__state__refused',
+    u'expa-ca__state__accepted', u'expa-ca__state__validated',
+    u'expa-ca__state__presented', u'expa-ca__state__delayed',
+    u'expa-ca__state__pre_accepted', u'expa-ca__state__itemfrozen',
+    u'expa-ca__state__accepted_out_of_meeting_emergency',
+    u'expa-ca__state__accepted_but_modified',
+    u'expa-ca__state__accepted_out_of_meeting', u'expa-ca__state__refused',
+    u'expa-audit__state__accepted', u'expa-audit__state__validated',
+    u'expa-audit__state__presented', u'expa-audit__state__delayed',
+    u'expa-audit__state__pre_accepted', u'expa-audit__state__itemfrozen',
+    u'expa-audit__state__accepted_out_of_meeting_emergency',
+    u'expa-audit__state__accepted_but_modified',
+    u'expa-audit__state__accepted_out_of_meeting',
+    u'expa-audit__state__refused', u'expa-remun__state__accepted',
+    u'expa-remun__state__validated', u'expa-remun__state__presented',
+    u'expa-remun__state__delayed', u'expa-remun__state__pre_accepted',
+    u'expa-remun__state__itemfrozen',
+    u'expa-remun__state__accepted_out_of_meeting_emergency',
+    u'expa-remun__state__accepted_but_modified',
+    u'expa-remun__state__accepted_out_of_meeting',
+    u'expa-remun__state__refused', u'expa-ag__state__accepted',
+    u'expa-ag__state__validated', u'expa-ag__state__presented',
+    u'expa-ag__state__delayed', u'expa-ag__state__pre_accepted',
+    u'expa-ag__state__itemfrozen',
+    u'expa-ag__state__accepted_out_of_meeting_emergency',
+    u'expa-ag__state__accepted_but_modified',
+    u'expa-ag__state__accepted_out_of_meeting', u'expa-ag__state__refused',
+    u'enviro-ca__state__accepted', u'enviro-ca__state__validated',
+    u'enviro-ca__state__presented', u'enviro-ca__state__delayed',
+    u'enviro-ca__state__pre_accepted', u'enviro-ca__state__itemfrozen',
+    u'enviro-ca__state__accepted_out_of_meeting_emergency',
+    u'enviro-ca__state__accepted_but_modified',
+    u'enviro-ca__state__accepted_out_of_meeting', u'enviro-ca__state__refused',
+    u'enviro-audit__state__accepted', u'enviro-audit__state__validated',
+    u'enviro-audit__state__presented', u'enviro-audit__state__delayed',
+    u'enviro-audit__state__pre_accepted', u'enviro-audit__state__itemfrozen',
+    u'enviro-audit__state__accepted_out_of_meeting_emergency',
+    u'enviro-audit__state__accepted_but_modified',
+    u'enviro-audit__state__accepted_out_of_meeting',
+    u'enviro-audit__state__refused', u'enviro-remun__state__accepted',
+    u'enviro-remun__state__validated', u'enviro-remun__state__presented',
+    u'enviro-remun__state__delayed', u'enviro-remun__state__pre_accepted',
+    u'enviro-remun__state__itemfrozen',
+    u'enviro-remun__state__accepted_out_of_meeting_emergency',
+    u'enviro-remun__state__accepted_but_modified',
+    u'enviro-remun__state__accepted_out_of_meeting',
+    u'enviro-remun__state__refused', u'enviro-ag__state__accepted',
+    u'enviro-ag__state__validated', u'enviro-ag__state__presented',
+    u'enviro-ag__state__delayed', u'enviro-ag__state__pre_accepted',
+    u'enviro-ag__state__itemfrozen',
+    u'enviro-ag__state__accepted_out_of_meeting_emergency',
+    u'enviro-ag__state__accepted_but_modified',
+    u'enviro-ag__state__accepted_out_of_meeting', u'enviro-ag__state__refused',
+    u'crema-ca__state__accepted', u'crema-ca__state__validated',
+    u'crema-ca__state__presented', u'crema-ca__state__delayed',
+    u'crema-ca__state__pre_accepted', u'crema-ca__state__itemfrozen',
+    u'crema-ca__state__accepted_out_of_meeting_emergency',
+    u'crema-ca__state__accepted_but_modified',
+    u'crema-ca__state__accepted_out_of_meeting', u'crema-ca__state__refused',
+    u'crema-audit__state__accepted', u'crema-audit__state__validated',
+    u'crema-audit__state__presented', u'crema-audit__state__delayed',
+    u'crema-audit__state__pre_accepted', u'crema-audit__state__itemfrozen',
+    u'crema-audit__state__accepted_out_of_meeting_emergency',
+    u'crema-audit__state__accepted_but_modified',
+    u'crema-audit__state__accepted_out_of_meeting',
+    u'crema-audit__state__refused', u'crema-remun__state__accepted',
+    u'crema-remun__state__validated', u'crema-remun__state__presented',
+    u'crema-remun__state__delayed', u'crema-remun__state__pre_accepted',
+    u'crema-remun__state__itemfrozen',
+    u'crema-remun__state__accepted_out_of_meeting_emergency',
+    u'crema-remun__state__accepted_but_modified',
+    u'crema-remun__state__accepted_out_of_meeting',
+    u'crema-remun__state__refused', u'crema-ag__state__accepted',
+    u'crema-ag__state__validated', u'crema-ag__state__presented',
+    u'crema-ag__state__delayed', u'crema-ag__state__pre_accepted',
+    u'crema-ag__state__itemfrozen',
+    u'crema-ag__state__accepted_out_of_meeting_emergency',
+    u'crema-ag__state__accepted_but_modified',
+    u'crema-ag__state__accepted_out_of_meeting', u'crema-ag__state__refused',
+    u'idefin-ca__state__accepted', u'idefin-ca__state__validated',
+    u'idefin-ca__state__presented', u'idefin-ca__state__delayed',
+    u'idefin-ca__state__pre_accepted', u'idefin-ca__state__itemfrozen',
+    u'idefin-ca__state__accepted_out_of_meeting_emergency',
+    u'idefin-ca__state__accepted_but_modified',
+    u'idefin-ca__state__accepted_out_of_meeting', u'idefin-ca__state__refused',
+    u'idefin-audit__state__accepted', u'idefin-audit__state__validated',
+    u'idefin-audit__state__presented', u'idefin-audit__state__delayed',
+    u'idefin-audit__state__pre_accepted', u'idefin-audit__state__itemfrozen',
+    u'idefin-audit__state__accepted_out_of_meeting_emergency',
+    u'idefin-audit__state__accepted_but_modified',
+    u'idefin-audit__state__accepted_out_of_meeting',
+    u'idefin-audit__state__refused', u'idefin-remun__state__accepted',
+    u'idefin-remun__state__validated', u'idefin-remun__state__presented',
+    u'idefin-remun__state__delayed', u'idefin-remun__state__pre_accepted',
+    u'idefin-remun__state__itemfrozen',
+    u'idefin-remun__state__accepted_out_of_meeting_emergency',
+    u'idefin-remun__state__accepted_but_modified',
+    u'idefin-remun__state__accepted_out_of_meeting',
+    u'idefin-remun__state__refused', u'idefin-ag__state__accepted',
+    u'idefin-ag__state__validated', u'idefin-ag__state__presented',
+    u'idefin-ag__state__delayed', u'idefin-ag__state__pre_accepted',
+    u'idefin-ag__state__itemfrozen',
+    u'idefin-ag__state__accepted_out_of_meeting_emergency',
+    u'idefin-ag__state__accepted_but_modified',
+    u'idefin-ag__state__accepted_out_of_meeting', u'idefin-ag__state__refused']
 fin_org = OrgDescriptor('finances-et-comptabilite', u'Finances et Comptabilité', u'FIN')
-fin_org.item_advice_states = [
-    'bep-codir__state__presented',
-    'bep-codir__state__validated',
-    'bep-ca__state__presented',
-    'bep-ca__state__validated']
-fin_org.item_advice_edit_states = [
-    'bep-codir__state__presented',
-    'bep-codir__state__validated',
-    'bep-ca__state__presented',
-    'bep-ca__state__validated']
-fin_org.item_advice_view_states = [
-    'bep-codir__state__accepted',
-    'bep-codir__state__accepted_but_modified',
-    'bep-codir__state__pre_accepted',
-    'bep-codir__state__itemfrozen',
-    'bep-codir__state__presented',
-    'bep-codir__state__refused',
-    'bep-codir__state__delayed',
-    'bep-codir__state__validated',
-    'bep-ca__state__accepted',
-    'bep-ca__state__accepted_but_modified',
-    'bep-ca__state__accepted_out_of_meeting',
-    'bep-ca__state__accepted_out_of_meeting_emergency',
-    'bep-ca__state__pre_accepted',
-    'bep-ca__state__itemfrozen',
-    'bep-ca__state__presented',
-    'bep-ca__state__refused',
-    'bep-ca__state__delayed',
-    'bep-ca__state__validated']
+fin_org.item_advice_states = jur_org.item_advice_states
+fin_org.item_advice_edit_states = jur_org.item_advice_edit_states
+fin_org.item_advice_view_states = jur_org.item_advice_view_states
 log_org = OrgDescriptor('logistique', u'Logistique & Recyparcs', u'Logistic & Recyparc')
 logcs_org = OrgDescriptor('logistic-recyparcs-chef-de-serivce',
                           u'Logistique & Recyparcs (Chef de service)',
@@ -198,29 +319,32 @@ info_org = OrgDescriptor('informatique', u'Informatique', u'INFO')
 de_org = OrgDescriptor('developpement-economique', u'Développement Économiqe', u'DE')
 ce_org = OrgDescriptor('coaching-entreprises', u'Coaching Entreprises', u'CE')
 cecs_org = OrgDescriptor('coaching-entreprises-chef-de-service', u'Coaching Entreprises (Chef de service)', u'CECS')
-ai_org = OrgDescriptor('attraction-investisseurs', u'Attraction Investisseurs', u'AI')
-ae_org = OrgDescriptor('animation-economique', u'Animation Économique', u'AE')
+ai_org = OrgDescriptor('attraction-investisseurs', u'Parcs d\'activités et Attraction d\'entreprises', u'AI')
+ess_org = OrgDescriptor('essaimage', u'Essaimage', u'Essaimage')
 is_org = OrgDescriptor('intelligence-strategique', u'Intelligence Stratégique', u'IS')
 env_org = OrgDescriptor('environnement', u'Environnement', u'ENV')
 fact_org = OrgDescriptor('facturation', u'Facturation', u'FACT')
-coll_org = OrgDescriptor('collectes', u'Collectes', u'COLL')
-parsc_org = OrgDescriptor('parcs', u'Parcs', u'PARCS')
+sn_org = OrgDescriptor('strategie-numerique', u'Stratégie numérique', u'Stratégie numérique')
+appit_org = OrgDescriptor('applications-it', u'Applications IT', u'ApplicationsIT')
+pe_org = OrgDescriptor('programmes-europeens-territoriaux',
+                       u'Programmes Européens Territoriaux ',
+                       u'Programmes Européens Territoriaux ')
+dt_org = OrgDescriptor('developpement-territorial', u'Développement Territorial', u'DT')
+mo_org = OrgDescriptor('maitrise-douvrages', u'Maitrise d\'ouvrages', u'MO')
+mocs_org = OrgDescriptor('maitrise-douvrage-chef-de-service',
+                         u'Maitrise d\'ouvrages (Chef de service)',
+                         u'Maîtrise (chef)')
 ti_org = OrgDescriptor('traitement-industriel',
                        u'Traitement industriel & études de projets',
                        u'Traitement ind et étude projets')
 tics_org = OrgDescriptor('traitement-industriel-etudes-de-projets-chef-de-service',
                          u'Traitement industriel & études de projets (Chef de service)',
                          u'')
-dt_org = OrgDescriptor('developpement-territorial', u'Développement Territorial', u'DT')
-mo_org = OrgDescriptor('maitrise-douvrages', u'Maitrise d\'ouvrages', u'MO')
-mocs_org = OrgDescriptor('maitrise-douvrage-chef-de-service',
-                         u'Maitrise d\'ouvrages (Chef de service)',
-                         u'Maîtrise (chef)')
+infrait_org = OrgDescriptor('infrastructure-it', u'Infrastructure IT', u'InfrastructureIT')
 infra_org = OrgDescriptor('infrastructure', u'Infrastructure', u'INFRA')
 amt_org = OrgDescriptor('amenagement-du-territoire', u'Aménagement du territoire', u'AMT')
-ne_org = OrgDescriptor('namur-expo', u'Namur Expo', u'EXPO')
-crema_org = OrgDescriptor('bep-crematorium', u'BEP Crématorium', u'CREMA')
-idefin_org = OrgDescriptor('idefin', u'Idefin', u'IDEFIN')
+ac_org = OrgDescriptor('actions-collectives', u'Actions collectives', u'Actions collectives')
+incub_org = OrgDescriptor('incubateur-etudiants', u'Incubateur étudiants', u'Incubateur étudiants')
 ca_restrictedpowerobservers = PloneGroupDescriptor(
     'meeting-config-ca_restrictedpowerobservers',
     'meeting-config-ca_restrictedpowerobservers',
@@ -454,39 +578,49 @@ cfgs = (bepca, bepaudit, bepremun, bepag,
 for cfg in cfgs:
     cfg.budgetDefault = '<p>La dépense sera imputée sur le budget n°<span class="highlight-yellow"> XXX</span> ' \
         'dont le solde permet de supporter celle-ci.</p>'
+    cfg.places = """Salle du Conseil\r
+Salle Vivace\r
+Salle Adagio\r
+Extérieur\r"""
+
     # assembly and signatures
+    cfg.assembly = ""
+    cfg.signatures = ""
     cfg.certifiedSignatures = (
         {'function': 'Directeur, Secr\xc3\xa9tariat G\xc3\xa9n\xc3\xa9ral',
          'signatureNumber': '1',
          'date_from': '',
          'name': 'O. GRANVILLE',
-         'function': '',
+         'held_position': '',
          'date_to': ''},
         {'function': 'Le Signataire 2 FF',
          'signatureNumber': '2',
          'date_from': '',
          'name': 'Vraiment Exemple',
-         'function': '',
+         'held_position': '',
          'date_to': ''},
         {'function': 'Charg\xc3\xa9 de Mission',
          'signatureNumber': '3',
          'date_from': '',
          'name': 'S. TRIFFOY',
-         'function': '',
+         'held_position': '',
          'date_to': ''},
         {'function': 'Directeur, Secr\xc3\xa9tariat G\xc3\xa9n\xc3\xa9ral',
          'signatureNumber': '4',
          'date_from': '',
          'name': 'O. GRANVILLE',
-         'function': '',
+         'held_position': '',
          'date_to': ''})
     # data
     cfg.useGroupsAsCategories = False
-    cfg.usedMeetingAttributes = ['startDate', 'endDate', 'attendees', 'excused',
-                                 'signatories', 'replacements', 'place', 'observations', ]
+    cfg.usedItemAttributes = (u'budgetInfos', u'emergency', u'motivation',
+                              u'toDiscuss', u'notes', u'sendToAuthority')
+    cfg.usedMeetingAttributes = (u'startDate', u'endDate', u'assemblyGuests', u'attendees', u'excused',
+                                 u'signatories', u'replacements', u'place', u'observations')
     # AG
     if cfg.id.endswith('-ag'):
-        cfg.usedMeetingAttributes = ['startDate', 'endDate', 'assembly', 'signatures', 'place', 'observations', ]
+        cfg.usedMeetingAttributes = ['startDate', 'endDate', 'assembly', u'assemblyGuests',
+                                     'signatures', 'place', 'observations', ]
     cfg.categories = categories
 
     # gui
@@ -503,6 +637,17 @@ for cfg in cfgs:
                                                  u'c13', u'c14', u'c17', u'c19')
     cfg.dashboardMeetingLinkedItemsFilters = (u'c4', u'c5', u'c6', u'c7', u'c8',
                                               u'c11', u'c13', u'c14', u'c17', u'c19')
+    cfg.disabled_collections = [
+        'searches_items/searchmyitemstakenover', 'searches_items/searchitemstoprevalidate',
+        'searches_items/searchitemstoadvicewithoutdelay', 'searches_items/searchitemstoadvicewithdelay',
+        'searches_items/searchitemstoadvicewithexceededdelay', 'searches_items/searchalladviseditemswithdelay',
+        'searches_items/searchitemstocorrect', 'searches_items/searchitemstocorrecttovalidate',
+        'searches_items/searchitemstocorrecttovalidateoffeveryreviewergroups',
+        'searches_items/searchcorrecteditems',
+        'searches_items/searchitemswithfinanceadvice', 'searches_items/searchitemstocontrolcompletenessof',
+        'searches_items/searchadviceproposedtocontroller', 'searches_items/searchadviceproposedtoeditor',
+        'searches_items/searchadviceproposedtoreviewer', 'searches_items/searchadviceproposedtomanager'
+    ]
     # workflow
     cfg.workflowAdaptations = (
         u'no_global_observation', u'no_publication',
@@ -642,33 +787,33 @@ for cfg in cfgs:
          'row_id': '2018-12-09.4064787347'})
     cfg.useCopies = True
     cfg.selectableCopyGroups = (
-        u'dirgen_observers', u'dirgen_reviewers',
-        u'secretariat_observers', u'secretariat_reviewers',
-        u'communication_observers', u'communication_reviewers',
-        u'service-juridique_observers', u'service-juridique_reviewers',
-        u'finances-et-comptabilite_observers', u'finances-et-comptabilite_reviewers',
-        u'ressources-humaines-confidentiel_observers', u'ressources-humaines-confidentiel_reviewers',
-        u'services-generaux_observers', u'services-generaux_reviewers',
-        u'informatique_observers', u'informatique_reviewers',
-        u'developpement-economique_observers', u'developpement-economique_reviewers',
-        u'coaching-entreprises_observers', u'coaching-entreprises_reviewers',
-        u'attraction-investisseurs_observers', u'attraction-investisseurs_reviewers',
-        u'animation-economique_observers', u'animation-economique_reviewers',
-        u'intelligence-strategique_observers', u'intelligence-strategique_reviewers',
-        u'environnement_observers', u'environnement_reviewers',
-        u'facturation_observers', u'facturation_reviewers',
-        u'collectes_observers', u'collectes_reviewers',
-        u'parcs_observers', u'parcs_reviewers',
-        u'bureau-detudes_observers', u'bureau-detudes_reviewers',
-        u'developpement-territorial_observers', u'developpement-territorial_reviewers',
-        u'maitrise-douvrages_observers', u'maitrise-douvrages_reviewers',
-        u'infrastructure_observers', u'infrastructure_reviewers',
-        u'amenagement-du-territoire_observers', u'amenagement-du-territoire_reviewers',
-        u'namur-expo_observers', u'namur-expo_reviewers',
-        u'bep-crematorium_observers', u'bep-crematorium_reviewers',
-        u'idefin_observers', u'idefin_reviewers',
-        u'coaching-entreprises-chef-de-service_observers',
-        u'coaching-entreprises-chef-de-service_reviewers')
+        u'dirgen_reviewers',
+        u'secretariat_reviewers',
+        u'communication_reviewers',
+        u'service-juridique_reviewers',
+        u'finances-et-comptabilite_reviewers',
+        u'ressources-humaines-confidentiel_reviewers',
+        u'services-generaux_reviewers',
+        u'informatique_reviewers',
+        u'developpement-economique_reviewers',
+        u'coaching-entreprises_reviewers',
+        u'attraction-investisseurs_reviewers',
+        u'essaimage_reviewers',
+        u'intelligence-strategique_reviewers',
+        u'environnement_reviewers',
+        u'facturation_reviewers',
+        u'strategie-numerique_reviewers',
+        u'applications-it_reviewers',
+        u'programmes-europeens-territoriaux_reviewers',
+        u'bureau-detudes_reviewers',
+        u'developpement-territorial_reviewers',
+        u'maitrise-douvrages_reviewers',
+        u'infrastructure-it_reviewers',
+        u'infrastructure_reviewers',
+        u'amenagement-du-territoire_reviewers',
+        u'actions-collectives_reviewers',
+        u'incubateur-etudiants_reviewers',
+        u'traitement-industriel_reviewers')
     cfg.itemCopyGroupsStates = (
         u'accepted', u'accepted_but_modified', u'accepted_out_of_meeting',
         u'accepted_out_of_meeting_emergency', u'pre_accepted',
@@ -680,9 +825,9 @@ data = PloneMeetingConfiguration(
     meetingConfigs=cfgs,
     orgs=[
         dg_org, sg_org, sgcs_org, com_org, comcs_org, jur_org, fin_org, log_org, logcs_org, rhc_org, sr_org,
-        info_org, de_org, ce_org, cecs_org, ai_org, ae_org, is_org, env_org, fact_org,
-        coll_org, parsc_org, ti_org, tics_org, dt_org, mo_org, mocs_org, infra_org, amt_org, ne_org,
-        crema_org, idefin_org])
+        info_org, de_org, ce_org, cecs_org, ai_org, ess_org, is_org, env_org, fact_org,
+        sn_org, appit_org, pe_org, ti_org, tics_org, dt_org, mo_org, mocs_org, infrait_org, infra_org,
+        amt_org, ac_org, incub_org])
 data.enableUserPreferences = False
 data.configGroups = (
     {'row_id': 'bep', 'label': 'BEP'},
