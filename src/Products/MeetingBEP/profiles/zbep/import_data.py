@@ -624,10 +624,11 @@ Extérieur\r"""
     cfg.categories = categories
 
     # gui
-    cfg.itemColumns = (u'item_reference', u'Creator', u'ModificationDate', u'review_state', u'getProposingGroup',
-                       u'advices', u'linkedMeetingDate', u'getPreferredMeetingDate', u'actions')
+    cfg.itemColumns = (u'static_item_reference', u'Creator', u'ModificationDate', u'review_state',
+                       u'getProposingGroup', u'advices', u'linkedMeetingDate', u'getPreferredMeetingDate',
+                       u'actions')
     cfg.meetingColumns = (u'Creator', u'CreationDate', u'review_state', u'actions')
-    cfg.itemsListVisibleColumns = (u'item_reference', u'Creator', u'ModificationDate', u'review_state',
+    cfg.itemsListVisibleColumns = (u'static_item_reference', u'Creator', u'ModificationDate', u'review_state',
                                    u'getProposingGroup', u'advices', u'actions')
     cfg.availableItemsListVisibleColumns = (u'Creator', u'ModificationDate', u'getProposingGroup',
                                             u'advices', u'getPreferredMeetingDate', u'actions')
