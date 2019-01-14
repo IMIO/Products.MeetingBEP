@@ -613,8 +613,8 @@ Extérieur\r"""
          'date_to': ''})
     # data
     cfg.useGroupsAsCategories = False
-    cfg.usedItemAttributes = (u'budgetInfos', u'emergency', u'motivation',
-                              u'toDiscuss', u'notes', u'sendToAuthority')
+    cfg.usedItemAttributes = (u'budgetInfos', u'emergency', u'motivation', u'toDiscuss',
+                              u'notes', u'manuallyLinkedItems', u'sendToAuthority')
     cfg.usedMeetingAttributes = (u'startDate', u'endDate', u'assemblyGuests', u'attendees', u'excused',
                                  u'signatories', u'replacements', u'place', u'observations')
     # AG
@@ -625,13 +625,14 @@ Extérieur\r"""
 
     # gui
     cfg.itemColumns = (u'static_item_reference', u'Creator', u'ModificationDate', u'review_state',
-                       u'getProposingGroup', u'advices', u'linkedMeetingDate', u'getPreferredMeetingDate',
-                       u'actions')
+                       u'getCategory', u'proposing_group_acronym', u'advices', u'linkedMeetingDate',
+                       u'getPreferredMeetingDate', u'actions')
     cfg.meetingColumns = (u'Creator', u'CreationDate', u'review_state', u'actions')
     cfg.itemsListVisibleColumns = (u'static_item_reference', u'Creator', u'ModificationDate', u'review_state',
-                                   u'getProposingGroup', u'advices', u'actions')
-    cfg.availableItemsListVisibleColumns = (u'Creator', u'ModificationDate', u'getProposingGroup',
-                                            u'advices', u'getPreferredMeetingDate', u'actions')
+                                   u'getCategory', u'proposing_group_acronym', u'advices', u'actions')
+    cfg.availableItemsListVisibleColumns = (u'Creator', u'ModificationDate', u'getCategory',
+                                            u'proposing_group_acronym', u'advices', u'getPreferredMeetingDate',
+                                            u'actions')
     cfg.dashboardItemsListingsFilters = (u'c4', u'c5', u'c6', u'c7', u'c8', u'c9', u'c10', u'c11',
                                          u'c13', u'c14', u'c15', u'c17', u'c18', u'c19')
     cfg.dashboardMeetingAvailableItemsFilters = (u'c4', u'c5', u'c7', u'c8', u'c11',
