@@ -12,6 +12,7 @@ from Products.PloneMeeting.profiles import PloneMeetingConfiguration
 from Products.PloneMeeting.profiles import PodTemplateDescriptor
 from Products.PloneMeeting.profiles import UserDescriptor
 from Products.MeetingCommunes.profiles.simple import import_data as simple_import_data
+from Products.MeetingCommunes.profiles.examples_fr import import_data as examples_fr_import_data
 
 # File types -------------------------------------------------------------------
 annexe = ItemAnnexTypeDescriptor('annexe', 'Annexe', u'attach.png')
@@ -42,6 +43,7 @@ agendaTemplate.odt_file = 'oj.odt'
 agendaTemplate.pod_formats = ['odt', 'pdf', ]
 agendaTemplate.pod_portal_types = ['Meeting']
 agendaTemplate.tal_condition = u'python:tool.isManager(here)'
+agendaTemplate.style_template = ['styles1']
 
 decisionsTemplate = PodTemplateDescriptor('pv', 'Procès-verbal')
 decisionsTemplate.is_reusable = True
@@ -49,12 +51,14 @@ decisionsTemplate.odt_file = 'pv.odt'
 decisionsTemplate.pod_formats = ['odt', 'pdf', ]
 decisionsTemplate.pod_portal_types = ['Meeting']
 decisionsTemplate.tal_condition = u'python:tool.isManager(here)'
+decisionsTemplate.style_template = ['styles1']
 
 noteTravailTemplate = PodTemplateDescriptor('note-travail', 'Note de travail')
 noteTravailTemplate.is_reusable = True
 noteTravailTemplate.odt_file = 'notedetravail.odt'
 noteTravailTemplate.pod_formats = ['odt', 'pdf', ]
 noteTravailTemplate.pod_portal_types = ['MeetingItem']
+noteTravailTemplate.style_template = ['styles1']
 
 extraitPVTemplate = PodTemplateDescriptor('extrait-pv', 'Extrait PV')
 extraitPVTemplate.is_reusable = True
@@ -62,6 +66,7 @@ extraitPVTemplate.odt_file = 'extraitpv.odt'
 extraitPVTemplate.pod_formats = ['odt', 'pdf', ]
 extraitPVTemplate.pod_portal_types = ['MeetingItem']
 extraitPVTemplate.tal_condition = u'python:tool.isManager(here)'
+extraitPVTemplate.style_template = ['styles1']
 
 templates = [agendaTemplate, decisionsTemplate, noteTravailTemplate, extraitPVTemplate]
 
@@ -579,6 +584,7 @@ cfgs = (bepca, bepaudit, bepremun, bepag,
         idefinca, idefinaudit, idefinremun, idefinag)
 
 for cfg in cfgs:
+    cfg.styleTemplates = [examples_fr_import_data.stylesTemplate1]
     cfg.budgetDefault = '<p>La dépense sera imputée sur le budget n°<span class="highlight-yellow"> XXX</span> ' \
         'dont le solde permet de supporter celle-ci.</p>'
     cfg.places = """Salle du Conseil\r
