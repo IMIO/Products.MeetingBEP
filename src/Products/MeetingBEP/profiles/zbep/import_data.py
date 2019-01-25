@@ -39,7 +39,7 @@ categories = [
 # Pod templates ----------------------------------------------------------------
 agendaTemplate = PodTemplateDescriptor('oj', 'Ordre du jour')
 agendaTemplate.is_reusable = True
-agendaTemplate.odt_file = 'oj.odt'
+agendaTemplate.odt_file = 'ordredujour.odt'
 agendaTemplate.pod_formats = ['odt', 'pdf', ]
 agendaTemplate.pod_portal_types = ['Meeting']
 agendaTemplate.tal_condition = u'python:tool.isManager(here)'
@@ -47,7 +47,7 @@ agendaTemplate.style_template = ['styles1']
 
 decisionsTemplate = PodTemplateDescriptor('pv', 'Procès-verbal')
 decisionsTemplate.is_reusable = True
-decisionsTemplate.odt_file = 'pv.odt'
+decisionsTemplate.odt_file = 'procesverbal.odt'
 decisionsTemplate.pod_formats = ['odt', 'pdf', ]
 decisionsTemplate.pod_portal_types = ['Meeting']
 decisionsTemplate.tal_condition = u'python:tool.isManager(here)'
@@ -848,3 +848,20 @@ data.configGroups = (
     {'row_id': 'idefin', 'label': 'IDEFIN'},
 )
 data.usersOutsideGroups = [assembly_member]
+data.directory_position_types = [
+    {'token': u'default',
+     'name': u'-'},
+    {'token': u'president',
+     'name': u'Pr\xe9sident|Pr\xe9sidents|Pr\xe9sidente|Pr\xe9sidentes'},
+    {'token': u'vice-president',
+     'name': u'Vice-Pr\xe9sident|Vice-Pr\xe9sidents|Vice-Pr\xe9sidente|Vice-Pr\xe9sidentes'},
+    {'token': u'admin',
+     'name': u'Administrateur|Administrateurs|Administratrice|Administratrices'},
+    {'token': u'dg',
+     'name': u'Directeur G\xe9n\xe9ral du BEP|Directeurs G\xe9n\xe9raux du BEP|'
+        u'Directrice G\xe9n\xe9rale du BEP|Directrices G\xe9n\xe9rales du BEP'},
+    {'token': u'dgff',
+     'name': u'Directeur G\xe9n\xe9ral du BEP f.f.|Directeurs G\xe9n\xe9raux du BEP f.f.|'
+        u'Directrice G\xe9n\xe9rale du BEP f.f.|Directrices G\xe9n\xe9rales du BEP f.f.'},
+    {'token': u'directeur',
+     'name': u'Directeur|Directeurs|Directrice|Directrices'}]
