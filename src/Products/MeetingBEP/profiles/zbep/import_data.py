@@ -47,7 +47,7 @@ agendaTemplate.style_template = ['styles1']
 
 decisionsTemplate = PodTemplateDescriptor('pv', 'Procès-verbal')
 decisionsTemplate.is_reusable = True
-decisionsTemplate.odt_file = 'procesverbal.odt'
+decisionsTemplate.odt_file = 'proces-verbal.odt'
 decisionsTemplate.pod_formats = ['odt', 'pdf', ]
 decisionsTemplate.pod_portal_types = ['Meeting']
 decisionsTemplate.tal_condition = u'python:tool.isManager(here)'
