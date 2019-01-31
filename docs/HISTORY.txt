@@ -1,7 +1,7 @@
 Products.MeetingBEP Changelog
 =============================
 
-4.1b2 (unreleased)
+4.1b2 (2019-01-31)
 ------------------
 
 - Configure profile
