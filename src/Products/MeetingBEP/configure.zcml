@@ -14,7 +14,6 @@
   <include package="Products.PloneMeeting"/>
   <include file="events.zcml" />
   <include file="profiles.zcml" />
-  <includeOverrides file="overrides.zcml" />
 
   <adapter for="Products.PloneMeeting.interfaces.IMeetingItem"
            factory="Products.MeetingBEP.adapters.MeetingItemBEPWorkflowActions"
@@ -31,13 +30,5 @@
   <adapter for="Products.PloneMeeting.interfaces.IMeeting"
            factory="Products.MeetingBEP.adapters.MeetingBEPWorkflowConditions"
            provides="Products.MeetingBEP.interfaces.IMeetingBEPWorkflowConditions"/>
-
-  <adapter for="Products.PloneMeeting.interfaces.IMeetingItem"
-           factory="Products.MeetingBEP.adapters.CustomBEPMeetingItem"
-           provides="Products.PloneMeeting.interfaces.IMeetingItemCustom"/>
-
-  <adapter for="Products.PloneMeeting.interfaces.IMeeting"
-           factory="Products.MeetingBEP.adapters.CustomBEPMeeting"
-           provides="Products.PloneMeeting.interfaces.IMeetingCustom"/>
 
 </configure>
