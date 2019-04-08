@@ -839,7 +839,6 @@ data = PloneMeetingConfiguration(
         info_org, de_org, ce_org, cecs_org, ai_org, ess_org, is_org, env_org, fact_org,
         sn_org, appit_org, pe_org, ti_org, tics_org, dt_org, mo_org, mocs_org, infrait_org, infra_org,
         amt_org, ac_org, incub_org])
-data.enableUserPreferences = False
 data.configGroups = (
     {'row_id': 'bep', 'label': 'BEP'},
     {'row_id': 'expa', 'label': 'EXPA'},
