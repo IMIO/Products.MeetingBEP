@@ -69,7 +69,8 @@ class CustomBEPMeetingItem(CustomMeetingItem):
         tool = api.portal.get_tool('portal_plonemeeting')
         cfg = tool.getMeetingConfig(item)
         # hide observations to restricted power observers
-        if tool.isPowerObserverForCfg(cfg, isRestricted=True):
+        if tool.isPowerObserverForCfg(
+                cfg, power_observer_type='restrictedpowerobservers'):
             res = False
         return res
 
@@ -80,7 +81,8 @@ class CustomBEPMeetingItem(CustomMeetingItem):
         item = self.getSelf()
         tool = api.portal.get_tool('portal_plonemeeting')
         cfg = tool.getMeetingConfig(item)
-        is_restricted_power_observer = tool.isPowerObserverForCfg(cfg, isRestricted=True)
+        is_restricted_power_observer = tool.isPowerObserverForCfg(
+            cfg, power_observer_type='restrictedpowerobservers')
         res = True
         if is_restricted_power_observer and \
            (item.getProposingGroup() == HR_CONFIDENTIAL_GROUP_ID or

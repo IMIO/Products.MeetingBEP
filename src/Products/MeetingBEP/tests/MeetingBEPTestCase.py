@@ -50,8 +50,9 @@ class MeetingBEPTestCase(MeetingCommunesTestCase, MeetingBEPTestingHelpers):
         context = self.portal.portal_setup._getImportContext('Products.MeetingBEP:testing')
         initializer = ToolInitializer(context, PROJECTNAME)
         initializer.addOrgs([rhc_org])
+        self._setPowerObserverStates(states=('itemcreated', 'presented', 'returned_to_proposing_group',))
+        self._setPowerObserverStates(observer_type='restrictedpowerobservers',
+                                     states=('itemcreated', 'presented', 'returned_to_proposing_group',))
         cfg = self.meetingConfig
-        cfg.setItemPowerObserversStates(('itemcreated', 'presented', 'returned_to_proposing_group',))
-        cfg.setItemRestrictedPowerObserversStates(('itemcreated', 'presented', 'returned_to_proposing_group',))
         cfg.setWorkflowAdaptations(('return_to_proposing_group', ))
         performWorkflowAdaptations(cfg, logger=pm_logger)

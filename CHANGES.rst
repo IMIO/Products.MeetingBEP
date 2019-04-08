@@ -4,8 +4,9 @@ Products.MeetingBEP Changelog
 4.1b3 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Adapted call to ToolPloneMeeting.isPowerObserverForCfg now that parameter
+  isRestricted=True is replaced by power_observer_type='restrictedpowerobservers'.
+- Use PloneMeetingTestCase._setPowerObserverStates to define power observers states.
 
 4.1b2 (2019-01-31)
 ------------------
