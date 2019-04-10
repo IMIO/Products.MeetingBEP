@@ -1,5 +1,6 @@
 pmPipeline {
   profileName = 'bep'
-  testSuiteName = 'test-bep'
-  upstream = 'Products.MeetingCommunes'
+  testSuiteName = 'testbep'
+  unitTestParameter = '--test=!robot'
+  upstream = 'IMIO-github-Jenkinsfile/Products.MeetingCommunes/master'
 }
