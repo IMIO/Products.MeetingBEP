@@ -40,7 +40,6 @@ class MeetingBEPTestCase(MeetingCommunesTestCase, MeetingBEPTestingHelpers):
 
     def setUp(self):
         super(MeetingCommunesTestCase, self).setUp()
-        self.subproductIgnoredTestFiles += ['test_robot.py']
         self.meetingConfig = getattr(self.tool, self.cfg1_id)
         self.meetingConfig2 = getattr(self.tool, self.cfg2_id)
 
