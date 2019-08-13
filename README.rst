@@ -1,3 +1,3 @@
-MeetingBEP
-==========
+Products.MeetingBEP
+===================
 

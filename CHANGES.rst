@@ -1,5 +1,5 @@
-Products.MeetingBEP Changelog
-=============================
+Changelog
+=========
 
 4.1b3 (unreleased)
 ------------------
