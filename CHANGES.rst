@@ -1,7 +1,7 @@
 Changelog
 =========
 
-4.1b3 (unreleased)
+4.1b3 (2019-08-13)
 ------------------
 
 - Adapted call to ToolPloneMeeting.isPowerObserverForCfg now that parameter
