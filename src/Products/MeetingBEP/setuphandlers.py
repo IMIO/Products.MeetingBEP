@@ -108,6 +108,8 @@ def finalizeExampleInstance(context):
     """
     if not isMeetingBEPConfigureProfile(context):
         return
+    site = context.getSite()
+    site.portal_setup.runAllImportStepsFromProfile(u'profile-Products.MeetingCommunes:zcommittee_advice')
 
 
 def reorderCss(context):
