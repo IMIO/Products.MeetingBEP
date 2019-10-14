@@ -4,8 +4,8 @@ Changelog
 4.1b4 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Reintegrated CustomBEPMeeting.getPrintableItemsByCategory waiting for another final solution.
+  [gbastien]
 
 4.1b3 (2019-08-13)
 ------------------
