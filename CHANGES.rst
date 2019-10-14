@@ -6,6 +6,8 @@ Changelog
 
 - Reintegrated CustomBEPMeeting.getPrintableItemsByCategory waiting for another final solution.
   [gbastien]
+- Install profile 'profile-Products.MeetingCommunes:zcommittee_advice' at install time.
+  [anuyens]
 
 4.1b3 (2019-08-13)
 ------------------
