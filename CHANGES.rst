@@ -4,8 +4,8 @@ Changelog
 4.1.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Adapted zbep import_data regarding DX meetingcategory.
+  [gbastien]
 
 4.1 (2019-10-14)
 ----------------

@@ -26,14 +26,14 @@ annexeSeance = AnnexTypeDescriptor('annexe', 'Annexe', u'attach.png', relatedTo=
 categories = [
     CategoryDescriptor('approbation-pv',
                        "Approbation du procès verbal de la dernière réunion",
-                       categoryId='1',
-                       usingGroups=['dirgen', 'secretariat']),
+                       category_id='1',
+                       using_groups=['dirgen', 'secretariat']),
     CategoryDescriptor('decision',
                        "Décision",
-                       categoryId='2'),
+                       category_id='2'),
     CategoryDescriptor('communication',
                        "Communication",
-                       categoryId='3'),
+                       category_id='3'),
 ]
 
 # Pod templates ----------------------------------------------------------------
