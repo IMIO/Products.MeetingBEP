@@ -1,7 +1,7 @@
 Changelog
 =========
 
-4.1.1 (unreleased)
+4.1.1 (2020-08-21)
 ------------------
 
 - Adapted zbep import_data regarding DX meetingcategory.
