@@ -4,8 +4,8 @@ Changelog
 4.1.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Removed CustomBEPMeeting.getPrintableItemsByCategory, we use the method from MeetingCommunes.
+  [gbastien]
 
 4.1.1 (2020-08-21)
 ------------------
