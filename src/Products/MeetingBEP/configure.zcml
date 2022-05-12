@@ -23,11 +23,11 @@
            factory="Products.MeetingBEP.adapters.MeetingItemBEPWorkflowConditions"
            provides="Products.MeetingBEP.interfaces.IMeetingItemBEPWorkflowConditions"/>
 
-  <adapter for="Products.PloneMeeting.interfaces.IMeeting"
+  <adapter for="Products.PloneMeeting.content.meeting.IMeeting"
            factory="Products.MeetingBEP.adapters.MeetingBEPWorkflowActions"
            provides="Products.MeetingBEP.interfaces.IMeetingBEPWorkflowActions"/>
 
-  <adapter for="Products.PloneMeeting.interfaces.IMeeting"
+  <adapter for="Products.PloneMeeting.content.meeting.IMeeting"
            factory="Products.MeetingBEP.adapters.MeetingBEPWorkflowConditions"
            provides="Products.MeetingBEP.interfaces.IMeetingBEPWorkflowConditions"/>
 

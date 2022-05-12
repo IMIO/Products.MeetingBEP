@@ -4,7 +4,8 @@
 
 /* hide field observations on advice */
 #row-form-widgets-advice_observations,
-#formfield-form-widgets-advice_observations {
+#formfield-form-widgets-advice_observations,
+fieldset.advice_observations {
     display: none;
 }
 

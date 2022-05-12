@@ -2,27 +2,10 @@
 #
 # File: testCustomMeetingItem.py
 #
-# Copyright (c) 2018 by Imio.be
-#
 # GNU General Public License (GPL)
 #
-# This program is free software; you can redistribute it and/or
-# modify it under the terms of the GNU General Public License
-# as published by the Free Software Foundation; either version 2
-# of the License, or (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
-# 02110-1301, USA.
-#
 
-from DateTime import DateTime
+from datetime import datetime
 from imio.helpers.cache import cleanRamCacheFor
 from Products.MeetingBEP.config import DU_ORIGINAL_VALUE
 from Products.MeetingBEP.config import DU_RATIFICATION_VALUE
@@ -50,16 +33,12 @@ class testCustomMeetingItem(MeetingBEPTestCase, mctcmi):
         self.assertTrue(item.adapted().showObservations())
 
         # power observer may view
-        # MeetingItem.attributeIsUsed is RAMCached
         self.changeUser('powerobserver1')
-        cleanRamCacheFor('Products.PloneMeeting.MeetingItem.attributeIsUsed')
         self.assertTrue(widget.testCondition(item.aq_inner.aq_parent, self.portal, item))
         self.assertTrue(item.adapted().showObservations())
 
         # resctricted power observer may view
-        # MeetingItem.attributeIsUsed is RAMCached
         self.changeUser('restrictedpowerobserver1')
-        cleanRamCacheFor('Products.PloneMeeting.MeetingItem.attributeIsUsed')
         self.assertFalse(widget.testCondition(item.aq_inner.aq_parent, self.portal, item))
         self.assertFalse(item.adapted().showObservations())
 
@@ -70,13 +49,13 @@ class testCustomMeetingItem(MeetingBEPTestCase, mctcmi):
 
         self.changeUser('pmManager')
         item = self.create('MeetingItem')
-        self.create('Meeting', date=DateTime('2018/03/21'))
+        self.create('Meeting')
         self.presentItem(item)
 
         # item returned_to_proposing_group is not viewable for restricted power observers
         self.changeUser('pmManager')
         self.do(item, 'return_to_proposing_group')
-        self.assertEqual(item.queryState(), 'returned_to_proposing_group')
+        self.assertEqual(item.query_state(), 'returned_to_proposing_group')
         self.changeUser('powerobserver1')
         self.assertTrue(item.adapted().isPrivacyViewable())
         self.changeUser('restrictedpowerobserver1')
@@ -85,7 +64,7 @@ class testCustomMeetingItem(MeetingBEPTestCase, mctcmi):
         self.do(item, 'backTo_presented_from_returned_to_proposing_group')
 
         # presented item, isPrivacyViewable
-        self.assertEqual(item.queryState(), 'presented')
+        self.assertEqual(item.query_state(), 'presented')
         self.changeUser('powerobserver1')
         self.assertTrue(item.adapted().isPrivacyViewable())
         self.changeUser('restrictedpowerobserver1')
@@ -137,10 +116,10 @@ class testCustomMeetingItem(MeetingBEPTestCase, mctcmi):
         # original item not changed
         self.assertEqual(item.getDecision(), DU_ORIGINAL_VALUE + EXTRA_VALUE)
         # cloned item was adapted
-        cloned_item = item.getBRefs('ItemPredecessor')[0]
+        cloned_item = item.get_successors()[0]
         self.assertTrue(cfg.Title() in cloned_item.getDecision())
         data = {'mc_title': cfg.Title(),
-                'emergency_decision_date': DateTime().strftime('%d/%m/%Y')}
+                'emergency_decision_date': datetime.now().strftime('%d/%m/%Y')}
         ratification_sentence = DU_RATIFICATION_VALUE.format(**data)
         self.assertEqual(cloned_item.getDecision(), ratification_sentence + EXTRA_VALUE)
         # vendors advice was inherited

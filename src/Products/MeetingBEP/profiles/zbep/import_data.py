@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
 
 from copy import deepcopy
-
+from Products.MeetingCommunes.profiles.examples_fr import import_data as examples_fr_import_data
+from Products.MeetingCommunes.profiles.simple import import_data as simple_import_data
 from Products.PloneMeeting.profiles import AnnexTypeDescriptor
 from Products.PloneMeeting.profiles import CategoryDescriptor
-from Products.PloneMeeting.profiles import OrgDescriptor
 from Products.PloneMeeting.profiles import ItemAnnexTypeDescriptor
 from Products.PloneMeeting.profiles import MeetingConfigDescriptor
+from Products.PloneMeeting.profiles import OrgDescriptor
 from Products.PloneMeeting.profiles import PloneGroupDescriptor
 from Products.PloneMeeting.profiles import PloneMeetingConfiguration
 from Products.PloneMeeting.profiles import PodTemplateDescriptor
 from Products.PloneMeeting.profiles import UserDescriptor
-from Products.MeetingCommunes.profiles.simple import import_data as simple_import_data
-from Products.MeetingCommunes.profiles.examples_fr import import_data as examples_fr_import_data
+
 
 # File types -------------------------------------------------------------------
 annexe = ItemAnnexTypeDescriptor('annexe', 'Annexe', u'attach.png')

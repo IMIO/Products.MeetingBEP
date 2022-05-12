@@ -25,9 +25,11 @@
 #
 
 
-import logging
 from Products.CMFCore import DirectoryView
 from Products.MeetingBEP.config import product_globals
+
+import logging
+
 
 __author__ = """Gauthier Bastien <g.bastien@imio.be>"""
 __docformat__ = 'plaintext'

@@ -3,6 +3,7 @@
 from copy import deepcopy
 from Products.MeetingCommunes.profiles.testing import import_data as mc_import_data
 
+
 ca = deepcopy(mc_import_data.collegeMeeting)
 ca.id = 'ca'
 ca.Title = 'CA'

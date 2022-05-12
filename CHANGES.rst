@@ -1,11 +1,11 @@
 Changelog
 =========
 
-4.1.3 (unreleased)
-------------------
+4.2 (unreleased)
+----------------
 
-- Nothing changed yet.
-
+- Adapted code for PloneMeeting 4.2.x.
+  [gbastien]
 
 4.1.2 (2020-10-29)
 ------------------

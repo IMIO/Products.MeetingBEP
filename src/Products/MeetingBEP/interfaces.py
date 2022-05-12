@@ -21,10 +21,11 @@
 #
 # ------------------------------------------------------------------------------
 
-from Products.MeetingCommunes.interfaces import IMeetingItemCommunesWorkflowActions
-from Products.MeetingCommunes.interfaces import IMeetingItemCommunesWorkflowConditions
 from Products.MeetingCommunes.interfaces import IMeetingCommunesWorkflowActions
 from Products.MeetingCommunes.interfaces import IMeetingCommunesWorkflowConditions
+from Products.MeetingCommunes.interfaces import IMeetingItemCommunesWorkflowActions
+from Products.MeetingCommunes.interfaces import IMeetingItemCommunesWorkflowConditions
+
 
 __author__ = """Gauthier Bastien <gbastien@commune.sambreville.be>"""
 __docformat__ = 'plaintext'
