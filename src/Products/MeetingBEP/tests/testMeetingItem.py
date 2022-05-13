@@ -2,24 +2,7 @@
 #
 # File: testMeetingItem.py
 #
-# Copyright (c) 2018 by Imio.be
-#
 # GNU General Public License (GPL)
-#
-# This program is free software; you can redistribute it and/or
-# modify it under the terms of the GNU General Public License
-# as published by the Free Software Foundation; either version 2
-# of the License, or (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
-# 02110-1301, USA.
 #
 
 from Products.MeetingBEP.tests.MeetingBEPTestCase import MeetingBEPTestCase
@@ -28,6 +11,31 @@ from Products.MeetingCommunes.tests.testMeetingItem import testMeetingItem as mc
 
 class testMeetingItem(MeetingBEPTestCase, mctmi):
     """ """
+
+    def test_pm_ShowObservations(self):
+        """Override test as MeetingItem.showObservations was overrided as well."""
+        self.setUpRestrictedPowerObservers()
+
+        cfg = self.meetingConfig
+        usedItemAttrs = cfg.getUsedItemAttributes()
+        usedItemAttrs = usedItemAttrs + ('observations', )
+        cfg.setUsedItemAttributes(usedItemAttrs)
+
+        self.changeUser('pmCreator1')
+        item = self.create('MeetingItem')
+        widget = item.getField('observations').widget
+        self.assertTrue(widget.testCondition(item.aq_inner.aq_parent, self.portal, item))
+        self.assertTrue(item.adapted().showObservations())
+
+        # power observer may view
+        self.changeUser('powerobserver1')
+        self.assertTrue(widget.testCondition(item.aq_inner.aq_parent, self.portal, item))
+        self.assertTrue(item.adapted().showObservations())
+
+        # resctricted power observer may view
+        self.changeUser('restrictedpowerobserver1')
+        self.assertFalse(widget.testCondition(item.aq_inner.aq_parent, self.portal, item))
+        self.assertFalse(item.adapted().showObservations())
 
 
 def test_suite():

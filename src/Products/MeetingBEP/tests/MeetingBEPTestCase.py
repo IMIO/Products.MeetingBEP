@@ -18,6 +18,11 @@ class MeetingBEPTestCase(MeetingCommunesTestCase, MeetingBEPTestingHelpers):
     cfg1_id = 'ca'
     cfg2_id = 'codir'
 
+    subproductIgnoredTestFiles = ['test_robot.py',
+                                  'testPerformances.py',
+                                  'testContacts.py',
+                                  'testVotes.py']
+
     def setUp(self):
         super(MeetingCommunesTestCase, self).setUp()
         self.meetingConfig = getattr(self.tool, self.cfg1_id)

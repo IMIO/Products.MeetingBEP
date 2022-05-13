@@ -624,8 +624,15 @@ Extérieur\r"""
     cfg.useGroupsAsCategories = False
     cfg.usedItemAttributes = (u'budgetInfos', u'emergency', u'motivation', u'toDiscuss',
                               u'notes', u'manuallyLinkedItems', u'sendToAuthority')
-    cfg.usedMeetingAttributes = (u'startDate', u'endDate', u'assemblyGuests', u'attendees', u'excused',
-                                 u'signatories', u'replacements', u'place', u'observations')
+    cfg.usedMeetingAttributes = (u'start_date',
+                                 u'end_date',
+                                 u'assembly_guests',
+                                 u'attendees',
+                                 u'excused',
+                                 u'signatories',
+                                 u'replacements',
+                                 u'place',
+                                 u'observations')
     # AG
     if cfg.id.endswith('-ag'):
         cfg.usedMeetingAttributes = ['startDate', 'endDate', 'assembly', u'assemblyGuests',
@@ -634,13 +641,13 @@ Extérieur\r"""
 
     # gui
     cfg.itemColumns = (u'static_item_reference', u'Creator', u'ModificationDate', u'review_state',
-                       u'getCategory', u'proposing_group_acronym', u'advices', u'linkedMeetingDate',
-                       u'getPreferredMeetingDate', u'actions')
+                       u'getCategory', u'proposing_group_acronym', u'advices', u'meeting_date',
+                       u'preferred_meeting_date', u'actions')
     cfg.meetingColumns = (u'Creator', u'CreationDate', u'review_state', u'actions')
     cfg.itemsListVisibleColumns = (u'static_item_reference', u'Creator', u'ModificationDate', u'review_state',
                                    u'getCategory', u'proposing_group_acronym', u'advices', u'actions')
     cfg.availableItemsListVisibleColumns = (u'Creator', u'ModificationDate', u'getCategory',
-                                            u'proposing_group_acronym', u'advices', u'getPreferredMeetingDate',
+                                            u'proposing_group_acronym', u'advices', u'preferred_meeting_date',
                                             u'actions')
     cfg.dashboardItemsListingsFilters = (u'c4', u'c5', u'c6', u'c7', u'c8', u'c9', u'c10', u'c11',
                                          u'c13', u'c14', u'c15', u'c17', u'c18', u'c19')
@@ -661,9 +668,14 @@ Extérieur\r"""
     ]
     # workflow
     cfg.workflowAdaptations = (
-        u'no_global_observation', u'no_publication',
+        u'no_publication',
         u'presented_item_back_to_proposed',  # u'return_to_proposing_group',
-        u'accepted_out_of_meeting', u'accepted_out_of_meeting_emergency_and_duplicated', u'refused')
+        u'accepted_out_of_meeting',
+        u'accepted_out_of_meeting_emergency_and_duplicated',
+        u'pre_accepted',
+        u'accepted_but_modified',
+        u'delayed',
+        u'refused', )
     cfg.itemConditionsInterface = 'Products.MeetingBEP.interfaces.IMeetingItemBEPWorkflowConditions'
     cfg.itemActionsInterface = 'Products.MeetingBEP.interfaces.IMeetingItemBEPWorkflowActions'
     cfg.meetingConditionsInterface = 'Products.MeetingBEP.interfaces.IMeetingBEPWorkflowConditions'
@@ -691,7 +703,7 @@ Extérieur\r"""
         {'meeting_transition': 'close', 'item_transition': 'itemfreeze'},
         {'meeting_transition': 'close', 'item_transition': 'accept'})
     # advices and access
-    cfg.usedAdviceTypes = (u'asked_again', u'positive', u'positive_with_remarks', u'negative', u'nil')
+    cfg.usedAdviceTypes = (u'positive', u'positive_with_remarks', u'negative', u'nil')
     cfg.enableAdviceConfidentiality = True
     cfg.adviceConfidentialityDefault = True
     cfg.itemPowerObserversStates = (u'accepted', u'accepted_but_modified', u'pre_accepted',
