@@ -6,7 +6,6 @@
 #
 
 from datetime import datetime
-from imio.helpers.cache import cleanRamCacheFor
 from Products.MeetingBEP.config import DU_ORIGINAL_VALUE
 from Products.MeetingBEP.config import DU_RATIFICATION_VALUE
 from Products.MeetingBEP.config import HR_CONFIDENTIAL_GROUP_ID
@@ -16,31 +15,6 @@ from Products.MeetingCommunes.tests.testCustomMeetingItem import testCustomMeeti
 
 class testCustomMeetingItem(MeetingBEPTestCase, mctcmi):
     """ """
-
-    def test_ShowObservations(self):
-        """MeetingItem.observations is hidden to restricted power observers."""
-        self.setUpRestrictedPowerObservers()
-
-        cfg = self.meetingConfig
-        usedItemAttrs = cfg.getUsedItemAttributes()
-        usedItemAttrs = usedItemAttrs + ('observations', )
-        cfg.setUsedItemAttributes(usedItemAttrs)
-
-        self.changeUser('pmCreator1')
-        item = self.create('MeetingItem')
-        widget = item.getField('observations').widget
-        self.assertTrue(widget.testCondition(item.aq_inner.aq_parent, self.portal, item))
-        self.assertTrue(item.adapted().showObservations())
-
-        # power observer may view
-        self.changeUser('powerobserver1')
-        self.assertTrue(widget.testCondition(item.aq_inner.aq_parent, self.portal, item))
-        self.assertTrue(item.adapted().showObservations())
-
-        # resctricted power observer may view
-        self.changeUser('restrictedpowerobserver1')
-        self.assertFalse(widget.testCondition(item.aq_inner.aq_parent, self.portal, item))
-        self.assertFalse(item.adapted().showObservations())
 
     def test_IsPrivacyViewable(self):
         """Items in state 'returned_to_proposing_group' or using propingGroup HR (Confidential)
