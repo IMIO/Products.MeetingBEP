@@ -635,7 +635,7 @@ Extérieur\r"""
                                  u'observations')
     # AG
     if cfg.id.endswith('-ag'):
-        cfg.usedMeetingAttributes = ['startDate', 'endDate', 'assembly', u'assemblyGuests',
+        cfg.usedMeetingAttributes = ['start_date', 'end_date', 'assembly', u'assembly_guests',
                                      'signatures', 'place', 'observations', ]
     cfg.categories = categories
 
