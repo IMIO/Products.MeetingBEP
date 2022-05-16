@@ -2,12 +2,11 @@
 #
 # File: config.py
 #
-# Copyright (c) 2018 by Imio.be
-#
 # GNU General Public License (GPL)
 #
 
 from Products.CMFCore.permissions import setDefaultRoles
+
 
 __author__ = """Gauthier Bastien <g.bastien@imio.be>, Andre NUYENS <a.nuyens@imio.be>"""
 __docformat__ = 'plaintext'

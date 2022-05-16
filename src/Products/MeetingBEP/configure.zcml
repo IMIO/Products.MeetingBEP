@@ -8,11 +8,10 @@
        so Products.MeetingBEP can overrides Products.PloneMeeting translations -->
   <i18n:registerTranslations directory="locales" />
 
-  <include package=".browser" />
   <include package="Products.CMFPlacefulWorkflow"/>
   <include package="Products.MeetingCommunes"/>
   <include package="Products.PloneMeeting"/>
-  <include file="events.zcml" />
+
   <include file="profiles.zcml" />
 
   <adapter for="Products.PloneMeeting.interfaces.IMeetingItem"
@@ -23,11 +22,11 @@
            factory="Products.MeetingBEP.adapters.MeetingItemBEPWorkflowConditions"
            provides="Products.MeetingBEP.interfaces.IMeetingItemBEPWorkflowConditions"/>
 
-  <adapter for="Products.PloneMeeting.interfaces.IMeeting"
+  <adapter for="Products.PloneMeeting.content.meeting.IMeeting"
            factory="Products.MeetingBEP.adapters.MeetingBEPWorkflowActions"
            provides="Products.MeetingBEP.interfaces.IMeetingBEPWorkflowActions"/>
 
-  <adapter for="Products.PloneMeeting.interfaces.IMeeting"
+  <adapter for="Products.PloneMeeting.content.meeting.IMeeting"
            factory="Products.MeetingBEP.adapters.MeetingBEPWorkflowConditions"
            provides="Products.MeetingBEP.interfaces.IMeetingBEPWorkflowConditions"/>
 

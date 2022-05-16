@@ -2,17 +2,15 @@
 #
 # File: setuphandlers.py
 #
-# Copyright (c) 2018 by Imio.be
-# Generator: ArchGenXML Version 2.7
-#            http://plone.org/products/archgenxml
-#
 # GNU General Public License (GPL)
 #
 
-import os
-import logging
-from Products.PloneMeeting.exportimport.content import ToolInitializer
 from Products.MeetingBEP.config import PROJECTNAME
+from Products.PloneMeeting.exportimport.content import ToolInitializer
+
+import logging
+import os
+
 
 __author__ = """Gauthier Bastien <g.bastien@imio.be>"""
 __docformat__ = 'plaintext'
@@ -73,8 +71,7 @@ def initializeTool(context):
 
 
 def reinstallPloneMeeting(context, site):
-    '''Reinstall PloneMeeting so after install methods are called and applied,
-       like performWorkflowAdaptations for example.'''
+    '''Reinstall PloneMeeting so after install methods are called and applied.'''
 
     if isNotMeetingBEPProfile(context):
         return
