@@ -8,6 +8,9 @@ Changelog
   [gbastien]
 - Added `Migrate_To_4200`, cleaned unused files.
   [gbastien]
+- Added `utils.hr_group_uid` to manage `UID` of the `HR confidential`
+  group as we can no more rely on HR group id.
+  [gbastien]
 
 4.1.2 (2020-10-29)
 ------------------

@@ -8,7 +8,7 @@
 from datetime import datetime
 from Products.MeetingBEP.config import DU_ORIGINAL_VALUE
 from Products.MeetingBEP.config import DU_RATIFICATION_VALUE
-from Products.MeetingBEP.config import HR_CONFIDENTIAL_GROUP_ID
+from Products.MeetingBEP.utils import hr_group_uid
 from Products.MeetingBEP.tests.MeetingBEPTestCase import MeetingBEPTestCase
 from Products.MeetingCommunes.tests.testCustomMeetingItem import testCustomMeetingItem as mctcmi
 
@@ -45,7 +45,9 @@ class testCustomMeetingItem(MeetingBEPTestCase, mctcmi):
         self.assertTrue(item.adapted().isPrivacyViewable())
 
         # item using HR confidential proposingGroup is not viewable by rpo
-        item.setProposingGroup(HR_CONFIDENTIAL_GROUP_ID)
+        item.setProposingGroup(hr_group_uid())
+        # proposingGroup was found
+        self.assertTrue(item.getProposingGroup(True))
         item._update_after_edit()
         self.changeUser('powerobserver1')
         self.assertTrue(item.adapted().isPrivacyViewable())

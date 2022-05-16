@@ -7,11 +7,11 @@ from AccessControl import ClassSecurityInfo
 from Globals import InitializeClass
 from imio.history.utils import getLastWFAction
 from plone import api
-from Products.MeetingBEP.config import HR_CONFIDENTIAL_GROUP_ID
 from Products.MeetingBEP.interfaces import IMeetingBEPWorkflowActions
 from Products.MeetingBEP.interfaces import IMeetingBEPWorkflowConditions
 from Products.MeetingBEP.interfaces import IMeetingItemBEPWorkflowActions
 from Products.MeetingBEP.interfaces import IMeetingItemBEPWorkflowConditions
+from Products.MeetingBEP.utils import hr_group_uid
 from Products.MeetingCommunes.adapters import CustomMeeting
 from Products.MeetingCommunes.adapters import CustomMeetingItem
 from Products.MeetingCommunes.adapters import MeetingCommunesWorkflowActions
@@ -64,7 +64,7 @@ class CustomBEPMeetingItem(CustomMeetingItem):
             cfg, power_observer_types=['restrictedpowerobservers'])
         res = True
         if is_restricted_power_observer and \
-           (item.getProposingGroup() == HR_CONFIDENTIAL_GROUP_ID or
+           (item.getProposingGroup() == hr_group_uid() or
                 item.query_state() == 'returned_to_proposing_group'):
             res = False
         if res:
