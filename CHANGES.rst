@@ -1,8 +1,8 @@
 Changelog
 =========
 
-4.2a1 (unreleased)
-----------------
+4.2a1 (2022-06-23)
+------------------
 
 - Adapted code for PloneMeeting 4.2.x.
   [gbastien]
