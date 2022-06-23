@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '4.1.3.dev0'
+version = '4.2a1'
 
 setup(name='Products.MeetingBEP',
       version=version,

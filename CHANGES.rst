@@ -1,7 +1,7 @@
 Changelog
 =========
 
-4.2 (unreleased)
+4.2a1 (unreleased)
 ----------------
 
 - Adapted code for PloneMeeting 4.2.x.
