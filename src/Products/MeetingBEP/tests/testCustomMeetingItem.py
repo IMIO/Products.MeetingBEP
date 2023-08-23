@@ -6,11 +6,13 @@
 #
 
 from datetime import datetime
+from Products.Archetypes.event import ObjectEditedEvent
 from Products.MeetingBEP.config import DU_ORIGINAL_VALUE
 from Products.MeetingBEP.config import DU_RATIFICATION_VALUE
 from Products.MeetingBEP.utils import hr_group_uid
 from Products.MeetingBEP.tests.MeetingBEPTestCase import MeetingBEPTestCase
 from Products.MeetingCommunes.tests.testCustomMeetingItem import testCustomMeetingItem as mctcmi
+from zope.event import notify
 
 
 class testCustomMeetingItem(MeetingBEPTestCase, mctcmi):
@@ -78,7 +80,7 @@ class testCustomMeetingItem(MeetingBEPTestCase, mctcmi):
               'is_linked_to_previous_row': '0',
               'for_item_created_from': '2018/03/14',
               'row_id': '2018-04-05.6949191937'}, ))
-        cfg.at_post_edit_script()
+        notify(ObjectEditedEvent(cfg))
         self.changeUser('pmCreator1')
         item = self.create('MeetingItem')
         EXTRA_VALUE = "<p>&nbsp;</p><p>Extra sentence</p>"
@@ -87,6 +89,7 @@ class testCustomMeetingItem(MeetingBEPTestCase, mctcmi):
         # vendors advice is asked
         self.assertTrue(self.vendors_uid in item.adviceIndex)
         self.changeUser('pmManager')
+        item.setIsAcceptableOutOfMeeting(True)
         item.setEmergency('emergency_accepted')
         self.do(item, 'accept_out_of_meeting_emergency')
         # original item not changed

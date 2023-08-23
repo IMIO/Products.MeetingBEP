@@ -1,11 +1,11 @@
 Changelog
 =========
 
-4.2a2 (unreleased)
-------------------
+4.2 (unreleased)
+----------------
 
-- Nothing changed yet.
-
+- Fixed tests now that MeetingConfig.at_post_edit_script is no more used.
+  [gbastien]
 
 4.2a1 (2022-06-23)
 ------------------

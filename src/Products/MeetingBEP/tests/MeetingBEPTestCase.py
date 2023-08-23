@@ -3,12 +3,14 @@
 # GNU General Public License (GPL)
 #
 
+from Products.Archetypes.event import ObjectEditedEvent
 from Products.MeetingBEP.config import PROJECTNAME
 from Products.MeetingBEP.profiles.zbep.import_data import rhc_org
 from Products.MeetingBEP.testing import MBEP_TESTING_PROFILE_FUNCTIONAL
 from Products.MeetingBEP.tests.helpers import MeetingBEPTestingHelpers
 from Products.MeetingCommunes.tests.MeetingCommunesTestCase import MeetingCommunesTestCase
 from Products.PloneMeeting.exportimport.content import ToolInitializer
+from zope.event import notify
 
 
 class MeetingBEPTestCase(MeetingCommunesTestCase, MeetingBEPTestingHelpers):
@@ -39,4 +41,4 @@ class MeetingBEPTestCase(MeetingCommunesTestCase, MeetingBEPTestingHelpers):
                                      states=('itemcreated', 'presented', 'returned_to_proposing_group',))
         cfg = self.meetingConfig
         cfg.setWorkflowAdaptations(('return_to_proposing_group', ))
-        cfg.at_post_edit_script()
+        notify(ObjectEditedEvent(cfg))
