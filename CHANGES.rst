@@ -6,6 +6,8 @@ Changelog
 
 - Fixed tests now that MeetingConfig.at_post_edit_script is no more used.
   [gbastien]
+- Adapted code as field `MeetingConfig.useCopies` was removed.
+  [gbastien]
 
 4.2a1 (2022-06-23)
 ------------------

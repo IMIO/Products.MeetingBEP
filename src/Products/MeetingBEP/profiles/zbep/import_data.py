@@ -623,7 +623,7 @@ Extérieur\r"""
     # data
     cfg.useGroupsAsCategories = False
     cfg.usedItemAttributes = (u'budgetInfos', u'emergency', u'motivation', u'toDiscuss',
-                              u'notes', u'manuallyLinkedItems', u'sendToAuthority')
+                              u'notes', u'manuallyLinkedItems', u'sendToAuthority', 'copyGroups')
     cfg.usedMeetingAttributes = (u'start_date',
                                  u'end_date',
                                  u'assembly_guests',
@@ -808,7 +808,6 @@ Extérieur\r"""
          'is_linked_to_previous_row': '0',
          'for_item_created_from': '2018/12/09',
          'row_id': '2018-12-09.4064787347'})
-    cfg.useCopies = True
     cfg.selectableCopyGroups = (
         u'dirgen_reviewers',
         u'secretariat_reviewers',
