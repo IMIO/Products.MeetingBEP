@@ -25,11 +25,6 @@ class MeetingBEPTestCase(MeetingCommunesTestCase, MeetingBEPTestingHelpers):
                                   'testContacts.py',
                                   'testVotes.py']
 
-    def setUp(self):
-        super(MeetingCommunesTestCase, self).setUp()
-        self.meetingConfig = getattr(self.tool, self.cfg1_id)
-        self.meetingConfig2 = getattr(self.tool, self.cfg2_id)
-
     def setUpRestrictedPowerObservers(self):
         """"""
         self.changeUser('siteadmin')

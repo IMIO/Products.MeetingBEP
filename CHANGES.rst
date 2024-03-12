@@ -8,6 +8,8 @@ Changelog
   [gbastien]
 - Adapted code as field `MeetingConfig.useCopies` was removed.
   [gbastien]
+- Adapted code as `isPowerObserverForCfg` was moved from `ToolPloneMeeting` to `utils`.
+  [gbastien]
 
 4.2a1 (2022-06-23)
 ------------------

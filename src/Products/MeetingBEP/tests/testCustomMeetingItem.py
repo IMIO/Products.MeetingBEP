@@ -9,8 +9,8 @@ from datetime import datetime
 from Products.Archetypes.event import ObjectEditedEvent
 from Products.MeetingBEP.config import DU_ORIGINAL_VALUE
 from Products.MeetingBEP.config import DU_RATIFICATION_VALUE
-from Products.MeetingBEP.utils import hr_group_uid
 from Products.MeetingBEP.tests.MeetingBEPTestCase import MeetingBEPTestCase
+from Products.MeetingBEP.utils import hr_group_uid
 from Products.MeetingCommunes.tests.testCustomMeetingItem import testCustomMeetingItem as mctcmi
 from zope.event import notify
 

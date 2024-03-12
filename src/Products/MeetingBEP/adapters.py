@@ -20,6 +20,7 @@ from Products.MeetingCommunes.adapters import MeetingItemCommunesWorkflowActions
 from Products.MeetingCommunes.adapters import MeetingItemCommunesWorkflowConditions
 from Products.PloneMeeting.interfaces import IMeetingCustom
 from Products.PloneMeeting.interfaces import IMeetingItemCustom
+from Products.PloneMeeting.utils import isPowerObserverForCfg
 from zope.interface import implements
 
 
@@ -34,7 +35,7 @@ class CustomBEPMeeting(CustomMeeting):
 
 
 class CustomBEPMeetingItem(CustomMeetingItem):
-    '''Adapter that adapts a custom meeting item implementing IMeetingItem to the interface IMeetingItemCustom.'''
+    ''' '''
     implements(IMeetingItemCustom)
     security = ClassSecurityInfo()
 
@@ -48,7 +49,7 @@ class CustomBEPMeetingItem(CustomMeetingItem):
         tool = api.portal.get_tool('portal_plonemeeting')
         cfg = tool.getMeetingConfig(item)
         # hide observations to restricted power observers
-        if tool.isPowerObserverForCfg(
+        if isPowerObserverForCfg(
                 cfg, power_observer_types=['restrictedpowerobservers']):
             res = False
         return res
@@ -60,7 +61,7 @@ class CustomBEPMeetingItem(CustomMeetingItem):
         item = self.getSelf()
         tool = api.portal.get_tool('portal_plonemeeting')
         cfg = tool.getMeetingConfig(item)
-        is_restricted_power_observer = tool.isPowerObserverForCfg(
+        is_restricted_power_observer = isPowerObserverForCfg(
             cfg, power_observer_types=['restrictedpowerobservers'])
         res = True
         if is_restricted_power_observer and \
