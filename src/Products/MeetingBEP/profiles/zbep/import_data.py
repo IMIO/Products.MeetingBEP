@@ -713,7 +713,7 @@ Extérieur\r"""
                                               u'itemfrozen', u'refused', u'delayed')
     cfg.meetingRestrictedPowerObserversStates = (u'closed', u'decided', u'frozen')
     cfg.adviceConfidentialFor = ('restrictedpowerobservers', )
-    cfg.hideHistoryTo = ('restrictedpowerobservers', )
+    cfg.hideHistoryTo = ('MeetingItem.restrictedpowerobservers', )
     cfg.itemAdviceStates = ('proposed',)
     cfg.itemAdviceEditStates = ('proposed',)
     cfg.itemAdviceViewStates = (u'accepted', u'accepted_but_modified', u'accepted_out_of_meeting',
