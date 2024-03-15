@@ -4,7 +4,7 @@ Changelog
 4.2 (unreleased)
 ----------------
 
-- Fixed tests now that MeetingConfig.at_post_edit_script is no more used.
+- Fixed tests now that `MeetingConfig.at_post_edit_script` is no more used.
   [gbastien]
 - Adapted code as field `MeetingConfig.useCopies` was removed.
   [gbastien]
