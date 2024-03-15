@@ -1,7 +1,7 @@
 Changelog
 =========
 
-4.2 (unreleased)
+4.2 (2024-03-15)
 ----------------
 
 - Fixed tests now that `MeetingConfig.at_post_edit_script` is no more used.
