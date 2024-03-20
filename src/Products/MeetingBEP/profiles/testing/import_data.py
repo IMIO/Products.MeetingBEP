@@ -6,7 +6,7 @@ from Products.MeetingCommunes.profiles.testing import import_data as mc_import_d
 
 ca = deepcopy(mc_import_data.collegeMeeting)
 ca.id = 'ca'
-ca.Title = 'CA'
+ca.title = 'CA'
 ca.folderTitle = 'CA'
 ca.shortName = 'ca'
 ca.id = 'ca'
@@ -14,7 +14,7 @@ ca.shortName = 'CA'
 
 codir = deepcopy(mc_import_data.councilMeeting)
 codir.id = 'codir'
-codir.Title = 'CoDir'
+codir.title = 'CoDir'
 codir.folderTitle = 'CoDir'
 codir.shortName = 'codir'
 codir.id = 'codir'

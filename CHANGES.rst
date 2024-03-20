@@ -4,8 +4,8 @@ Changelog
 4.3 (unreleased)
 ----------------
 
-- Nothing changed yet.
-
+- Fixed testing `import_data` configs title.
+  [gbasiten]
 
 4.2 (2024-03-15)
 ----------------
