@@ -46,7 +46,7 @@ jobs:
         uses: IMIO/gha/plone-package-test-notify@main
         env:
           cache-name: cache-eggs
-          PM_BRANCH_NAME: ${{ github.event.client_payload.branch_name || github.ref_name }}
+          PM_BRANCH_NAME: ${{ inputs.branch_name || github.ref_name }}
         with:
           CACHE_KEY: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.python-version }}
           TEST_COMMAND: OO_SERVER=localhost OO_PORT=2002 bin/testbep --layer=\!ROBOT --test=\!\(testSetup\|testPerf\) -s Products.MeetingBEP
