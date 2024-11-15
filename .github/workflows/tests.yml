@@ -2,7 +2,12 @@ name: Test package
 
 on:
   workflow_dispatch:
+    inputs:
+      branch_name:
+        description: 'Branch name'
+        required: false
   repository_dispatch:
+
   push:
     branches:
       - master
