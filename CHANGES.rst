@@ -1,11 +1,13 @@
 Changelog
 =========
 
-4.3 (unreleased)
-----------------
+4.2.1 (unreleased)
+------------------
 
 - Fixed testing `import_data` configs title.
   [gbasiten]
+- Removed override of `MeetingItem.isPrivacyViewable`, we go back to default behavior.
+  [gbastien]
 
 4.2 (2024-03-15)
 ----------------

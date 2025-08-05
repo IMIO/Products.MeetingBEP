@@ -10,51 +10,12 @@ from Products.Archetypes.event import ObjectEditedEvent
 from Products.MeetingBEP.config import DU_ORIGINAL_VALUE
 from Products.MeetingBEP.config import DU_RATIFICATION_VALUE
 from Products.MeetingBEP.tests.MeetingBEPTestCase import MeetingBEPTestCase
-from Products.MeetingBEP.utils import hr_group_uid
 from Products.MeetingCommunes.tests.testCustomMeetingItem import testCustomMeetingItem as mctcmi
 from zope.event import notify
 
 
 class testCustomMeetingItem(MeetingBEPTestCase, mctcmi):
     """ """
-
-    def test_IsPrivacyViewable(self):
-        """Items in state 'returned_to_proposing_group' or using propingGroup HR (Confidential)
-           are not viewable by restricted power observers."""
-        self.setUpRestrictedPowerObservers()
-
-        self.changeUser('pmManager')
-        item = self.create('MeetingItem')
-        self.create('Meeting')
-        self.presentItem(item)
-
-        # item returned_to_proposing_group is not viewable for restricted power observers
-        self.changeUser('pmManager')
-        self.do(item, 'return_to_proposing_group')
-        self.assertEqual(item.query_state(), 'returned_to_proposing_group')
-        self.changeUser('powerobserver1')
-        self.assertTrue(item.adapted().isPrivacyViewable())
-        self.changeUser('restrictedpowerobserver1')
-        self.assertFalse(item.adapted().isPrivacyViewable())
-        self.changeUser('pmManager')
-        self.do(item, 'backTo_presented_from_returned_to_proposing_group')
-
-        # presented item, isPrivacyViewable
-        self.assertEqual(item.query_state(), 'presented')
-        self.changeUser('powerobserver1')
-        self.assertTrue(item.adapted().isPrivacyViewable())
-        self.changeUser('restrictedpowerobserver1')
-        self.assertTrue(item.adapted().isPrivacyViewable())
-
-        # item using HR confidential proposingGroup is not viewable by rpo
-        item.setProposingGroup(hr_group_uid())
-        # proposingGroup was found
-        self.assertTrue(item.getProposingGroup(True))
-        item._update_after_edit()
-        self.changeUser('powerobserver1')
-        self.assertTrue(item.adapted().isPrivacyViewable())
-        self.changeUser('restrictedpowerobserver1')
-        self.assertFalse(item.adapted().isPrivacyViewable())
 
     def test_AdaptDecisionClonedItem(self):
         """DU for "Décision urgente" is an emergency decision.

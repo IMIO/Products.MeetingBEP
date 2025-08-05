@@ -32,7 +32,7 @@ class testMeetingItem(MeetingBEPTestCase, mctmi):
         self.assertTrue(widget.testCondition(item.aq_inner.aq_parent, self.portal, item))
         self.assertTrue(item.adapted().showObservations())
 
-        # resctricted power observer may view
+        # resctricted power observer may NOT view
         self.changeUser('restrictedpowerobserver1')
         self.assertFalse(widget.testCondition(item.aq_inner.aq_parent, self.portal, item))
         self.assertFalse(item.adapted().showObservations())

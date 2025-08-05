@@ -11,7 +11,6 @@ from Products.MeetingBEP.interfaces import IMeetingBEPWorkflowActions
 from Products.MeetingBEP.interfaces import IMeetingBEPWorkflowConditions
 from Products.MeetingBEP.interfaces import IMeetingItemBEPWorkflowActions
 from Products.MeetingBEP.interfaces import IMeetingItemBEPWorkflowConditions
-from Products.MeetingBEP.utils import hr_group_uid
 from Products.MeetingCommunes.adapters import CustomMeeting
 from Products.MeetingCommunes.adapters import CustomMeetingItem
 from Products.MeetingCommunes.adapters import MeetingCommunesWorkflowActions
@@ -52,24 +51,6 @@ class CustomBEPMeetingItem(CustomMeetingItem):
         if isPowerObserverForCfg(
                 cfg, power_observer_types=['restrictedpowerobservers']):
             res = False
-        return res
-
-    def isPrivacyViewable(self):
-        """Not for restricted power observers if :
-           - item is returned_to_proposing_group;
-           - item.proposingGroup is HR_CONFIDENTIAL_GROUP_ID."""
-        item = self.getSelf()
-        tool = api.portal.get_tool('portal_plonemeeting')
-        cfg = tool.getMeetingConfig(item)
-        is_restricted_power_observer = isPowerObserverForCfg(
-            cfg, power_observer_types=['restrictedpowerobservers'])
-        res = True
-        if is_restricted_power_observer and \
-           (item.getProposingGroup() == hr_group_uid() or
-                item.query_state() == 'returned_to_proposing_group'):
-            res = False
-        if res:
-            res = item.isPrivacyViewable()
         return res
 
     def adaptDecisionClonedItem(self):
