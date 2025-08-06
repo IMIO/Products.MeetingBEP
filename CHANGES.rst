@@ -1,7 +1,7 @@
 Changelog
 =========
 
-4.2.1 (unreleased)
+4.2.1 (2025-08-06)
 ------------------
 
 - Fixed testing `import_data` configs title.
