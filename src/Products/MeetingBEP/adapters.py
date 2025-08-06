@@ -17,6 +17,8 @@ from Products.MeetingCommunes.adapters import MeetingCommunesWorkflowActions
 from Products.MeetingCommunes.adapters import MeetingCommunesWorkflowConditions
 from Products.MeetingCommunes.adapters import MeetingItemCommunesWorkflowActions
 from Products.MeetingCommunes.adapters import MeetingItemCommunesWorkflowConditions
+from Products.MeetingBEP.config import DU_ORIGINAL_VALUE
+from Products.MeetingBEP.config import DU_RATIFICATION_VALUE
 from Products.PloneMeeting.interfaces import IMeetingCustom
 from Products.PloneMeeting.interfaces import IMeetingItemCustom
 from Products.PloneMeeting.utils import isPowerObserverForCfg
@@ -68,10 +70,8 @@ class CustomBEPMeetingItem(CustomMeetingItem):
             data = {'mc_title': cfg.Title(),
                     'emergency_decision_date': accept_out_of_meeting_action['time'].strftime('%d/%m/%Y')}
             raw_value = raw_value.replace(
-                "<p><strong><u>Proposition de décision&nbsp;:</u></strong></p>",
-                "<p><u><strong>Le {mc_title} décide à l'unanimité de ratifier la décision "
-                "prise en urgence en date du {emergency_decision_date}, à savoir de :"
-                "</strong></u></p>".format(**data))
+                DU_ORIGINAL_VALUE,
+                DU_RATIFICATION_VALUE.format(**data))
         return raw_value
 
 

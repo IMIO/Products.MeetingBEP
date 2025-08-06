@@ -6,7 +6,13 @@ Changelog
 
 - Fixed testing `import_data` configs title.
   [gbasiten]
-- Removed override of `MeetingItem.isPrivacyViewable`, we go back to default behavior.
+- Removed override of `MeetingItem.isPrivacyViewable`,
+  we go back to default behavior.
+  [gbastien]
+- Use `config.DU_ORIGINAL_VALUE` and `config.DU_RATIFICATION_VALUE` in
+  `CustomBEPMeetingItem.adaptDecisionClonedItem`, do not know hy it was not
+  already the case, was only used in
+  `testCustomMeetingItem.test_AdaptDecisionClonedItem`.
   [gbastien]
 
 4.2 (2024-03-15)
