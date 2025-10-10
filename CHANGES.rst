@@ -16,7 +16,7 @@ Changelog
   we go back to default behavior.
   [gbastien]
 - Use `config.DU_ORIGINAL_VALUE` and `config.DU_RATIFICATION_VALUE` in
-  `CustomBEPMeetingItem.adaptDecisionClonedItem`, do not know hy it was not
+  `CustomBEPMeetingItem.adaptDecisionClonedItem`, do not know why it was not
   already the case, was only used in
   `testCustomMeetingItem.test_AdaptDecisionClonedItem`.
   [gbastien]
